@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="view/assets/js/f4781c35cc.js" crossorigin="anonymous"></script>
+  <!-- Select2 CSS -->
+  <link href="node_modules/select2/dist/css/select2.css" rel="stylesheet" />
+  <link rel="stylesheet" href="view/assets/css/login.css" />
+  <link rel="icon" href="view/assets/image/favicon.ico" type="image/x-icon" />
+  <title>Login Importaciones</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- BOTÓN DE TEMA -->
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i>
+    </button>
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form action="#" class="sign-in-form">
+          <h2 class="title">Sign in</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="email" id="email" placeholder="Correo electronico" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Contraseña" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-building"></i>
+            <select id="company-select">
+              <option value="" disabled selected>Seleccionar empresa</option>
+              <option value="company1">Company 1</option>
+              <option value="company2">Company 2</option>
+              <option value="company3">Company 3</option>
+            </select>
+          </div>
+          <input type="submit" value="Login" class="btn solid" />
+        </form>
+      </div>
+    </div>
+
+    <script src="view/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="node_modules/select2/dist/js/select2.js"></script>
+    <script src="view/assets/js/login.js"></script>
+    <script>
+      // Theme toggle
+      $(function() {
+        const btn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const stored = localStorage.getItem('theme');
+
+        // Aplicar preferencia guardada o la del sistema
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          body.classList.add('dark-mode');
+          btn.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        btn.addEventListener('click', () => {
+          const isDark = body.classList.toggle('dark-mode');
+          btn.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      });
+      $(function() {
+        $('#company-select').select2();
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const c = document.querySelector('.container');
+
+        function setRandomVars(prefix) {
+          // Genera start (0–80 vw/vh) y desplazamiento (-50 a +50 vw/vh)
+          const sx = Math.random() * 80;
+          const sy = Math.random() * 80;
+          const dx = (Math.random() - 0.5) * 100;
+          const dy = (Math.random() - 0.5) * 100;
+          c.style.setProperty(`--${prefix}-start-x`, sx + 'vw');
+          c.style.setProperty(`--${prefix}-start-y`, sy + 'vh');
+          c.style.setProperty(`--${prefix}-delta-x`, dx + 'vw');
+          c.style.setProperty(`--${prefix}-delta-y`, dy + 'vh');
+        }
+
+        setRandomVars('before');
+        setRandomVars('after');
+      });
+    </script>
+
+</body>
+
+</html>

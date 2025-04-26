@@ -1,0 +1,353 @@
+/* ========= VARIABLES ========= */
+:root {
+    /* — Gradiente de fondo — */
+    --bg-gradient-start: #f5f5f0;
+    /* crema muy claro */
+    --bg-gradient-end: #e0f7ff;
+    /* azul muy suave */
+
+    /* — Decoraciones (overlays, shapes suaves) — */
+    --decoration-light: rgba(255, 255, 255, 0.35);
+    --decoration-dark: rgba(0, 0, 0, 0.15);
+
+    /* — Contenedor glass (vidrio esmerilado) — */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-shadow: rgba(0, 0, 0, 0.10);
+
+    /* — Textos — */
+    --text-primary: #1a1a1a;
+    /* casi negro pero suave */
+    --text-secondary: #4a4a4a;
+    /* gris oscuro */
+
+    /* — Underline de inputs — */
+    --input-border: rgba(255, 255, 255, 0.6);
+    --input-border-focus: #ffffff;
+
+    /* — Botones con gradiente ligero — */
+    --btn-gradient-start: #2678fd;
+    /* azul pastel */
+    --btn-gradient-end: #999ae6;
+    /* blanco puro */
+    --btn-shadow: rgba(0, 123, 255, 0.2);
+    --btn-shadow-hover: rgba(0, 123, 255, 0.3);
+}
+
+
+/* ========= MODO OSCURO MANUAL ========= */
+.dark-mode {
+    /* Copia aquí los mismos valores que en @media (prefers-color-scheme: dark) */
+    --bg-gradient-start: #232526;
+    --bg-gradient-end: #414345;
+    --glass-bg: rgba(0, 0, 0, 0.25);
+    --glass-shadow: rgba(0, 0, 0, 0.6);
+    --text-primary: #fff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --input-border: rgba(255, 255, 255, 0.3);
+    --input-border-focus: rgba(255, 255, 255, 0.8);
+    --btn-gradient-start: #6a3093;
+    --btn-gradient-end: #a044ff;
+    --btn-shadow: rgba(106, 48, 147, 0.4);
+    --btn-shadow-hover: rgba(106, 48, 147, 0.6);
+}
+
+/* ========= MODO OSCURO ========= */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-gradient-start: #232526;
+        --bg-gradient-end: #414345;
+        --glass-bg: rgba(0, 0, 0, 0.25);
+        --glass-shadow: rgba(0, 0, 0, 0.6);
+        --text-primary: #fff;
+        --text-secondary: rgba(255, 255, 255, 0.6);
+        --input-border: rgba(255, 255, 255, 0.3);
+        --input-border-focus: rgba(255, 255, 255, 0.8);
+        --btn-gradient-start: #6a3093;
+        --btn-gradient-end: #a044ff;
+        --btn-shadow: rgba(106, 48, 147, 0.4);
+        --btn-shadow-hover: rgba(106, 48, 147, 0.6);
+    }
+}
+
+/* ========= RESET ========= */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* ========= BACKGROUND ANIMADO ========= */
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ========= DECORACIONES ========= */
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem;
+}
+
+/* — Keyframes de desplazamiento — */
+@keyframes moveBefore {
+    to { transform: translate(var(--before-delta-x), var(--before-delta-y)); }
+  }
+  @keyframes moveAfter {
+    to { transform: translate(var(--after-delta-x), var(--after-delta-y)); }
+  }
+  
+  /* — Círculos decorativos, con posición y animación dinámica — */
+  .container::before,
+  .container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    transform-origin: center;
+  }
+  
+  .container::before {
+    width: 300px;
+    height: 300px;
+    background: var(--decoration-light);
+    top: var(--before-start-y);
+    left: var(--before-start-x);
+    animation: moveBefore 20s ease-in-out infinite alternate;
+  }
+  
+  .container::after {
+    width: 500px;
+    height: 500px;
+    background: var(--decoration-dark);
+    top: var(--after-start-y);
+    left: var(--after-start-x);
+    animation: moveAfter 25s ease-in-out infinite alternate-reverse;
+  }
+  
+
+/* ========= TARJETA (GLASSMORPHISM) ========= */
+.forms-container {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    padding: 2.5rem 2rem;
+    background: var(--glass-bg);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    z-index: 1;
+}
+
+/* ========= TITULO ========= */
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+/* ========= CAMPOS DE INPUT ========= */
+.input-field {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-field i {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+.input-field input,
+.input-field select {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: none;
+    border-bottom: 2px solid var(--input-border);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none;
+}
+
+.input-field input::placeholder,
+.input-field select .select2-selection__rendered {
+    color: var(--text-secondary);
+}
+
+.input-field input:focus,
+.input-field select:focus {
+    border-bottom-color: var(--input-border-focus);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.input-field input:focus+i,
+.input-field select:focus+i {
+    color: var(--text-primary);
+}
+
+/* ========= SELECT2 ========= */
+.select2-container--default .select2-selection--single {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--input-border);
+    padding-left: 3rem;
+    height: auto;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 1.5;
+    color: var(--text-primary);
+    padding: 0.75rem 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    color: var(--text-secondary);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ========= SELECT2 DROPDOWN STYLES ========= */
+.select2-container--default .select2-dropdown {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    border: none;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+    backdrop-filter: blur(10px);
+}
+
+.select2-container--default .select2-results__option {
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    transition: background-color 0.2s;
+}
+
+.select2-container--default .select2-results__option--highlighted {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+/* scrollbar personalizado (opcional) */
+.select2-results__options {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.select2-results__options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.select2-results__options::-webkit-scrollbar-thumb {
+    background: var(--input-border);
+    border-radius: 4px;
+}
+
+.select2-results__options::-webkit-scrollbar-thumb:hover {
+    background: var(--input-border-focus);
+}
+
+/* flecha del select */
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: var(--text-secondary) transparent transparent transparent;
+}
+
+.select2-container--default .select2-selection--single:hover .select2-selection__arrow b,
+.select2-container--default .select2-selection--single:focus .select2-selection__arrow b {
+    border-color: var(--text-primary) transparent transparent transparent;
+}
+
+
+/* ========= BOTÓN ========= */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 0.85rem;
+    margin-top: 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    background: linear-gradient(135deg, var(--btn-gradient-start) 0%, var(--btn-gradient-end) 100%);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 20px var(--btn-shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px var(--btn-shadow-hover);
+}
+
+/* ========= MEDIA QUERIES ========= */
+@media (min-width: 768px) {
+    .forms-container {
+        padding: 3.5rem 2.5rem;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .input-field i {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        font-size: 1.1rem;
+    }
+}
+
+/* botón flotante arriba a la derecha */
+.theme-toggle-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: transform 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.2);
+}
