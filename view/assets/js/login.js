@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   // 1. Espera a que el DOM esté completamente cargado antes de ejecutar el código
   const $form = $(".sign-in-form");
   

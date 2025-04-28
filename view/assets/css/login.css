@@ -150,6 +150,7 @@ body {
     top: var(--after-start-y);
     left: var(--after-start-x);
     animation: moveAfter 25s ease-in-out infinite alternate-reverse;
+    z-index: 1;
   }
   
 
@@ -163,7 +164,7 @@ body {
     border-radius: 1.5rem;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px var(--glass-shadow);
-    z-index: 1;
+    z-index: 2;
 }
 
 /* ========= TITULO ========= */
@@ -337,9 +338,6 @@ body {
 
 /* botón flotante arriba a la derecha */
 .theme-toggle-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
     background: transparent;
     border: none;
     font-size: 1.5rem;
@@ -350,4 +348,8 @@ body {
 
 .theme-toggle-btn:hover {
     transform: scale(1.2);
+}
+
+.navbar {
+    z-index: 2;
 }
