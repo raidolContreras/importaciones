@@ -1,0 +1,8 @@
+{
+    "login": {
+        "title": "Sing in",
+        "email": "Email",
+        "password": "Password",
+        "companyOptionNull": "Select company"
+    }
+}

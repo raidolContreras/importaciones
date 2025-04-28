@@ -9,22 +9,37 @@
   <link href="node_modules/select2/dist/css/select2.css" rel="stylesheet" />
   <link rel="stylesheet" href="view/assets/css/login.css" />
   <link rel="icon" href="view/assets/image/favicon.ico" type="image/x-icon" />
-  <title>Login Importaciones</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title id="title"></title>
 </head>
+<!--Nav Start-->
+<nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
+  <div class="container-fluid navbar-inner">
+    <div class="collapse navbar-collapse col-md-2" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center me-2">
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+            <i class="fas fa-sun img-fluid rounded-circle"></i>
+          </button>
+        </li>
+        <li class="nav-item" id="language">
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <body>
+
   <div class="container">
-    <!-- BOTÓN DE TEMA -->
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
-      <i class="fas fa-sun"></i>
-    </button>
     <div class="forms-container">
       <div class="signin-signup">
         <form action="#" class="sign-in-form">
-          <h2 class="title">Sign in</h2>
+          <h2 class="title"></h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" id="email" placeholder="Correo electronico" />
+            <input type="email" id="email" placeholder="" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
@@ -33,7 +48,7 @@
           <div class="input-field">
             <i class="fas fa-building"></i>
             <select id="company-select">
-              <option value="" disabled selected>Seleccionar empresa</option>
+              <option value="" disabled selected id="companyOptionNull"></option>
               <option value="company1">Company 1</option>
               <option value="company2">Company 2</option>
               <option value="company3">Company 3</option>
@@ -43,10 +58,11 @@
         </form>
       </div>
     </div>
-
     <script src="view/assets/js/jquery-3.7.1.min.js"></script>
     <script src="node_modules/select2/dist/js/select2.js"></script>
     <script src="view/assets/js/login.js"></script>
+    <script src="view/assets/js/languages.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       // Theme toggle
       $(function() {
