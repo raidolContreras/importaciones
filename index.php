@@ -2,6 +2,8 @@
 
     require_once "controller/template.controller.php";
     require_once "controller/form.controller.php";
+    require_once "controller/companies.controller.php";
+    require_once "model/companies.model.php";
     require_once "model/form.model.php";
 
     session_start();

@@ -39,7 +39,7 @@
           <h2 class="title"></h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" id="email" placeholder="" />
+            <input type="text" id="user-name" placeholder="Nombre de usuario" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
@@ -48,10 +48,14 @@
           <div class="input-field">
             <i class="fas fa-building"></i>
             <select id="company-select">
-              <option value="" disabled selected id="companyOptionNull"></option>
-              <option value="company1">Company 1</option>
-              <option value="company2">Company 2</option>
-              <option value="company3">Company 3</option>
+              <option value="" disabled selected>Seleccionar empresa</option>
+              <?php
+                require_once "controller/companies.controller.php";
+                $empresas = CompaniesController::obtenerEmpresas();
+                foreach ($empresas as $empresa) {
+                    echo '<option value="' . htmlspecialchars($empresa['business_name']) . '">' . htmlspecialchars($empresa['business_name']) . '</option>';
+                }
+              ?>
             </select>
           </div>
           <input type="submit" value="Login" class="btn solid" />

@@ -11,19 +11,19 @@ $(function () {
     event.preventDefault();
 
     // 4. Obtiene los valores ingresados por el usuario en los campos
-    const email = $("#email").val();
+    const username = $("#user-name").val();
     const password = $("#password").val();
     const company = $("#company-select").val();
 
     // 5. Valida que los tres campos no estén vacíos
-    if (!email || !password || !company) {
+    if (!username || !password || !company) {
       alert("Por favor, completa todos los campos.");
       return; // Sale de la función si falta algún dato
     }
 
     // 6. Construye el objeto con los datos del formulario que se enviarán al servidor
     const formData = {
-      email: email,
+      username: username,
       password: password,
       company: company,
     };
