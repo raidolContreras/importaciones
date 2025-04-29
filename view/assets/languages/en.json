@@ -4,5 +4,8 @@
         "email": "Email",
         "password": "Password",
         "companyOptionNull": "Select company"
+    },
+    "header": {
+        "inactivity": "Inactivity"
     }
 }

@@ -4,5 +4,8 @@
         "email": "Correo electrónico",
         "password": "Contraseña",
         "companyOptionNull": "Seleccionar empresa"
+    },
+    "header": {
+        "inactivity": "Inactividad"
     }
 }

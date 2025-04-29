@@ -63,3 +63,17 @@ function changeLanguage(language) {
         aplicarTraducciones();
     });
 }
+
+function getTranslation(path) {
+    const keys = path.split('.');
+    let result = translations;
+
+    for (let key of keys) {
+        if (result && result.hasOwnProperty(key)) {
+            result = result[key];
+        } else {
+            return path; // Si no existe, devuelves el path como fallback
+        }
+    }
+    return result;
+}
