@@ -31,7 +31,6 @@
 </nav>
 
 <body>
-
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
@@ -53,7 +52,7 @@
                 require_once "controller/companies.controller.php";
                 $empresas = CompaniesController::obtenerEmpresas();
                 foreach ($empresas as $empresa) {
-                    echo '<option value="' . htmlspecialchars($empresa['business_name']) . '">' . htmlspecialchars($empresa['business_name']) . '</option>';
+                    echo '<option value="' . htmlspecialchars($empresa['company_id']) . '">' . htmlspecialchars($empresa['business_name']) . '</option>';
                 }
               ?>
             </select>

@@ -23,21 +23,22 @@ $(function () {
 
     // 6. Construye el objeto con los datos del formulario que se enviarán al servidor
     const formData = {
-      username: username,
-      password: password,
-      company: company,
+      action: "login",
+      Username: username,
+      Password: password,
+      company_id: company,
     };
 
     // 7. Realiza la petición AJAX al endpoint "login"
     $.ajax({
-      url: "login",                      // Ruta a la que se envía la petición
+      url: "controller/actions.controller.php",                      // Ruta a la que se envía la petición
       method: "POST",                    // Método HTTP
-      contentType: "application/json",   // Tipo de contenido: JSON
-      data: JSON.stringify(formData),    // Convierte el objeto a cadena JSON
+      data: formData,                   // Datos que se envían al servidor
+      dataType: "json",                 // Tipo de datos que se espera recibir del servidor
       success: function (data) {         // Se ejecuta si la petición es exitosa
-        if (data.success) {
-          alert("¡Inicio de sesión exitoso!");
-          // Aquí podrías redirigir al usuario o realizar cualquier otra acción
+        if (data.status === "success") {
+          // Si el login es exitoso, redirige a la página de inicio
+          window.location.href = "./";
         } else {
           // Si el login falla (credenciales inválidas), muestra el mensaje del servidor
           alert("Error de inicio de sesión: " + data.message);

@@ -7,7 +7,7 @@
     require_once "model/form.model.php";
 
     session_start();
-    if (isset($_SESSION["validarSesion"]) && $_SESSION["validarSesion"] == "ok") {
+    if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
         $template = new ControllerTemplate();
         $template -> ctrBringTemplate();
     } else {

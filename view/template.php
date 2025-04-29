@@ -1,1 +1,3 @@
-hola
+<?php
+
+require "users.php";
