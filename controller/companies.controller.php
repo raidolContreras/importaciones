@@ -7,3 +7,4 @@ class CompaniesController
     {
         return Modelo::obtenerEmpresas();
     }
+}
