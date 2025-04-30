@@ -10,4 +10,7 @@
         case 'createUser':
             UserController::ctrCreateUser();
             break;
+        case 'changeCompany':
+            UserController::ctrChangeCompany();
+            break;
     }

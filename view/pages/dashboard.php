@@ -89,3 +89,139 @@
 
     </div>
 </div>
+
+<!-- Floating Button -->
+<button type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#catalogModal" style="width: 60px; height: 60px;">
+    <i class="fas fa-plus"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="catalogModal" tabindex="-1" aria-labelledby="catalogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="catalogModalLabel">Catálogo ID00001</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button type="button" class="btn btn-outline-light flex-shrink-0" style="background-color: transparent; color: white; border: 2px solid #FF5722; transition: none;">Folio Sistema: Número Secuencial</button>
+                    <div class="d-flex justify-content-center w-100">
+                        <h5 class="mb-0">Captura de Datos</h5>
+                    </div>
+                </div>
+                <form>
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="NumeroBroker" class="form-label">Número de Broker:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="NumeroBroker" class="form-control" placeholder="Dato desde catálogo manual en DB">
+                        </div>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="NumerodeProveedor" class="form-label">Número de Proveedor:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="NumerodeProveedor" class="form-control" placeholder="Dato desde catálogo importado en DB">
+                        </div>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Producto+Origen" class="form-label">Producto + Origen:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="Producto+Origen" class="form-control" placeholder="Dato desde catálogo especial en DB">
+                        </div>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-2 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Producto Nombre Comercial" class="form-label">Producto Nombre Comercial:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="Producto Nombre Comercial" class="form-control" placeholder="Dato desde catálogo importado en DB">
+                        </div>
+                    </div>
+
+                    <!--espacio-->
+                    <div class="row mb-1 align-items-center">
+                        <h5> </h5>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Cantidad" class="form-label">Cantidad:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="Cantidad" class="form-control" placeholder="Ingreso la Cantidad Manual">
+                        </div>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Precio" class="form-label">Precio:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" step="0.01" id="Precio" class="form-control" placeholder="Ingreso la Cantidad Manual">
+                        </div>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Unidad de Medida" class="form-label">Unidad de Medida:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="Unidad de Medida" class="form-control" placeholder="Dato desde catálogo manual en DB">
+                        </div>
+                    </div>
+
+                    <!--espacio-->
+                    <div class="row mb-1 align-items-center">
+                        <h5> </h5>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Supervisor" class="form-label">Supervisor:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="Supervisor" class="form-control" placeholder="Dato desde catálogo manual en DB">
+                        </div>
+                    </div>
+
+                    <!--Fila-->
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-6 text-md-end">
+                            <label for="Ejecutivo" class="form-label">Ejecutivo:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="Ejecutivo" class="form-control" placeholder="Dato desde catálogo manual en DB">
+                        </div>
+                    </div>
+
+                    <!--Botón de inicio de envio-->
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

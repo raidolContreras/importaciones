@@ -49,7 +49,6 @@
             <select id="company-select">
               <option value="" disabled selected>Seleccionar empresa</option>
               <?php
-                require_once "controller/companies.controller.php";
                 $empresas = CompaniesController::obtenerEmpresas();
                 foreach ($empresas as $empresa) {
                     echo '<option value="' . htmlspecialchars($empresa['company_id']) . '">' . htmlspecialchars($empresa['business_name']) . '</option>';

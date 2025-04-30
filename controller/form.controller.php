@@ -13,6 +13,7 @@ class UserController
             session_start();
             // Password is correct, proceed with login
             $_SESSION["loggedIn"] = true;
+            $_SESSION["id_Users"] = $response["id_Users"];
             $_SESSION["user"] = $response["Username"];
             $_SESSION["role"] = $response["Role_ID"];
             $_SESSION['company_id'] = $_POST["company_id"];
@@ -39,5 +40,20 @@ class UserController
         } else {
             echo json_encode(array("status" => "error", "message" => "Error creating user."));
         }
+    }
+
+    static public function ctrGetDataUser() {
+        $id_Users = $_SESSION["id_Users"];
+        $company_id = $_SESSION["company_id"];
+
+        $response = UserModel::mdlGetDataUser($id_Users, $company_id);
+        return $response;
+    }
+
+    static public function ctrChangeCompany() {
+        session_start();
+        $company_id = $_POST["company_id"];
+        $_SESSION["company_id"] = $company_id;
+        echo json_encode(array("status" => "success", "message" => "Company changed successfully!"));
     }
 }

@@ -39,4 +39,18 @@ class UserModel {
         $stmt = null;
         return $response;
     }
+
+    static public function mdlGetDataUser($id_Users, $company_id) {
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare("SELECT *, (SELECT business_name FROM companies WHERE company_id = :company_id) AS business_name FROM user_catalog u LEFT JOIN roles r ON r.id_Rol = u.Role_ID WHERE u.id_Users = :id_Users;");
+        $stmt->bindParam(":id_Users", $id_Users, PDO::PARAM_INT);
+        $stmt->bindParam(":company_id", $company_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $response = $stmt->fetch();
+        
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
 }

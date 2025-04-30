@@ -19,6 +19,24 @@
         <div class="collapse navbar-collapse col-md-2" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item d-flex align-items-center me-2">
+                    <span>
+                        <?php $dataUser = UserController::ctrGetDataUser();
+                        echo $dataUser["Username"] . ' - ' . $dataUser['Role_Name'] . ' - ' . $dataUser["business_name"];
+                        ?>
+                    </span>
+                </li>
+                <li class="nav-item d-flex align-items-center me-2">
+                    <select id="company-select" class="form-select">
+                        <?php
+                        $empresas = CompaniesController::obtenerEmpresas();
+                        foreach ($empresas as $empresa) {
+                            $selected = ($_SESSION['company_id'] == $empresa['company_id']) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($empresa['company_id']) . '" ' . $selected . '>' . htmlspecialchars($empresa['business_name']) .'</option>';
+                        }
+                        ?>
+                    </select>
+                </li>
+                <li class="nav-item d-flex align-items-center me-2">
                     <span id="inactivity-timer"></span>
                 </li>
                 <li class="nav-item d-flex align-items-center me-2">
@@ -67,9 +85,6 @@
                 btn.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             });
-        });
-        $(function() {
-            $('#company-select').select2();
         });
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -163,6 +178,26 @@
         }
 
         updateInactivityTimer();
+
+        $('#company-select').on('change', function() {
+            const selectedCompanyId = $(this).val();
+            $.ajax({
+                url: 'controller/actions.controller.php',
+                type: 'POST',
+                data: {  action: 'changeCompany', company_id: selectedCompanyId },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload(); // Reload the page to apply changes
+                    } else {
+                        alert('Error al cambiar la empresa. Inténtalo de nuevo.');
+                    }
+                },
+                error: function() {
+                    alert('Error en la solicitud. Inténtalo de nuevo.');
+                }
+            });
+        });
     </script>
 
 </body>
