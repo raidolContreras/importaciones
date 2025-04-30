@@ -1,7 +1,8 @@
 <style>
     @media (min-width: 992px) {
         .card.full-height {
-            height: calc(100vh - 3rem); /* Ajusta según el padding/margen superior */
+            height: calc(100vh - 3rem);
+            /* Ajusta según el padding/margen superior */
         }
     }
 </style>
@@ -57,6 +58,25 @@
                 </div>
                 <div class="card-body d-flex flex-column p-0 overflow-hidden">
                     <div class="flex-grow-1 overflow-auto">
+
+                        <div class="list-group list-group-flush">
+                            <div class="d-flex justify-content-center align-items-center my-3">
+                                <hr class="flex-grow-1 me-3">
+                                <span class="text-muted">Almacenadora</span>
+                                <hr class="flex-grow-1 ms-3">
+                            </div>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <button class="mt-1 mx-2 btn btn-info text-start">Recordatorio 01</button>
+                            <button class="mt-1 mx-2 btn btn-info text-start">Recordatorio 02</button>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <div class="d-flex justify-content-center align-items-center my-3">
+                                <hr class="flex-grow-1 me-3">
+                                <span class="text-muted">Agruza</span>
+                                <hr class="flex-grow-1 ms-3">
+                            </div>
+                        </div>
                         <div class="list-group list-group-flush">
                             <button class="mt-1 mx-2 btn btn-info text-start">Recordatorio 01</button>
                             <button class="mt-1 mx-2 btn btn-info text-start">Recordatorio 02</button>
