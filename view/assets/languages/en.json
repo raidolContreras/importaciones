@@ -1,11 +1,38 @@
 {
     "login": {
         "title": "Sing in",
-        "email": "Email",
+        "username": "Username",
         "password": "Password",
         "companyOptionNull": "Select company"
     },
     "header": {
         "inactivity": "Inactivity"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "tasks": "Tasks",
+        "pending": "Pending",
+        "reminders": "Reminders"
+    },
+    "catalog": {
+        "modalTitle": "Catalog",
+        "folioSystem": "System Folio",
+        "dataCapture": "Data Capture",
+        "brokerNumber": "Broker Number",
+        "supplierNumber": "Supplier Number",
+        "productOrigin": "Product + Origin",
+        "commercialName": "Commercial Name",
+        "quantity": "Quantity",
+        "price": "Price",
+        "unitOfMeasure": "Unit of Measure",
+        "supervisor": "Supervisor",
+        "executive": "Executive",
+        "manualCatalogData": "Data from manual catalog in DB",
+        "importedCatalogData": "Data from imported catalog in DB",
+        "specialCatalogData": "Data from special catalog in DB",
+        "enterQuantity": "Enter Quantity",
+        "enterPrice": "Enter Price",
+        "cancel": "Cancel",
+        "create": "Create"
     }
 }

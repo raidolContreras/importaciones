@@ -1,11 +1,38 @@
 {
     "login": {
         "title": "Iniciar sesión",
-        "email": "Correo electrónico",
+        "username": "Nombre de usuario",
         "password": "Contraseña",
         "companyOptionNull": "Seleccionar empresa"
     },
     "header": {
         "inactivity": "Inactividad"
+    },
+    "dashboard": {
+        "title": "Tablero",
+        "tasks": "Tareas",
+        "pending": "Pendientes",
+        "reminders": "Recordatorios"
+    },
+    "catalog": {
+        "modalTitle": "Catálogo",
+        "folioSystem": "Folio Sistema",
+        "dataCapture": "Captura de Datos",
+        "brokerNumber": "Número de Broker",
+        "supplierNumber": "Número de Proveedor",
+        "productOrigin": "Producto + Origen",
+        "commercialName": "Nombre Comercial",
+        "quantity": "Cantidad",
+        "price": "Precio",
+        "unitOfMeasure": "Unidad de Medida",
+        "supervisor": "Supervisor",
+        "executive": "Ejecutivo",
+        "manualCatalogData": "Dato desde catálogo manual en DB",
+        "importedCatalogData": "Dato desde catálogo importado en DB",
+        "specialCatalogData": "Dato desde catálogo especial en DB",
+        "enterQuantity": "Ingresa la Cantidad",
+        "enterPrice": "Ingresa el Precio",
+        "cancel": "Cancelar",
+        "create": "Crear"
     }
 }

@@ -3,6 +3,8 @@
 // Obtener el valor de la página desde la URL, con un valor predeterminado de 'dashboard'
 $pagina = $_GET['pagina'] ?? 'dashboard';
 
+echo "<input type='hidden' id='pagina' value='$pagina'>";
+
 // Lista blanca de páginas permitidas
 $navs = [
     'dashboard', // Página principal

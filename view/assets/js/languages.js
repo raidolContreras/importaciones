@@ -46,14 +46,53 @@ async function cargarTraducciones(idioma) {
 // Función para aplicar las traducciones
 function aplicarTraducciones() {
     if (!translations || !translations.login) return;
-
-    $('#title').text(translations.login.title);
-    $('.title').text(translations.login.title);
-    $('#email').attr('placeholder', translations.login.email);
+    
+    pagina = $('#pagina').val();
+    if (pagina === 'login') {
+        $('#title').attr('placeholder', translations.login.title);
+        $('.title').text(translations.login.title);
+    } else {
+        if (translations[pagina] && translations[pagina].title) {
+            $('#title').text(translations[pagina].title);
+        } else {
+            console.warn(`No se encontraron traducciones para la página: ${pagina}`);
+        }
+    }
+    $('#user-name').attr('placeholder', translations.login.username);
     $('#password').attr('placeholder', translations.login.password);
     $('#companyOptionNull').text(translations.login.companyOptionNull);
     $('.select2-selection__rendered').text(translations.login.companyOptionNull);
     $('input[type="submit"].btn.solid').val(translations.login.title);
+    $('.tasks').text(translations.dashboard.tasks);
+    $('.pending').text(translations.dashboard.pending);
+    $('.reminders').text(translations.dashboard.reminders);
+
+    // Aplicar traducciones al modal de catálogo
+    $('#catalogModalLabel .Catalog').text(translations.catalog.modalTitle);
+    $('#catalogModalLabel .text-muted-dashboard').text('ID00001'); // Ejemplo de ID estático
+    $('.folioSystem').text(translations.catalog.folioSystem);
+    $('.folioId').text('0001'); // Ejemplo de folio estático
+    $('.dataCapture').text(translations.catalog.dataCapture);
+    $('.brokerNumber').text(translations.catalog.brokerNumber);
+    $('#numeroBroker').attr('placeholder', translations.catalog.manualCatalogData);
+    $('.supplierNumber').text(translations.catalog.supplierNumber);
+    $('#numeroProveedor').attr('placeholder', translations.catalog.importedCatalogData);
+    $('.productOrigin').text(translations.catalog.productOrigin);
+    $('#productoOrigen').attr('placeholder', translations.catalog.specialCatalogData);
+    $('.commercialName').text(translations.catalog.commercialName);
+    $('#productoNombreComercial').attr('placeholder', translations.catalog.importedCatalogData);
+    $('.quantity').text(translations.catalog.quantity);
+    $('#cantidad').attr('placeholder', translations.catalog.enterQuantity);
+    $('.price').text(translations.catalog.price);
+    $('#precio').attr('placeholder', translations.catalog.enterPrice);
+    $('.unitOfMeasure').text(translations.catalog.unitOfMeasure);
+    $('#unidadMedida').attr('placeholder', translations.catalog.manualCatalogData);
+    $('.supervisor').text(translations.catalog.supervisor);
+    $('#supervisor').attr('placeholder', translations.catalog.manualCatalogData);
+    $('.executive').text(translations.catalog.executive);
+    $('#ejecutivo').attr('placeholder', translations.catalog.manualCatalogData);
+    $('.cancel').text(translations.catalog.cancel);
+    $('.create').text(translations.catalog.create);
 }
 
 // Función para cambiar el idioma dinámicamente

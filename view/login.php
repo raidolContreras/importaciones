@@ -60,6 +60,7 @@
         </form>
       </div>
     </div>
+    <input type="hidden" id="pagina" value="login">
     <script src="view/assets/js/jquery-3.7.1.min.js"></script>
     <script src="node_modules/select2/dist/js/select2.js"></script>
     <script src="view/assets/js/login.js"></script>

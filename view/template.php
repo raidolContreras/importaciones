@@ -21,7 +21,7 @@
                 <li class="nav-item d-flex align-items-center me-2">
                     <span>
                         <?php $dataUser = UserController::ctrGetDataUser();
-                        echo $dataUser["Username"] . ' - ' . $dataUser['Role_Name'] . ' - ' . $dataUser["business_name"];
+                        echo $dataUser["Username"] . ' - ' . $dataUser['Role_Name'] . ' - ';
                         ?>
                     </span>
                 </li>
@@ -31,7 +31,7 @@
                         $empresas = CompaniesController::obtenerEmpresas();
                         foreach ($empresas as $empresa) {
                             $selected = ($_SESSION['company_id'] == $empresa['company_id']) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($empresa['company_id']) . '" ' . $selected . '>' . htmlspecialchars($empresa['business_name']) .'</option>';
+                            echo '<option value="' . htmlspecialchars($empresa['company_id']) . '" ' . $selected . '>' . htmlspecialchars($empresa['business_name']) . '</option>';
                         }
                         ?>
                     </select>
@@ -184,7 +184,10 @@
             $.ajax({
                 url: 'controller/actions.controller.php',
                 type: 'POST',
-                data: {  action: 'changeCompany', company_id: selectedCompanyId },
+                data: {
+                    action: 'changeCompany',
+                    company_id: selectedCompanyId
+                },
                 dataType: 'json',
                 success: function(response) {
                     if (response.status === 'success') {

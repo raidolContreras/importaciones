@@ -51,6 +51,37 @@
     --btn-shadow: rgba(106, 48, 147, 0.4);
     --btn-shadow-hover: rgba(106, 48, 147, 0.6);
     --decoration-light: rgba(255, 255, 255, 0.15);
+
+    /* Colores base */
+    --bs-body-color: #ffffff;
+    --bs-body-bg: #232526;
+
+    /* Colores de fondo */
+    --bs-light: #2c2f33;
+    --bs-white: #2c2f33;
+    --bs-dark: #1a1d1f;
+    --bs-secondary: #3b4045;
+    --bs-primary: #6a3093;
+    --bs-primary-bg: #6a3093;
+    --bs-primary-border: #6a3093;
+    --bs-primary-hover-bg: #a044ff;
+    --bs-primary-hover-border: #a044ff;
+
+    /* Colores de bordes */
+    --bs-border-color: rgba(255, 255, 255, 0.2);
+
+    /* Links */
+    --bs-link-color: #9ad0ff;
+    --bs-link-hover-color: #c0e0ff;
+
+    /* Form Controls */
+    --bs-form-control-bg: #2c2f33;
+    --bs-form-control-color: #ffffff;
+    --bs-form-control-border-color: rgba(255, 255, 255, 0.3);
+    --bs-form-control-focus-border-color: rgba(255, 255, 255, 0.8);
+
+    /* Dropdowns, Listas, Accordions */
+    --bs-tertiary-bg: #343a40;
 }
 
 /* ========= MODO OSCURO ========= */
@@ -60,7 +91,6 @@
         --bg-gradient-end: #414345;
         --glass-bg: rgba(0, 0, 0, 0.25);
         --glass-shadow: rgba(0, 0, 0, 0.6);
-        --text-primary: #fff;
         --text-secondary: rgba(255, 255, 255, 0.6);
         --input-border: rgba(255, 255, 255, 0.3);
         --input-border-focus: rgba(255, 255, 255, 0.8);
@@ -88,7 +118,7 @@ body {
 
 /* ========= BACKGROUND ANIMADO ========= */
 body {
-    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    /* background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%); */
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
@@ -340,43 +370,6 @@ body {
     z-index: 3;
 }
 
-/* ============================== */
-/* BOOTSTRAP + DARK MODE PATCH EXTENDIDO */
-/* ============================== */
-
-.dark-mode {
-    /* Colores base */
-    --bs-body-color: #ffffff;
-    --bs-body-bg: #232526;
-
-    /* Colores de fondo */
-    --bs-light: #2c2f33;
-    --bs-white: #2c2f33;
-    --bs-dark: #1a1d1f;
-    --bs-secondary: #3b4045;
-    --bs-primary: #6a3093;
-    --bs-primary-bg: #6a3093;
-    --bs-primary-border: #6a3093;
-    --bs-primary-hover-bg: #a044ff;
-    --bs-primary-hover-border: #a044ff;
-
-    /* Colores de bordes */
-    --bs-border-color: rgba(255, 255, 255, 0.2);
-
-    /* Links */
-    --bs-link-color: #9ad0ff;
-    --bs-link-hover-color: #c0e0ff;
-
-    /* Form Controls */
-    --bs-form-control-bg: #2c2f33;
-    --bs-form-control-color: #ffffff;
-    --bs-form-control-border-color: rgba(255, 255, 255, 0.3);
-    --bs-form-control-focus-border-color: rgba(255, 255, 255, 0.8);
-
-    /* Dropdowns, Listas, Accordions */
-    --bs-tertiary-bg: #343a40;
-}
-
 /* FORMULARIOS */
 .dark-mode .form-control,
 .dark-mode .form-select,
@@ -496,3 +489,32 @@ body {
     color: #ffffff !important;
 }
 
+@media (min-width: 992px) {
+    .card.full-height {
+        height: calc(90vh - 3rem);
+        /* Ajusta según el padding/margen superior */
+    }
+}
+
+.text-muted-dashboard {
+    --bs-text-opacity: 1;
+    color: var(--text-primary) !important;
+}
+
+/* ========= PLACEHOLDERS DE LOS INPUTS ========= */
+::placeholder {
+    color: var(--text-primary) !important;
+    opacity: 0.5; /* Asegura que el color sea visible */
+}
+
+input::placeholder {
+    color: var(--text-primary) !important;
+}
+
+textarea::placeholder {
+    color: var(--text-primary) !important;
+}
+
+select::placeholder {
+    color: var(--text-primary) !important;
+}
