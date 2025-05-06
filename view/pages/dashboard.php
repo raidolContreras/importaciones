@@ -82,8 +82,8 @@
 </div>
 
 <!-- Floating Button -->
-<button type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#catalogModal" style="width: 60px; height: 60px;">
-    <i class="fas fa-plus"></i>
+<button type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle shadow d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#catalogModal" style="width: 30px; height: 30px; font-size: 1rem;">
+  <i class="fas fa-plus"></i>
 </button>
 
 <!-- Improved Modal -->

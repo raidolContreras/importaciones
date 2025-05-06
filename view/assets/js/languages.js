@@ -66,6 +66,7 @@ function aplicarTraducciones() {
     $('.tasks').text(translations.dashboard.tasks);
     $('.pending').text(translations.dashboard.pending);
     $('.reminders').text(translations.dashboard.reminders);
+    $('.logout').html('<i class="fas fa-sign-out-alt fs-5 me-2"></i> ' + translations.dashboard.logout);
 
     // Aplicar traducciones al modal de catálogo
     $('#catalogModalLabel .Catalog').text(translations.catalog.modalTitle);
@@ -93,6 +94,16 @@ function aplicarTraducciones() {
     $('#ejecutivo').attr('placeholder', translations.catalog.manualCatalogData);
     $('.cancel').text(translations.catalog.cancel);
     $('.create').text(translations.catalog.create);
+
+    // Traducciones de administrador
+    $('.users').html('<i class="fas fa-users fs-5 me-2"></i>' + translations.admin.users);
+
+    // Traducciones de usuarios
+    $('.username').text(translations.users.username + ':');
+    $('#username').attr('placeholder', translations.users.username);
+    $('.password').text(translations.users.password + ':');
+    $('.role').text(translations.users.role + ':');
+    $('.createUser').text(translations.users.createUser);
 }
 
 // Función para cambiar el idioma dinámicamente

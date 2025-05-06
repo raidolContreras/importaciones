@@ -7,26 +7,40 @@
     <script src="view/assets/js/f4781c35cc.js" crossorigin="anonymous"></script>
     <!-- Select2 CSS -->
     <link href="node_modules/select2/dist/css/select2.css" rel="stylesheet" />
-    <link rel="stylesheet" href="view/assets/css/style.css" />
     <link rel="icon" href="view/assets/image/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="view/assets/css/style.css" />
     <title id="title"></title>
+
+    <!-- jquery -->
+    <script src="view/assets/js/jquery-3.7.1.min.js"></script>
 </head>
 <!--Nav Start-->
-<nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
-    <div class="container-fluid navbar-inner">
-        <div class="collapse navbar-collapse col-md-2" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item d-flex align-items-center me-2">
-                    <span>
-                        <?php $dataUser = UserController::ctrGetDataUser();
-                        echo $dataUser["Username"] . ' - ' . $dataUser['Role_Name'] . ' - ';
-                        ?>
+<nav class="nav navbar navbar-expand-xl navbar-light iq-navbar bg-white shadow-sm py-2">
+    <div class="container-fluid navbar-inner me-2">
+        <a class="navbar-brand d-flex align-items-center" href="./">
+            <img src="view/assets/image/logo.png" alt="Logo" class="me-2" style="height: 40px;">
+            <span class="fw-bold fs-5">Sistema de importaciones</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item d-flex align-items-center me-3">
+                    <span class="user-info d-flex align-items-center">
+                        <i class="fas fa-user-circle me-2 fs-5"></i>
+                        <span class="text-truncate fw-semibold">
+                            <?php
+                            $dataUser = UserController::ctrGetDataUser();
+                            echo htmlspecialchars($dataUser["Username"]) . ' - ' . htmlspecialchars($dataUser['Role_Name']);
+                            ?>
+                        </span>
                     </span>
                 </li>
-                <li class="nav-item d-flex align-items-center me-2">
-                    <select id="company-select" class="form-select">
+                <li class="nav-item d-flex align-items-center me-3">
+                    <select id="company-select" class="form-select form-select-sm">
                         <?php
                         $empresas = CompaniesController::obtenerEmpresas();
                         foreach ($empresas as $empresa) {
@@ -36,25 +50,71 @@
                         ?>
                     </select>
                 </li>
-                <li class="nav-item d-flex align-items-center me-2">
-                    <span id="inactivity-timer"></span>
+                <li class="nav-item d-flex align-items-center me-3">
+                    <span id="inactivity-timer" class="text-muted small"></span>
                 </li>
-                <li class="nav-item d-flex align-items-center me-2">
-                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
-                        <i class="fas fa-sun img-fluid rounded-circle"></i>
-                    </button>
-                </li>
-                <li class="nav-item" id="language">
-                </li>
-                <li class="nav-item d-flex align-items-center me-2">
-                    <button class="btn btn-danger" onclick="closeSession()" id="logout-button" aria-label="Cerrar sesión">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
+                <li class="nav-item dropdown d-flex align-items-center">
+                    <a class="nav-link p-0" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-cog fa-spin fs-5"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-center shadow-sm" aria-labelledby="userDropdown">
+                        <li class="d-flex justify-content-around py-2">
+                            <button id="theme-toggle" class="dropdown-item p-2" aria-label="Toggle theme">
+                                <i class="fas fa-sun fs-5"></i>
+                            </button>
+                            <a class="dropdown-item p-2" href="#" id="language" aria-label="Change language">
+                                <i class="fas fa-language fs-5"></i>
+                            </a>
+                        </li>
+                        <?php if ($_SESSION["role"] == 1): ?>
+                            <li>
+                                <a class="dropdown-item p-2 users" href="users" aria-label="Usuarios"></a>
+                            </li>
+                        <?php endif; ?>
+                        <li>
+                            <button class="dropdown-item text-danger p-2 logout" onclick="closeSession()" id="logout-button" aria-label="Cerrar sesión">
+                                Cerrar sesión
+                            </button>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<style>
+    .navbar-nav {
+        flex-direction: row;
+    }
+
+    .navbar-collapse {
+        display: flex;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-brand {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #company-select {
+            width: 100%;
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+    }
+</style>
 
 <body>
     <?php
@@ -62,8 +122,6 @@
     require "whitelist.php";
 
     ?>
-
-    <script src="view/assets/js/jquery-3.7.1.min.js"></script>
     <script src="node_modules/select2/dist/js/select2.js"></script>
     <script src="view/assets/js/languages.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

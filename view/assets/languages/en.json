@@ -12,7 +12,8 @@
         "title": "Dashboard",
         "tasks": "Tasks",
         "pending": "Pending",
-        "reminders": "Reminders"
+        "reminders": "Reminders",
+        "logout": "Logout"
     },
     "catalog": {
         "modalTitle": "Catalog",
@@ -34,5 +35,15 @@
         "enterPrice": "Enter Price",
         "cancel": "Cancel",
         "create": "Create"
+    },
+    "admin": {
+        "users": "Users"
+    },
+    "users": {
+        "title": "Users",
+        "username": "Username",
+        "password": "Password",
+        "role": "Role",
+        "createUser": "Create User"
     }
 }

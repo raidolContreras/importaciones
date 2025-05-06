@@ -12,7 +12,8 @@
         "title": "Tablero",
         "tasks": "Tareas",
         "pending": "Pendientes",
-        "reminders": "Recordatorios"
+        "reminders": "Recordatorios",
+        "logout": "Cerrar sesión"
     },
     "catalog": {
         "modalTitle": "Catálogo",
@@ -34,5 +35,15 @@
         "enterPrice": "Ingresa el Precio",
         "cancel": "Cancelar",
         "create": "Crear"
+    },
+    "admin": {
+        "users": "Usuarios"
+    },
+    "users": {
+        "title": "Usuarios",
+        "username": "Nombre de usuario",
+        "password": "Contraseña",
+        "role": "Rol",
+        "createUser": "Crear Usuario"
     }
 }

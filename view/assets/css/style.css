@@ -1,7 +1,7 @@
 /* ========= VARIABLES ========= */
 :root {
     /* — Gradiente de fondo — */
-    --bg-gradient-start: #f5f5f0;
+    --bg-gradient-start: #f8faff;
     /* crema muy claro */
     --bg-gradient-end: #e0f7ff;
     /* azul muy suave */
@@ -84,32 +84,7 @@
     --bs-tertiary-bg: #343a40;
 }
 
-/* ========= MODO OSCURO ========= */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-gradient-start: #232526;
-        --bg-gradient-end: #414345;
-        --glass-bg: rgba(0, 0, 0, 0.25);
-        --glass-shadow: rgba(0, 0, 0, 0.6);
-        --text-secondary: rgba(255, 255, 255, 0.6);
-        --input-border: rgba(255, 255, 255, 0.3);
-        --input-border-focus: rgba(255, 255, 255, 0.8);
-        --btn-gradient-start: #6a3093;
-        --btn-gradient-end: #a044ff;
-        --btn-shadow: rgba(106, 48, 147, 0.4);
-        --btn-shadow-hover: rgba(106, 48, 147, 0.6);
-    }
-}
-
 /* ========= RESET ========= */
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 html,
 body {
     height: 100%;
@@ -118,7 +93,7 @@ body {
 
 /* ========= BACKGROUND ANIMADO ========= */
 body {
-    /* background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%); */
+    background-color: var(--bg-gradient-start) !important;
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
@@ -136,54 +111,6 @@ body {
         background-position: 0% 50%;
     }
 }
-
-/* ========= DECORACIONES ========= */
-.container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 1rem;
-}
-
-/* — Keyframes de desplazamiento — */
-@keyframes moveBefore {
-    to { transform: translate(var(--before-delta-x), var(--before-delta-y)); }
-  }
-  @keyframes moveAfter {
-    to { transform: translate(var(--after-delta-x), var(--after-delta-y)); }
-  }
-  
-  /* — Círculos decorativos, con posición y animación dinámica — */
-  .container::before,
-  .container::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.3;
-    transform-origin: center;
-  }
-  
-  .container::before {
-    width: 300px;
-    height: 300px;
-    background: var(--decoration-light);
-    top: var(--before-start-y);
-    left: var(--before-start-x);
-    animation: moveBefore 20s ease-in-out infinite alternate;
-  }
-  
-  .container::after {
-    width: 500px;
-    height: 500px;
-    background: var(--decoration-dark);
-    top: var(--after-start-y);
-    left: var(--after-start-x);
-    animation: moveAfter 25s ease-in-out infinite alternate-reverse;
-    z-index: 1;
-  }
-  
 
 /* ========= TARJETA (GLASSMORPHISM) ========= */
 .forms-container {
@@ -360,12 +287,12 @@ body {
     z-index: 2;
 }
 
-#inactivity-timer{
+#inactivity-timer {
     background: var(--glass-bg);
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     box-shadow: 0 8px 32px var(--glass-shadow);
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     font-size: 1rem;
     z-index: 3;
 }
@@ -390,6 +317,7 @@ body {
     background-color: var(--bs-primary-bg) !important;
     border-color: var(--bs-primary-border) !important;
 }
+
 .dark-mode .btn-primary:hover {
     background-color: var(--bs-primary-hover-bg) !important;
     border-color: var(--bs-primary-hover-border) !important;
@@ -423,6 +351,7 @@ body {
 .dark-mode .nav-link {
     color: var(--bs-body-color) !important;
 }
+
 .dark-mode .navbar .nav-link:hover,
 .dark-mode .nav-link:hover {
     color: var(--bs-link-hover-color) !important;
@@ -433,6 +362,7 @@ body {
     background-color: var(--bs-light) !important;
     color: var(--bs-body-color) !important;
 }
+
 .dark-mode .dropdown-item:hover {
     background-color: var(--bs-secondary) !important;
 }
@@ -456,7 +386,7 @@ body {
     color: var(--bs-body-color) !important;
 }
 
-.dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
+.dark-mode .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: #2b2e33 !important;
 }
 
@@ -504,7 +434,8 @@ body {
 /* ========= PLACEHOLDERS DE LOS INPUTS ========= */
 ::placeholder {
     color: var(--text-primary) !important;
-    opacity: 0.5; /* Asegura que el color sea visible */
+    opacity: 0.5;
+    /* Asegura que el color sea visible */
 }
 
 input::placeholder {
@@ -517,4 +448,44 @@ textarea::placeholder {
 
 select::placeholder {
     color: var(--text-primary) !important;
+}
+
+.modern-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.modern-card .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.modern-card .form-label {
+    font-weight: 500;
+    color: #555555;
+}
+
+.modern-card .form-control {
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    padding: 10px;
+}
+
+.modern-card .btn-primary {
+    border-radius: 8px;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.modern-card .btn-primary:hover {
+    background-color: #0056b3;
 }
