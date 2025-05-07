@@ -42,6 +42,69 @@ class UserController
         }
     }
 
+    static public function ctrFetchUsers()
+    {
+        $table = "user_catalog";
+        $response = UserModel::mdlFetchUsers($table);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No users found."));
+        }
+    }
+
+    static public function ctrDeleteUser()
+    {
+        $table = "user_catalog";
+        $id_Users = $_POST["id"];
+        $response = UserModel::mdlDeleteUser($table, $id_Users);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "User deleted successfully!"));
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error deleting user."));
+        }
+    }
+
+    static public function ctrCreateRole()
+    {
+        $table = "roles";
+        $data = array(
+            "Role_Name" => $_POST["role_name"]
+        );
+        $response = UserModel::mdlCreateRole($table, $data);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Role created successfully!"));
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error creating role."));
+        }
+    }
+
+    static public function ctrFetchRoles()
+    {
+        $table = "roles";
+        $response = UserModel::mdlFetchRoles($table); // Fetch all roles
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No roles found."));
+        }
+    }
+
+    static public function ctrDeleteRole()
+    {
+        $table = "roles";
+        $id_Rol = $_POST["id"];
+        $response = UserModel::mdlDeleteRole($table, $id_Rol);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Role deleted successfully!"));
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error deleting role."));
+        }
+    }
+
     static public function ctrGetDataUser() {
         $id_Users = $_SESSION["id_Users"];
         $company_id = $_SESSION["company_id"];

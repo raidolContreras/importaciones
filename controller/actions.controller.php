@@ -10,6 +10,21 @@
         case 'createUser':
             UserController::ctrCreateUser();
             break;
+        case 'fetchUsers':
+            UserController::ctrFetchUsers();
+            break;
+        case 'deleteUser':
+            UserController::ctrDeleteUser();
+            break;
+        case 'createRole':
+            UserController::ctrCreateRole();
+            break;
+        case 'fetchRoles':
+            UserController::ctrFetchRoles();
+            break;
+        case 'deleteRole':
+            UserController::ctrDeleteRole();
+            break;
         case 'changeCompany':
             UserController::ctrChangeCompany();
             break;
