@@ -16,7 +16,7 @@
           <h3 class="card-title text-center mb-4">Crear Usuario</h3>
           <form id="create-user-form" class="row g-3 flex-grow-1">
             <div class="col-md-6">
-              <label for="username" class="form-label username">Usuario</label>
+              <label for="username" class="form-label username"></label>
               <input
                 type="text"
                 class="form-control"
@@ -26,7 +26,7 @@
               />
             </div>
             <div class="col-md-6">
-              <label for="password" class="form-label password">Contraseña</label>
+              <label for="password" class="form-label password"></label>
               <input
                 type="password"
                 class="form-control"
