@@ -19,7 +19,7 @@
               <label for="username" class="form-label">Usuario</label>
               <input
                 type="text"
-                class="form-control"
+                class="form-control username"
                 id="username"
                 name="username"
                 required
@@ -29,7 +29,7 @@
               <label for="password" class="form-label">Contraseña</label>
               <input
                 type="password"
-                class="form-control"
+                class="form-control password"
                 id="password"
                 name="password"
                 required
