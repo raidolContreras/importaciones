@@ -11,10 +11,10 @@
         <div class="card-body d-flex flex-column p-0 overflow-hidden">
           <div class="flex-grow-1 overflow-auto">
             <div class="list-group list-group-flush">
-              <button class="btn btn-primary mx-2 my-3" id="addNewButton" data-bs-toggle="modal" data-bs-target="#catalogModal">Agregar nuevo</button>
+              <button class="btn btn-primary mx-2 my-3 addNew" id="addNewButton" data-bs-toggle="modal" data-bs-target="#catalogModal"></button>
 
               <div class="mx-2 my-3 row align-items-center">
-                <label for="searchSelect" class="form-label col-auto mb-0">Filtro de estado:</label>
+                <label for="searchSelect" class="form-label col-auto mb-0 filterState"></label>
                 <div class="col">
                   <select id="searchSelect" class="form-select">
                     <option value="">Todos</option>
@@ -27,27 +27,11 @@
                     <option value="Terminado">Terminado</option>
                   </select>
                 </div>
-                <label for="textFilter" class="form-label col-auto mb-0">Busqueda:</label>
+                <label for="textFilter" class="form-label col-auto mb-0 search"></label>
                 <div class="col">
-                  <input type="text" id="textFilter" class="form-control" placeholder="Buscar...">
+                  <input type="text" id="textFilter" class="form-control searchInput">
                 </div>
               </div>
-
-              <script>
-                document.getElementById('textFilter').addEventListener('input', function() {
-                  const filterText = this.value.toLowerCase();
-                  const buttons = document.querySelectorAll('.list-group button[search]');
-                  buttons.forEach(button => {
-                    const buttonText = button.textContent.toLowerCase();
-                    if (buttonText.includes(filterText)) {
-                      button.style.display = '';
-                    } else {
-                      button.style.display = 'none';
-                    }
-                  });
-                });
-              </script>
-
               <button class="mt-1 mx-2 btn btn-success text-start" search="Por Embarcar">NC-01 / DR-4321 / ID00001</button>
               <button class="mt-1 mx-2 btn btn-success text-start" search="En Tránsito">NC-02 / DR-4321 / ID00002</button>
               <button class="mt-1 mx-2 btn btn-success text-start" search="Aduana">NC-03 / DR-4321 / ID00003</button>
@@ -192,6 +176,19 @@
     buttons.forEach(button => {
       const searchField = button.getAttribute('search').toLowerCase();
       if (selectedValue === "" || searchField.includes(selectedValue)) {
+        button.style.display = '';
+      } else {
+        button.style.display = 'none';
+      }
+    });
+  });
+  
+  document.getElementById('textFilter').addEventListener('input', function() {
+    const filterText = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.list-group button[search]');
+    buttons.forEach(button => {
+      const buttonText = button.textContent.toLowerCase();
+      if (buttonText.includes(filterText)) {
         button.style.display = '';
       } else {
         button.style.display = 'none';

@@ -13,7 +13,10 @@
         "tasks": "Folders",
         "pending": "Pending",
         "reminders": "Warnings",
-        "logout": "Logout"
+        "logout": "Logout",
+        "addNew": "Add new",
+        "filterState": "Filter State",
+        "search": "Search"
     },
     "catalog": {
         "modalTitle": "Catalog",

@@ -66,6 +66,10 @@ function aplicarTraducciones() {
         $('.pending').text(translations.dashboard.pending);
         $('.reminders').text(translations.dashboard.reminders);
         $('.logout').html('<i class="fas fa-sign-out-alt fs-5 me-2"></i> ' + translations.dashboard.logout);
+        $('.filterState').text(translations.dashboard.filterState + ":");
+        $('.addNew').text(translations.dashboard.addNew);
+        $('.search').text(translations.dashboard.search + ":");
+        $('.searchInput').attr('placeholder', translations.dashboard.search + '...');
 
         // Aplicar traducciones al modal de catálogo
         $('#catalogModalLabel .Catalog').text(translations.catalog.modalTitle);

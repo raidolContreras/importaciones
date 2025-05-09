@@ -13,7 +13,10 @@
         "tasks": "Carpetas",
         "pending": "Pendientes",
         "reminders": "Advertencias",
-        "logout": "Cerrar sesión"
+        "logout": "Cerrar sesión",
+        "addNew": "Agregar nuevo",
+        "filterState": "Filtro de estado",
+        "search": "Buscar"
     },
     "catalog": {
         "modalTitle": "Catálogo",
