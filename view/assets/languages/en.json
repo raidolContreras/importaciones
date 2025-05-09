@@ -10,9 +10,9 @@
     },
     "dashboard": {
         "title": "Dashboard",
-        "tasks": "Tasks",
+        "tasks": "Folders",
         "pending": "Pending",
-        "reminders": "Reminders",
+        "reminders": "Warnings",
         "logout": "Logout"
     },
     "catalog": {

@@ -20,8 +20,8 @@
 <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar bg-white shadow-sm py-2">
     <div class="container-fluid navbar-inner me-2">
         <a class="navbar-brand d-flex align-items-center" href="./">
-            <img src="view/assets/image/logo.png" alt="Logo" class="me-2" style="height: 40px;">
-            <span class="fw-bold fs-5">Sistema de importaciones</span>
+            <img src="view/assets/image/logo.png" alt="Logo" class="me-2 logo" style="height: 40px;">
+            <span class="fw-bold fs-5 title-page">Sistema de importaciones</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,7 +55,7 @@
                 </li>
                 <li class="nav-item dropdown d-flex align-items-center">
                     <a class="nav-link p-0" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog fa-spin fs-5"></i>
+                        <i class="fas fa-cog fs-5"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-center shadow-sm" aria-labelledby="userDropdown">
                         <li class="d-flex justify-content-around py-2">
@@ -192,7 +192,7 @@
             clearTimeout(inactivityTimeout);
             inactivityTimeout = setTimeout(() => {
                 closeSession();
-            }, 5 * 60 * 1000); // 5 minutes
+            }, 60 * 60 * 1000); // 5 minutes
         }
 
         document.addEventListener('mousemove', resetInactivityTimer);
@@ -204,7 +204,7 @@
 
         function updateInactivityTimer() {
             const timerElement = document.getElementById('inactivity-timer');
-            let remainingTime = 5 * 60; // 5 minutes in seconds
+            let remainingTime = 60 * 60; // 60 minutes
             let interval;
 
             function startTimer() {
@@ -223,7 +223,7 @@
             }
 
             function resetTimer() {
-                remainingTime = 5 * 60; // Reset to 5 minutes
+                remainingTime = 60 * 60; // Reset to 5 minutes
                 startTimer();
             }
 

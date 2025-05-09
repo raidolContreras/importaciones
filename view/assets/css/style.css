@@ -489,3 +489,16 @@ select::placeholder {
 .modern-card .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.title-page {
+    color: var(--text-primary);
+}
+
+.logo {
+    filter: invert(0%);
+    transition: filter 0.3s ease;
+
+    .dark-mode & {
+        filter: invert(100%);
+    }
+}

@@ -10,9 +10,9 @@
     },
     "dashboard": {
         "title": "Tablero",
-        "tasks": "Tareas",
+        "tasks": "Carpetas",
         "pending": "Pendientes",
-        "reminders": "Recordatorios",
+        "reminders": "Advertencias",
         "logout": "Cerrar sesión"
     },
     "catalog": {
