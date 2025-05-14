@@ -10,7 +10,7 @@
         </div>
         <div class="card-body d-flex flex-column p-0 overflow-hidden">
           <div class="flex-grow-1 overflow-auto">
-            <div class="list-group list-group-flush">
+            <div class="list-group list-group-flush list-tasks">
               <button class="btn btn-primary mx-2 my-3 addNew" id="addNewButton" data-bs-toggle="modal" data-bs-target="#catalogModal"></button>
 
               <div class="mx-2 my-3 row align-items-center">
@@ -57,9 +57,28 @@
         </div>
         <div class="card-body d-flex flex-column p-0 overflow-hidden">
           <div class="flex-grow-1 overflow-auto">
-            <div class="list-group list-group-flush">
-              <button class="mt-1 mx-2 btn btn-warning text-start">NC-03 / DR-4321 / ID00001</button>
-              <button class="mt-1 mx-2 btn btn-warning text-start">NC-03 / DR-4321 / ID00001</button>
+            <div class="list-group list-group-flush list-pending">
+              <div class="mx-2 my-3 row align-items-center">
+                <label for="pendingSearchSelect" class="form-label col-auto mb-0 filterState"></label>
+                <div class="col">
+                  <select id="pendingSearchSelect" class="form-select">
+                    <option value="">Todos</option>
+                    <option value="Por Embarcar">Por Embarcar</option>
+                    <option value="En Tránsito">En Tránsito</option>
+                    <option value="Aduana">Aduana</option>
+                    <option value="Punto de Inspección">Punto de Inspección</option>
+                    <option value="Entregado">Entregado</option>
+                    <option value="Cierre de Cuentas">Cierre de Cuentas</option>
+                    <option value="Terminado">Terminado</option>
+                  </select>
+                </div>
+                <label for="pendingTextFilter" class="form-label col-auto mb-0 search"></label>
+                <div class="col">
+                  <input type="text" id="pendingTextFilter" class="form-control searchInput">
+                </div>
+              </div>
+              <button class="mt-1 mx-2 btn btn-warning text-start" search="Por Embarcar">NC-03 / DR-4321 / ID00001</button>
+              <button class="mt-1 mx-2 btn btn-warning text-start" search="En Tránsito">NC-03 / DR-4321 / ID00002</button>
             </div>
           </div>
         </div>
@@ -112,7 +131,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="catalogModalLabel"><span class="Catalog"></span> <span class="text-muted-dashboard">ID00001</span></h5>
+        <h5 class="modal-title asignate-ejecutive" id="catalogID00001"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
@@ -142,17 +161,25 @@
               <label for="cantidad" class="form-label quantity"></label>
               <input type="number" id="cantidad" class="form-control" min="0">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label for="precio" class="form-label price"></label>
-              <input type="number" id="precio" class="form-control" step="0.01" min="0">
+              <div class="input-group">
+              <span class="input-group-text currencyTypeSelected">Mex$</span>
+              <input type="text" id="precio" class="form-control"  data-inputmask="'alias': 'currency', 'prefix': '', 'placeholder': '0', 'autoUnmask': true, 'removeMaskOnSubmit': true">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="tipoMoneda" class="form-label currencyType"></label>
+              <select id="tipoMoneda" class="form-select">
+                <option selected value="MXN">MXN (Mex$)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="JPY">JPY (¥)</option>
+              </select>
             </div>
             <div class="col-md-6">
               <label for="unidadMedida" class="form-label unitOfMeasure"></label>
               <input type="text" id="unidadMedida" class="form-control">
-            </div>
-            <div class="col-md-6">
-              <label for="supervisor" class="form-label supervisor"></label>
-              <input type="text" id="supervisor" class="form-control">
             </div>
             <div class="col-md-6">
               <label for="ejecutivo" class="form-label executive"></label>
@@ -161,18 +188,18 @@
           </div>
           <div class="mt-4 text-center">
             <button type="button" class="btn btn-danger btn-lg cancel" data-bs-dismiss="modal"></button>
-            <button type="submit" class="btn btn-primary btn-lg create"></button>
+            <button type="submit" class="btn btn-primary btn-lg asignate-ejecutive"></button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 <script>
   document.getElementById('searchSelect').addEventListener('change', function() {
     const selectedValue = this.value.toLowerCase();
-    const buttons = document.querySelectorAll('.list-group button[search]');
+    const buttons = document.querySelectorAll('.list-tasks button[search]');
     buttons.forEach(button => {
       const searchField = button.getAttribute('search').toLowerCase();
       if (selectedValue === "" || searchField.includes(selectedValue)) {
@@ -182,10 +209,10 @@
       }
     });
   });
-  
+
   document.getElementById('textFilter').addEventListener('input', function() {
     const filterText = this.value.toLowerCase();
-    const buttons = document.querySelectorAll('.list-group button[search]');
+    const buttons = document.querySelectorAll('.list-tasks button[search]');
     buttons.forEach(button => {
       const buttonText = button.textContent.toLowerCase();
       if (buttonText.includes(filterText)) {
@@ -194,5 +221,57 @@
         button.style.display = 'none';
       }
     });
+  });
+
+  document.getElementById('pendingSearchSelect').addEventListener('change', function() {
+    const selectedValue = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.list-pending button[search]');
+    buttons.forEach(button => {
+      const searchField = button.getAttribute('search').toLowerCase();
+      if (selectedValue === "" || searchField.includes(selectedValue)) {
+        button.style.display = '';
+      } else {
+        button.style.display = 'none';
+      }
+    });
+  });
+
+  document.getElementById('pendingTextFilter').addEventListener('input', function() {
+    const filterText = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.list-pending button[search]');
+    buttons.forEach(button => {
+      const buttonText = button.textContent.toLowerCase();
+      if (buttonText.includes(filterText)) {
+        button.style.display = '';
+      } else {
+        button.style.display = 'none';
+      }
+    });
+  });
+
+  $('#precio').inputmask({
+    alias: 'currency',
+    prefix: '',
+    groupSeparator: ',',
+    autoGroup: true,
+    digits: 2,
+    digitsOptional: false,
+    placeholder: '0',
+    rightAlign: false,
+    removeMaskOnSubmit: true
+  });
+
+  document.getElementById('tipoMoneda').addEventListener('change', function() {
+    const selectedValue = this.value;
+    const currencyTypeSelected = document.querySelector('.currencyTypeSelected');
+    if (selectedValue === 'MXN') {
+      currencyTypeSelected.textContent = 'Mex$';
+    } else if (selectedValue === 'USD') {
+      currencyTypeSelected.textContent = '$';
+    } else if (selectedValue === 'EUR') {
+      currencyTypeSelected.textContent = '€';
+    } else if (selectedValue === 'JPY') {
+      currencyTypeSelected.textContent = '¥';
+    }
   });
 </script>

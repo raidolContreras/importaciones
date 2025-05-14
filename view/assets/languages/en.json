@@ -28,6 +28,7 @@
         "commercialName": "Commercial Name",
         "quantity": "Quantity",
         "price": "Price",
+        "currencyType": "Currency Type",
         "unitOfMeasure": "Unit of Measure",
         "supervisor": "Supervisor",
         "executive": "Executive",
@@ -37,7 +38,7 @@
         "enterQuantity": "Enter Quantity",
         "enterPrice": "Enter Price",
         "cancel": "Cancel",
-        "create": "Create"
+        "asignateEjecutive": "Assign Executive"
     },
     "admin": {
         "users": "Users"

@@ -128,3 +128,26 @@ class UserModel {
         return $response;
     }
 }
+
+class LogsModel {
+    static public function mdlCreateLog($table, $data) {
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare("INSERT INTO $table (id_usuario, id_empresa, fecha, hora, accion) VALUES (:id_usuario, :id_empresa, :fecha, :hora, :accion)");
+        $stmt->bindParam(":id_usuario", $data["id_usuario"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_empresa", $data["id_empresa"], PDO::PARAM_INT);
+        $stmt->bindParam(":fecha", $data["fecha"], PDO::PARAM_STR);
+        $stmt->bindParam(":hora", $data["hora"], PDO::PARAM_STR);
+        $stmt->bindParam(":accion", $data["accion"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+        
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+}

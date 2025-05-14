@@ -88,6 +88,7 @@ function aplicarTraducciones() {
         $('.quantity').text(translations.catalog.quantity);
         $('#cantidad').attr('placeholder', translations.catalog.enterQuantity);
         $('.price').text(translations.catalog.price);
+        $('.currencyType').text(translations.catalog.currencyType);
         $('#precio').attr('placeholder', translations.catalog.enterPrice);
         $('.unitOfMeasure').text(translations.catalog.unitOfMeasure);
         $('#unidadMedida').attr('placeholder', translations.catalog.manualCatalogData);
@@ -96,7 +97,7 @@ function aplicarTraducciones() {
         $('.executive').text(translations.catalog.executive);
         $('#ejecutivo').attr('placeholder', translations.catalog.manualCatalogData);
         $('.cancel').text(translations.catalog.cancel);
-        $('.create').text(translations.catalog.create);
+        $('.asignate-ejecutive').text(translations.catalog.asignateEjecutive);
     } else if (pagina === 'users') {
         // Aplicar traducciones a la sección de usuarios
         $('#title').text(translations.users.title);
