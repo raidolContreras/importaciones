@@ -12,10 +12,10 @@
     <div class="col-md-6">
       <div class="card modern-card h-100">
         <div class="card-body d-flex flex-column">
-          <h3 class="card-title text-center mb-4">Crear Usuario</h3>
+          <h3 class="card-title text-center mb-4 createUser"></h3>
           <form id="create-user-form" class="row g-3 flex-grow-1">
             <div class="col-md-6">
-              <label for="username" class="form-label username">Usuario</label>
+              <label for="username" class="form-label username"></label>
               <input
                 type="text"
                 class="form-control"
@@ -24,7 +24,7 @@
                 required />
             </div>
             <div class="col-md-6">
-              <label for="password" class="form-label password">Contraseña</label>
+              <label for="password" class="form-label password"></label>
               <input
                 type="password"
                 class="form-control"
@@ -46,9 +46,7 @@
               </select>
             </div>
             <div class="col-md-4 d-grid">
-              <button type="submit" class="btn btn-success">
-                Crear
-              </button>
+              <button type="submit" class="btn btn-success createUser"></button>
             </div>
           </form>
         </div>
@@ -59,10 +57,10 @@
     <div class="col-md-6">
       <div class="card modern-card h-100">
         <div class="card-body d-flex flex-column">
-          <h3 class="card-title text-center mb-4">Crear Rol</h3>
+          <h3 class="card-title text-center mb-4 createRole"></h3>
           <form id="create-role-form" class="row g-3 flex-grow-1">
             <div class="col-md-9">
-              <label for="role-name" class="form-label">Nombre del Rol</label>
+              <label for="role-name" class="form-label role-name"></label>
               <input
                 type="text"
                 class="form-control"
@@ -71,9 +69,7 @@
                 required />
             </div>
             <div class="col-md-3 d-grid">
-              <button type="submit" class="btn btn-primary">
-                Crear
-              </button>
+              <button type="submit" class="btn btn-primary createRole"></button>
             </div>
           </form>
         </div>
@@ -175,132 +171,146 @@
 <script src="view/assets/js/datatables/datatables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 <script>
-  $(function() {
-    // 1) Función AJAX genérica
-    function sendRequest(action, data = {}) {
-      return $.ajax({
+  // Variables globales de tablas
+  let usersTable, rolesTable;
+
+  // 0) Configuración de idioma para DataTables
+  function getLanguageOption() {
+    const idi = localStorage.getItem('idioma')
+      || (navigator.language.startsWith('es') ? 'es' : 'en');
+    return idi === 'es'
+      ? { language: { url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json" } }
+      : {};
+  }
+
+  // 1) Función AJAX genérica
+  function sendRequest(action, data = {}) {
+    return $.ajax({
+      url: "controller/actions.controller.php",
+      method: "POST",
+      data: { action, ...data },     // ← corregido de `.{data}` :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}
+      dataType: "json"
+    }).then(resp => {
+      if (resp.status !== "success") {
+        return Promise.reject(resp.message);
+      }
+      return resp.data || resp.message;
+    });
+  }
+
+  // 2) Inicializar tabla de Usuarios
+  function initUsersTable() {
+    return $("#users-table").DataTable({
+      ajax: {
         url: "controller/actions.controller.php",
-        method: "POST",
-        data: {
-          action,
-          ...data
-        },
-        dataType: "json"
-      }).then(resp => {
-        if (resp.status !== "success") {
-          return Promise.reject(resp.message);
-        }
-        return resp.data || resp.message;
-      });
-    }
-
-    // 2) Inicializar DataTable
-    function initTable(selector, action, cols) {
-      return $(selector).DataTable({
-        ajax: {
-          url: "controller/actions.controller.php",
-          type: "POST",
-          data: {
-            action
-          },
-          dataSrc(json) {
-            if (json.status !== "success") {
-              toastr.error(json.message);
-              return [];
-            }
-            return json.data;
+        type: "POST",
+        data: { action: "fetchUsers" },
+        dataSrc(json) {
+          if (json.status !== "success") {
+            toastr.error(json.message);
+            return [];
           }
-        },
-        columns: cols,
-        responsive: true
-      });
-    }
-
-    const usersTable = initTable("#users-table", "fetchUsers", [{
-        data: "id_Users"
-      },
-      {
-        data: "Username"
-      },
-      {
-        data: "Role_Name"
-      },
-      {
-        data: null,
-        orderable: false,
-        render(_, __, row) {
-          return `
-            <button class="btn btn-sm btn-action text-info" data-action="viewLogs" data-id="${row.id_Users}" style="border:none;background:none">
-              <i class="fas fa-list"></i>
-            </button>
-            <button class="btn btn-sm btn-action text-primary" data-action="editUser" data-id="${row.id_Users}" style="border:none;background:none">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-sm btn-action text-danger" data-action="deleteUser" data-id="${row.id_Users}" style="border:none;background:none">
-              <i class="fas fa-trash-alt"></i>
-            </button>`;
+          return json.data;
         }
-      }
-    ]);
-
-    const rolesTable = initTable("#roles-table", "fetchRoles", [{
-        data: "id_Rol"
       },
-      {
-        data: "Role_Name"
-      },
-      {
-        data: null,
-        orderable: false,
-        render(_, __, row) {
-          return `
-            <button class="btn btn-sm btn-action text-primary" data-action="editRole" data-id="${row.id_Rol}" style="border:none;background:none">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-sm btn-action text-danger" data-action="deleteRole" data-id="${row.id_Rol}" style="border:none;background:none">
-              <i class="fas fa-trash-alt"></i>
-            </button>`;
+      columns: [
+        { data: "id_Users" },
+        { data: "Username" },
+        { data: "Role_Name" },
+        {
+          data: null,
+          orderable: false,
+          render(_, __, row) {
+            return `
+              <button class="btn btn-sm btn-view-logs text-info" data-id="${row.id_Users}">
+                <i class="fas fa-list"></i>
+              </button>
+              <button class="btn btn-sm btn-edit-user text-primary" data-id="${row.id_Users}">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-sm btn-delete-user text-danger" data-id="${row.id_Users}">
+                <i class="fas fa-trash-alt"></i>
+              </button>`;
+          }
         }
-      }
-    ]);
+      ],
+      responsive: true,
+      ...getLanguageOption()             // ← corregido de `.getLanguageOption()` :contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}
+    });
+  }
 
-    // 3) Bind formularios de creación
-    function bindForm(formSelector, action, table) {
-      $(formSelector).on("submit", function(e) {
-        e.preventDefault();
-        const data = $(this).serializeArray().reduce((o, {
-          name,
-          value
-        }) => {
-          o[name] = value;
-          return o;
-        }, {});
-        sendRequest(action, data)
-          .then(msg => {
-            Swal.fire("¡Éxito!", msg, "success");
-            this.reset();
-            table.ajax.reload();
-          })
-          .catch(err => Swal.fire("Error", err, "error"));
-      });
-    }
+  // 3) Inicializar tabla de Roles
+  function initRolesTable() {
+    return $("#roles-table").DataTable({
+      ajax: {
+        url: "controller/actions.controller.php",
+        type: "POST",
+        data: { action: "fetchRoles" },
+        dataSrc(json) {
+          if (json.status !== "success") {
+            toastr.error(json.message);
+            return [];
+          }
+          return json.data;
+        }
+      },
+      columns: [
+        { data: "id_Rol" },
+        { data: "Role_Name" },
+        {
+          data: null,
+          orderable: false,
+          render(_, __, row) {
+            return `
+              <button class="btn btn-sm btn-edit-role text-primary" data-id="${row.id_Rol}">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-sm btn-delete-role text-danger" data-id="${row.id_Rol}">
+                <i class="fas fa-trash-alt"></i>
+              </button>`;
+          }
+        }
+      ],
+      responsive: true,
+      ...getLanguageOption()             // ← corregido de `.getLanguageOption()` :contentReference[oaicite:4]{index=4}:contentReference[oaicite:5]{index=5}
+    });
+  }
+
+  // 4) Bind de formularios de creación
+  function bindForm(formSelector, action, table) {
+    $(formSelector).on("submit", function(e) {
+      e.preventDefault();
+      const data = $(this).serializeArray().reduce((o, { name, value }) => {
+        o[name] = value;
+        return o;
+      }, {});
+      sendRequest(action, data)
+        .then(msg => {
+          Swal.fire("¡Éxito!", msg, "success");
+          this.reset();
+          table.ajax.reload();
+        })
+        .catch(err => Swal.fire("Error", err, "error"));
+    });
+  }
+
+  // 5) Document Ready: inicializar todo
+  $(function() {
+    usersTable = initUsersTable();
+    rolesTable = initRolesTable();
     bindForm("#create-user-form", "createUser", usersTable);
     bindForm("#create-role-form", "createRole", rolesTable);
 
-    // 4) Ver Interacciones (logs)
-    $(document).on("click", ".btn-action[data-action='viewLogs']", function() {
+    // Ver logs
+    $(document).on("click", ".btn-view-logs", function() {
       const userId = $(this).data("id");
       $("#interaction-table").DataTable({
         destroy: true,
         ajax: {
           url: "controller/actions.controller.php",
           type: "POST",
-          data: {
-            action: "fetchLogs",
-            user_id: userId
-          },
+          data: { action: "fetchLogs", user_id: userId },
           dataSrc(json) {
             if (json.status !== "success") {
               toastr.error(json.message);
@@ -309,93 +319,78 @@
             return json.data;
           }
         },
-        columns: [{
-            data: "log_id"
-          },
-          {
-            data: "id_usuario"
-          },
-          {
-            data: "id_empresa"
-          },
-          {
-            data: "fecha"
-          },
-          {
-            data: "hora"
-          },
-          {
-            data: "accion"
-          }
+        columns: [
+          { data: null, orderable: false, render(_,__,row,meta){ return meta.row+1; } },
+          { data: "id_usuario" },
+          { data: "id_empresa" },
+          { data: "fecha" },
+          { data: "hora" },
+          { data: "accion" }
         ],
-        responsive: true
+        responsive: true,
+        ...getLanguageOption()
       });
       $("#interactionModal").modal("show");
     });
 
-    // 5) Eliminar Usuario / Rol con confirm distinto
-    $(document).on("click",
-      ".btn-action[data-action='deleteUser'], .btn-action[data-action='deleteRole']",
-      function() {
-        const action = $(this).data("action");
-        const id = $(this).data("id");
-        const table = action === "deleteUser" ? usersTable : rolesTable;
-        const title = action === "deleteUser" ? "¿Eliminar usuario?" : "¿Eliminar rol?";
-        const text = action === "deleteUser" ?
-          `¿Estás seguro de eliminar al usuario con ID ${id}? Esta operación es irreversible.` :
-          `¿Estás seguro de eliminar el rol con ID ${id}? Esta operación es irreversible.`;
-
-        Swal.fire({
-          title,
-          text,
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Sí, eliminar",
-          cancelButtonText: "Cancelar"
-        }).then(({
-          isConfirmed
-        }) => {
-          if (!isConfirmed) return;
-          sendRequest(action, {
-              id
-            })
-            .then(msg => {
-              Swal.fire(
-                action === "deleteUser" ? "Usuario eliminado" : "Rol eliminado",
-                msg, "success"
-              );
-              table.ajax.reload();
-            })
-            .catch(err => Swal.fire("Error", err, "error"));
-        });
-      }
-    );
-
-    // 6) Editar Usuario
-    $(document).on("click", ".btn-action[data-action='editUser']", function() {
+    // Editar
+    $(document).on("click", ".btn-edit-user", function() {
       const id = $(this).data("id");
-      sendRequest("getUser", {
-          id
-        })
+      sendRequest("getUser", { id })
         .then(user => {
-          // Aquí muestras tu modal de edición o rellenas el formulario
-          // p.ej.: $("#username").val(user.Username);
-          // … luego vuelves a mandar updateUser en el submit
+          // Rellenar y mostrar modal de edición...
+        })
+        .catch(err => Swal.fire("Error", err, "error"));
+    });
+    $(document).on("click", ".btn-edit-role", function() {
+      const id = $(this).data("id");
+      sendRequest("getRole", { id })
+        .then(role => {
+          // Rellenar y mostrar modal de edición...
         })
         .catch(err => Swal.fire("Error", err, "error"));
     });
 
-    // 7) Editar Rol
-    $(document).on("click", ".btn-action[data-action='editRole']", function() {
+    // Eliminar
+    $(document).on("click", ".btn-delete-user", function() {
       const id = $(this).data("id");
-      sendRequest("getRole", {
-          id
-        })
-        .then(role => {
-          // Rellenas formulario de edición de rol
-        })
-        .catch(err => Swal.fire("Error", err, "error"));
+      Swal.fire({
+        title: "¿Eliminar usuario?",
+        text: `Eliminar al usuario con ID ${id}?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+      }).then(({isConfirmed})=>{
+        if (!isConfirmed) return;
+        sendRequest("deleteUser", { id })
+          .then(msg => {
+            Swal.fire("Usuario eliminado", msg, "success");
+            usersTable.ajax.reload();
+          })
+          .catch(err => Swal.fire("Error", err, "error"));
+      });
+    });
+    $(document).on("click", ".btn-delete-role", function() {
+      const id = $(this).data("id");
+      Swal.fire({
+        title: "¿Eliminar rol?",
+        text: `Eliminar el rol con ID ${id}?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+      }).then(({isConfirmed})=>{
+        if (!isConfirmed) return;
+        sendRequest("deleteRole", { id })
+          .then(msg => {
+            Swal.fire("Rol eliminado", msg, "success");
+            rolesTable.ajax.reload();
+          })
+          .catch(err => Swal.fire("Error", err, "error"));
+      });
     });
 
   });
+
 </script>

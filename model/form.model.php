@@ -150,4 +150,16 @@ class LogsModel {
         $stmt = null;
         return $response;
     }
+
+    static public function mdlFetchLogs($table, $userId) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table WHERE id_usuario = :id_usuario order by log_id desc");
+        $stmt->bindParam(":id_usuario", $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
 }

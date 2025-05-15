@@ -171,4 +171,16 @@ class LogsController
             return array("status" => "error", "message" => "Error creating log.");
         }
     }
+
+    static public function ctrFetchLogs()
+    {
+        $table = "logs";
+        $userId = $_POST["user_id"];
+        $response = LogsModel::mdlFetchLogs($table, $userId);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No logs found."));
+        }
+    }
 }

@@ -48,6 +48,7 @@
         "username": "Username",
         "password": "Password",
         "role": "Role",
-        "createUser": "Create User"
+        "createUser": "Create User",
+        "createRole": "Create Role"
     }
 }

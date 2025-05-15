@@ -110,6 +110,7 @@ function aplicarTraducciones() {
         $('#password').attr('placeholder', translations.users.password);
         $('.role').text(translations.users.role + ':');
         $('.createUser').text(translations.users.createUser);
+        $('.createRole').text(translations.users.createRole);
     }
 
     // Traducciones de administrador
@@ -118,9 +119,23 @@ function aplicarTraducciones() {
 
 // Función para cambiar el idioma dinámicamente
 function changeLanguage(language) {
+
     localStorage.setItem('idioma', language);
     cargarTraducciones(language).then(() => {
         aplicarTraducciones();
+
+        pagina = $('#pagina').val();
+        if (pagina === 'users') {
+            if ($.fn.DataTable.isDataTable('#users-table')) {
+                usersTable.destroy();
+                usersTable = initUsersTable();
+            }
+            if ($.fn.DataTable.isDataTable('#roles-table')) {
+                rolesTable.destroy();
+                rolesTable = initRolesTable();
+            }
+        }
+
     });
 }
 

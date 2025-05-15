@@ -28,4 +28,7 @@
         case 'changeCompany':
             UserController::ctrChangeCompany();
             break;
+        case 'fetchLogs':
+            LogsController::ctrFetchLogs();
+            break;
     }
