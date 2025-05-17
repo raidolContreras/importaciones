@@ -27,6 +27,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <!-- 1) Lista de Catálogos SIN ms-auto -->
+            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="catalogosDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Catálogos
+                    </a>
+                    <!-- Asegúrate de usar dropdown-menu-start si quieres que se abra hacia la izquierda -->
+                    <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="catalogosDropdown">
+                        <li><a class="dropdown-item" href="catalogo00002">Catálogo ID00002</a></li>
+                        <li><a class="dropdown-item" href="catalogo00003">Catálogo ID00003</a></li>
+                        <li><a class="dropdown-item" href="catalogo00004">Catálogo ID00004</a></li>
+                        <li><a class="dropdown-item" href="catalogo00005">Catálogo ID00005</a></li>
+                        <li><a class="dropdown-item" href="catalogo00006">Catálogo ID00006</a></li>
+                        <li><a class="dropdown-item" href="catalogo00007">Catálogo ID00007</a></li>
+                        <li><a class="dropdown-item" href="catalogo00008">Catálogo ID00008</a></li>
+                        <li><a class="dropdown-item" href="catalogo00009">Catálogo ID00009</a></li>
+                        <li><a class="dropdown-item" href="catalogo00010">Catálogo ID00010</a></li>
+                    </ul>
+                </li>
+            </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item d-flex align-items-center me-3">
                     <span class="user-info d-flex align-items-center">
@@ -69,6 +90,14 @@
                         <?php if ($_SESSION["role"] == 1): ?>
                             <li>
                                 <a class="dropdown-item p-2 users" href="users" aria-label="Usuarios"></a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item p-2" href="brokers" aria-label="Brokers">
+                                    <i class="fas fa-user-tie me-2"></i>Brokers
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item p-2 providers" href="providers" aria-label="providers"></a>
                             </li>
                         <?php endif; ?>
                         <li>
@@ -259,6 +288,19 @@
                 }
             });
         });
+
+        // 0) Configuración de idioma para DataTables
+        function getLanguageOption() {
+            const idi = localStorage.getItem('idioma') ||
+                (navigator.language.startsWith('es') ? 'es' : 'en');
+            return idi === 'es' ?
+                {
+                    language: {
+                        url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+                    }
+                } :
+                {};
+        }
     </script>
 
 </body>

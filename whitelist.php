@@ -8,7 +8,9 @@ echo "<input type='hidden' id='pagina' value='$pagina'>";
 // Lista blanca de páginas permitidas
 $navs = [
     'dashboard',
-    'users'
+    'users',
+    'brokers',
+    'providers'
 ];
 
 // Validar si la página solicitada está en la lista blanca

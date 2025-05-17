@@ -175,15 +175,6 @@
   // Variables globales de tablas
   let usersTable, rolesTable;
 
-  // 0) Configuración de idioma para DataTables
-  function getLanguageOption() {
-    const idi = localStorage.getItem('idioma')
-      || (navigator.language.startsWith('es') ? 'es' : 'en');
-    return idi === 'es'
-      ? { language: { url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json" } }
-      : {};
-  }
-
   // 1) Función AJAX genérica
   function sendRequest(action, data = {}) {
     return $.ajax({

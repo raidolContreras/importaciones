@@ -131,7 +131,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title asignate-ejecutive" id="catalogID00001"></h5>
+        <h5 class="modal-title asignate-ejecutive"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
@@ -141,49 +141,59 @@
         </div>
         <form id="catalogForm">
           <div class="row g-3">
-            <div class="col-md-6">
-              <label for="numeroBroker" class="form-label brokerNumber"></label>
-              <input type="text" id="numeroBroker" class="form-control">
-            </div>
-            <div class="col-md-6">
-              <label for="numeroProveedor" class="form-label supplierNumber"></label>
-              <input type="text" id="numeroProveedor" class="form-control">
-            </div>
-            <div class="col-md-6">
-              <label for="productoOrigen" class="form-label productOrigin"></label>
-              <input type="text" id="productoOrigen" class="form-control">
-            </div>
-            <div class="col-md-6">
-              <label for="productoNombreComercial" class="form-label commercialName"></label>
-              <input type="text" id="productoNombreComercial" class="form-control">
-            </div>
-            <div class="col-md-6">
-              <label for="cantidad" class="form-label quantity"></label>
-              <input type="number" id="cantidad" class="form-control" min="0">
-            </div>
-            <div class="col-md-3">
-              <label for="precio" class="form-label price"></label>
+            <div class="col-md-4">
               <div class="input-group">
-              <span class="input-group-text currencyTypeSelected">Mex$</span>
-              <input type="text" id="precio" class="form-control"  data-inputmask="'alias': 'currency', 'prefix': '', 'placeholder': '0', 'autoUnmask': true, 'removeMaskOnSubmit': true">
+                <span class="input-group-text brokerNumber"></span>
+                <input type="text" id="numeroBroker" class="form-control">
               </div>
             </div>
-            <div class="col-md-3">
-              <label for="tipoMoneda" class="form-label currencyType"></label>
-              <select id="tipoMoneda" class="form-select">
-                <option selected value="MXN">MXN (Mex$)</option>
-                <option value="USD">USD ($)</option>
-                <option value="EUR">EUR (€)</option>
-                <option value="JPY">JPY (¥)</option>
-              </select>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text supplierNumber"></span>
+                <input type="text" id="numeroProveedor" class="form-control">
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="unidadMedida" class="form-label unitOfMeasure"></label>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text productOrigin"></span>
+                <input type="text" id="productoOrigen" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text commercialName"></span>
+                <input type="text" id="productoNombreComercial" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text quantity"></span>
+                <input type="number" id="cantidad" class="form-control" min="0">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text price">Mex$</span>
+                <input type="text" id="precio" class="form-control" data-inputmask="'alias': 'currency', 'prefix': '', 'placeholder': '0', 'autoUnmask': true, 'removeMaskOnSubmit': true">
+                <select id="tipoMoneda" class="form-select">
+                  <option selected value="MXN">MXN (Mex$)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="JPY">JPY (¥)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text unitOfMeasure"></span>
               <input type="text" id="unidadMedida" class="form-control">
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="ejecutivo" class="form-label executive"></label>
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text executive"></span>
               <input type="text" id="ejecutivo" class="form-control">
+              </div>
             </div>
           </div>
           <div class="mt-4 text-center">

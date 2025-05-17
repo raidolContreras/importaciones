@@ -41,7 +41,8 @@
         "asignateEjecutive": "Assign Executive"
     },
     "admin": {
-        "users": "Users"
+        "users": "Users",
+        "providers": "Providers"
     },
     "users": {
         "title": "Users",

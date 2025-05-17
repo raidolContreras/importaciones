@@ -115,6 +115,7 @@ function aplicarTraducciones() {
 
     // Traducciones de administrador
     $('.users').html('<i class="fas fa-users fs-5 me-2"></i>' + translations.admin.users);
+    $('.providers').html('<i class="fas fa-truck fs-5 me-2"></i>' + translations.admin.providers);
 }
 
 // Función para cambiar el idioma dinámicamente
@@ -134,7 +135,17 @@ function changeLanguage(language) {
                 rolesTable.destroy();
                 rolesTable = initRolesTable();
             }
-        }
+        } else if (pagina === 'brokers') {
+            if ($.fn.DataTable.isDataTable('#brokers-table')) {
+                brokersTable.destroy();
+                brokersTable = initBrokersTable();
+            }
+        } else if (pagina === 'providers') {
+            if ($.fn.DataTable.isDataTable('#providers-table')) {
+                providersTable.destroy();
+                providersTable = initProvidersTable();
+            }
+        } 
 
     });
 }

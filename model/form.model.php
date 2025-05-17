@@ -163,3 +163,130 @@ class LogsModel {
         return $response;
     }
 }
+
+class BrokerModel {
+    static public function mdlCreateBroker($table, $data) {
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare("INSERT INTO $table (broker_name, broker_phone, broker_email) VALUES (:broker_name, :broker_phone, :broker_email)");
+        $stmt->bindParam(":broker_name", $data["Broker_Name"], PDO::PARAM_STR);
+        $stmt->bindParam(":broker_phone", $data["Broker_Phone"], PDO::PARAM_STR);
+        $stmt->bindParam(":broker_email", $data["Broker_Email"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlGetBrokers($table) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table");
+        $stmt->execute();
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlGetBrokerById($table, $id_Broker) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table WHERE broker_id = :broker_id");
+        $stmt->bindParam(":broker_id", $id_Broker, PDO::PARAM_INT);
+        $stmt->execute();
+        $response = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlEditBroker($table, $data) {
+        $stmt = Conexion::conectar()->prepare("UPDATE $table SET broker_name = :broker_name, broker_phone = :broker_phone, broker_email = :broker_email WHERE broker_id = :broker_id");
+        $stmt->bindParam(":broker_name", $data["Broker_Name"], PDO::PARAM_STR);
+        $stmt->bindParam(":broker_phone", $data["Broker_Phone"], PDO::PARAM_STR);
+        $stmt->bindParam(":broker_email", $data["Broker_Email"], PDO::PARAM_STR);
+        $stmt->bindParam(":broker_id", $data["Broker_ID"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlDisableBroker($table, $id_Broker) {
+        $stmt = Conexion::conectar()->prepare("UPDATE $table SET broker_isActive = 0 WHERE broker_id = :broker_id");
+        $stmt->bindParam(":broker_id", $id_Broker, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlEnableBroker($table, $id_Broker) {
+        $stmt = Conexion::conectar()->prepare("UPDATE $table SET broker_isActive = 1 WHERE broker_id = :broker_id");
+        $stmt->bindParam(":broker_id", $id_Broker, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+}
+
+class ProviderModel {
+    static public function mdlGetProviders($table) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table");
+        $stmt->execute();
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlCreateProvider($table, $data) {
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare("INSERT INTO $table (provider_name, provider_phone, provider_email) VALUES (:provider_name, :provider_phone, :provider_email)");
+        $stmt->bindParam(":provider_name", $data["Provider_Name"], PDO::PARAM_STR);
+        $stmt->bindParam(":provider_phone", $data["Provider_Phone"], PDO::PARAM_STR);
+        $stmt->bindParam(":provider_email", $data["Provider_Email"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+}

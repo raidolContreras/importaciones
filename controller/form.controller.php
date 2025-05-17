@@ -184,3 +184,148 @@ class LogsController
         }
     }
 }
+
+
+class BrokerController
+{
+    static public function ctrCreateBroker()
+    {
+        $table = "brokers";
+        $data = array(
+            "Broker_Name" => $_POST["broker_name"],
+            "Broker_Phone" => $_POST["broker_phone"],
+            "Broker_Email" => $_POST["broker_email"]
+        );
+        $response = BrokerModel::mdlCreateBroker($table, $data);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Broker created successfully!"));
+            // Log the broker creation action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Broker created: " . $_POST["broker_name"]);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error creating broker."));
+        }
+    }
+
+    static public function ctrGetBrokers()
+    {
+        $table = "brokers";
+        $response = BrokerModel::mdlGetBrokers($table);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+            // Log the broker fetch action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched brokers");
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No brokers found."));
+        }
+    }
+
+    static public function ctrGetBrokerById()
+    {
+        $table = "brokers";
+        $id_Broker = $_POST["broker_id"];
+        $response = BrokerModel::mdlGetBrokerById($table, $id_Broker);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+            // Log the broker fetch by ID action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched broker by ID: " . $id_Broker);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No broker found with this ID."));
+        }
+    }
+
+    static public function ctrEditBroker()
+    {
+        $table = "brokers";
+        $data = array(
+            "Broker_ID" => $_POST["broker_id"],
+            "Broker_Name" => $_POST["broker_name"],
+            "Broker_Phone" => $_POST["broker_phone"],
+            "Broker_Email" => $_POST["broker_email"]
+        );
+        $response = BrokerModel::mdlEditBroker($table, $data);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Broker updated successfully!"));
+            // Log the broker edit action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Broker updated: " . $_POST["broker_name"]);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error updating broker."));
+        }
+    }
+
+    static public function ctrDisableBroker()
+    {
+        $table = "brokers";
+        $id_Broker = $_POST["broker_id"];
+        $response = BrokerModel::mdlDisableBroker($table, $id_Broker);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Broker disabled successfully!"));
+            // Log the broker disable action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Broker disabled: " . $id_Broker);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error disabling broker."));
+        }
+    }
+
+    static public function ctrEnableBroker()
+    {
+        $table = "brokers";
+        $id_Broker = $_POST["broker_id"];
+        $response = BrokerModel::mdlEnableBroker($table, $id_Broker);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Broker enabled successfully!"));
+            // Log the broker enable action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Broker enabled: " . $id_Broker);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error enabling broker."));
+        }
+    }
+}
+
+class ProviderController
+{
+    static public function ctrGetProviders()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $table = "providers";
+        $response = ProviderModel::mdlGetProviders($table);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+            // Log the provider fetch action
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched providers");
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No providers found."));
+        }
+    }
+
+    static public function ctrCreateProvider()
+    {
+        $table = "providers";
+        $data = array(
+            "Provider_Name" => $_POST["provider_name"],
+            "Provider_Phone" => $_POST["provider_phone"],
+            "Provider_Email" => $_POST["provider_email"]
+        );
+        $response = ProviderModel::mdlCreateProvider($table, $data);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Provider created successfully!"));
+            // Log the provider creation action
+            session_start();
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Provider created: " . $_POST["provider_name"]);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error creating provider."));
+        }
+    }
+}
