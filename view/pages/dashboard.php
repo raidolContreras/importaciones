@@ -32,15 +32,7 @@
                   <input type="text" id="textFilter" class="form-control searchInput">
                 </div>
               </div>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Por Embarcar">NC-01 / DR-4321 / ID00001</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="En Tránsito">NC-02 / DR-4321 / ID00002</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Aduana">NC-03 / DR-4321 / ID00003</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Punto de Inspección">NC-04 / DR-4321 / ID00004</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Entregado">NC-05 / DR-4321 / ID00005</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Cierre de Cuentas">NC-06 / DR-4321 / ID00006</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Terminado">NC-07 / DR-4321 / ID00007</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Terminado">NC-08 / DR-4321 / ID00007</button>
-              <button class="mt-1 mx-2 btn btn-success text-start" search="Terminado">NC-09 / DR-4321 / ID00007</button>
+              <!-- <button class="mt-1 mx-2 btn btn-success text-start" search="Por Embarcar">NC-01 / DR-4321 / ID00001</button> -->
             </div>
 
           </div>
@@ -77,8 +69,7 @@
                   <input type="text" id="pendingTextFilter" class="form-control searchInput">
                 </div>
               </div>
-              <button class="mt-1 mx-2 btn btn-warning text-start" search="Por Embarcar">NC-03 / DR-4321 / ID00001</button>
-              <button class="mt-1 mx-2 btn btn-warning text-start" search="En Tránsito">NC-03 / DR-4321 / ID00002</button>
+              <!-- <button class="mt-1 mx-2 btn btn-warning text-start" search="Por Embarcar">NC-03 / DR-4321 / ID00001</button> -->
             </div>
           </div>
         </div>
@@ -95,7 +86,7 @@
         <div class="card-body d-flex flex-column p-0 overflow-hidden">
           <div class="flex-grow-1 overflow-auto">
 
-            <div class="list-group list-group-flush">
+            <!-- <div class="list-group list-group-flush">
               <div class="d-flex justify-content-center align-items-center my-3">
                 <hr class="flex-grow-1 me-3">
                 <span class="text-muted-dashboard">Almacenadora</span>
@@ -105,19 +96,7 @@
             <div class="list-group list-group-flush">
               <button class="mt-1 mx-2 btn btn-info text-start">NC-04 / DR-4321 / ID00004</button>
               <button class="mt-1 mx-2 btn btn-info text-start">NC-04 / DR-4321 / ID00001</button>
-            </div>
-            <div class="list-group list-group-flush">
-              <div class="d-flex justify-content-center align-items-center my-3">
-                <hr class="flex-grow-1 me-3">
-                <span class="text-muted-dashboard">Agruza</span>
-                <hr class="flex-grow-1 ms-3">
-              </div>
-            </div>
-            <div class="list-group list-group-flush">
-              <button class="mt-1 mx-2 btn btn-info text-start">NC-04 / DR-4321 / ID00001</button>
-              <button class="mt-1 mx-2 btn btn-info text-start">NC-04 / DR-4321 / ID00001</button>
-              <button class="mt-1 mx-2 btn btn-info text-start">NC-04 / DR-4321 / ID00001</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -136,46 +115,86 @@
       </div>
       <div class="modal-body">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <button type="button" class="btn btn-outline-custom"> <span class="folioSystem"></span> <strong class="folioId">0001</strong></button>
+          <button type="button" class="btn btn-outline-custom">
+            <span class="folioSystem"></span>
+            <strong class="folioId">0001</strong>
+          </button>
           <h5 class="mb-0 dataCapture"></h5>
         </div>
         <form id="catalogForm">
           <div class="row g-3">
-            <div class="col-md-4">
+            <!-- # Broker -->
+            <div class="col-12">
               <div class="input-group">
-                <span class="input-group-text brokerNumber"></span>
-                <input type="text" id="numeroBroker" class="form-control">
+                <span class="input-group-text brokerNumber" style="min-width:180px;"></span>
+                <select id="numeroBroker" class="form-select">
+                  <option value="">Selecciona un Broker</option>
+                  <option value="BRK001">BRK001 - Broker Uno</option>
+                  <option value="BRK002">BRK002 - Broker Dos</option>
+                  <option value="BRK003">BRK003 - Broker Tres</option>
+                </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- # Proveedor -->
+            <div class="col-12">
               <div class="input-group">
-                <span class="input-group-text supplierNumber"></span>
-                <input type="text" id="numeroProveedor" class="form-control">
+                <span class="input-group-text supplierNumber" style="min-width:180px;"></span>
+                <select id="numeroProveedor" class="form-select" disabled>
+                  <option value="">Selecciona un Proveedor</option>
+                  <option value="PRV001">PRV001 - Proveedor Uno</option>
+                  <option value="PRV002">PRV002 - Proveedor Dos</option>
+                  <option value="PRV003">PRV003 - Proveedor Tres</option>
+                </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- Producto + Origen -->
+            <div class="col-12">
               <div class="input-group">
-                <span class="input-group-text productOrigin"></span>
-                <input type="text" id="productoOrigen" class="form-control">
+                <span class="input-group-text productOrigin" style="min-width:180px;"></span>
+                <select id="productoOrigen" class="form-select" disabled>
+                  <option value="">Selecciona Producto + Origen</option>
+                  <option value="Nacional">Nacional</option>
+                  <option value="Importado">Importado</option>
+                </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- Nombre Comercial -->
+            <div class="col-12">
               <div class="input-group">
-                <span class="input-group-text commercialName"></span>
-                <input type="text" id="productoNombreComercial" class="form-control">
+                <span class="input-group-text commercialName" style="min-width:180px;"></span>
+                <input type="text" id="productoNombreComercial" class="form-control" placeholder="Nombre Comercial" disabled>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- Cantidad y Unidad de Medida -->
+            <div class="col-md-6">
               <div class="input-group">
-                <span class="input-group-text quantity"></span>
-                <input type="number" id="cantidad" class="form-control" min="0">
+                <span class="input-group-text quantity" style="min-width:120px;"></span>
+                <input type="number" id="cantidad" class="form-control" min="0" placeholder="Ej. 1000" disabled>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="input-group">
-                <span class="input-group-text price">Mex$</span>
-                <input type="text" id="precio" class="form-control" data-inputmask="'alias': 'currency', 'prefix': '', 'placeholder': '0', 'autoUnmask': true, 'removeMaskOnSubmit': true">
-                <select id="tipoMoneda" class="form-select">
+                <span class="input-group-text unitOfMeasure" style="min-width:140px;"></span>
+                <select id="unidadMedida" class="form-select" disabled>
+                  <option value="">Selecciona una Medida</option>
+                  <option value="kg">Kilogramo</option>
+                  <option value="ton">Tonelada</option>
+                  <option value="lt">Litro</option>
+                  <!-- Más opciones -->
+                </select>
+              </div>
+            </div>
+            <!-- Precio y Unidad de Moneda -->
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
+                <input type="text" id="precio" class="form-control" placeholder="Ej. 25.50" data-inputmask="'alias': 'currency', 'prefix': '', 'placeholder': '0', 'autoUnmask': true, 'removeMaskOnSubmit': true" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text" style="min-width:140px;">Unidad de Moneda:</span>
+                <select id="tipoMoneda" class="form-select" disabled>
                   <option selected value="MXN">MXN (Mex$)</option>
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
@@ -183,22 +202,33 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- Supervisor y Ejecutivo -->
+            <div class="col-md-6">
               <div class="input-group">
-                <span class="input-group-text unitOfMeasure"></span>
-              <input type="text" id="unidadMedida" class="form-control">
+                <span class="input-group-text" style="min-width:120px;">Supervisor:</span>
+                <select id="supervisor" class="form-select" disabled>
+                  <option value="">Selecciona un Supervisor</option>
+                  <option value="SUP001">SUP001 - Supervisor Uno</option>
+                  <option value="SUP002">SUP002 - Supervisor Dos</option>
+                  <option value="SUP003">SUP003 - Supervisor Tres</option>
+                </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="input-group">
-                <span class="input-group-text executive"></span>
-              <input type="text" id="ejecutivo" class="form-control">
+                <span class="input-group-text executive" style="min-width:140px;"></span>
+                <select id="ejecutivo" class="form-select" disabled>
+                  <option value="">Selecciona un Ejecutivo</option>
+                  <option value="EJ001">EJ001 - Ejecutivo Uno</option>
+                  <option value="EJ002">EJ002 - Ejecutivo Dos</option>
+                  <option value="EJ003">EJ003 - Ejecutivo Tres</option>
+                </select>
               </div>
             </div>
-          </div>
-          <div class="mt-4 text-center">
-            <button type="button" class="btn btn-danger btn-lg cancel" data-bs-dismiss="modal"></button>
-            <button type="submit" class="btn btn-primary btn-lg asignate-ejecutive"></button>
+            <!-- Botón Guardar -->
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg w-100 asignate-ejecutive"></button>
+            </div>
           </div>
         </form>
       </div>
@@ -284,4 +314,24 @@
       currencyTypeSelected.textContent = '¥';
     }
   });
+
+  function getDataToNew() {
+    $.ajax({
+      url: 'controller/actions.controller.php',
+      type: 'POST',
+      data: {
+        action: 'getDataToNew'
+      },
+      dataType: 'json',
+      success: function(response) {
+        if (response.success) {
+        } else {
+          console.error('Error fetching data:', response.message);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error('AJAX error:', error);
+      }
+    });
+  }
 </script>

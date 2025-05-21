@@ -49,6 +49,12 @@ switch ($_POST["action"]) {
     case 'enableBroker':
         BrokerController::ctrEnableBroker();
         break;
+    case 'createProductOrigin':
+        ProductOriginController::ctrCreateProductOrigin();
+        break;
+    case 'getProductsOrigin':
+        ProductOriginController::ctrGetProductOrigin();
+        break;
     case 'getProviders':
         ProviderController::ctrGetProviders();
         break;

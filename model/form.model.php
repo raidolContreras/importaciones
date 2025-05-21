@@ -259,6 +259,47 @@ class BrokerModel {
     }
 }
 
+class ProductOriginModel {
+    static public function mdlCreateProductOrigin($table, $data) {
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare("INSERT INTO $table (broker_id, producto, pais_origen, nombre_comercial, nombre_cientifico, fraccion_arancelaria, requiere_inspeccion, requiere_fumigacion, unidad_inventariable, kg_por_pieza, num_producto) VALUES (:broker_id, :producto, :pais_origen, :nombre_comercial, :nombre_cientifico, :fraccion_arancelaria, :requiere_inspeccion, :requiere_fumigacion, :unidad_inventariable, :kg_por_pieza, :num_producto)");
+        $stmt->bindParam(":broker_id", $data["broker_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":producto", $data["producto"], PDO::PARAM_STR);
+        $stmt->bindParam(":pais_origen", $data["pais_origen"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_comercial", $data["nombre_comercial"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_cientifico", $data["nombre_cientifico"], PDO::PARAM_STR);
+        $stmt->bindParam(":fraccion_arancelaria", $data["fraccion_arancelaria"], PDO::PARAM_STR);
+        // Asumiendo que requiere_inspeccion no está en $data, puedes ponerlo en 0 o 1 según tu lógica
+        $stmt->bindValue(":requiere_inspeccion", 0, PDO::PARAM_INT);
+        $stmt->bindParam(":requiere_fumigacion", $data["requiere_fumigacion"], PDO::PARAM_INT);
+        $stmt->bindParam(":unidad_inventariable", $data["unidad_inventariable"], PDO::PARAM_STR);
+        $stmt->bindParam(":kg_por_pieza", $data["kg_por_pieza"], PDO::PARAM_STR);
+        $stmt->bindParam(":num_producto", $data["num_producto"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
+    static public function mdlGetProductOrigins($table) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table LEFT JOIN brokers ON brokers.broker_id = $table.broker_id");
+        $stmt->execute();
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+}
+
 class ProviderModel {
     static public function mdlGetProviders($table) {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $table");

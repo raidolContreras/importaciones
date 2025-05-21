@@ -291,6 +291,52 @@ class BrokerController
     }
 }
 
+class ProductOriginController {
+    static public function ctrCreateProductOrigin()
+    {
+        $table = "producto_origen";
+        $data = array(
+            "broker_id" => $_POST["broker"],
+            "producto" => $_POST["producto"],
+            "pais_origen" => $_POST["pais_origen"],
+            "nombre_comercial" => $_POST["nombre_comercial"],
+            "nombre_cientifico" => $_POST["nombre_cientifico"],
+            "fraccion_arancelaria" => $_POST["fraccion_arancelaria"],
+            "unidad_inventariable" => $_POST["unidad_inventariable"],
+            "kg_por_pieza" => $_POST["kg_por_pieza"],
+            "num_producto" => $_POST["num_producto"],
+            "requiere_fumigacion" => isset($_POST["requiere_fumigacion"]) ? 1 : 0
+        );
+
+        $response = ProductOriginModel::mdlCreateProductOrigin($table, $data);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Product origin created successfully!"));
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Product origin created: " . $_POST["producto"]);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error creating product origin."));
+        }
+    }
+
+    static public function ctrGetProductOrigin()
+    {
+        $table = "producto_origen";
+        $response = ProductOriginModel::mdlGetProductOrigins($table);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched product origins");
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No product origins found."));
+        }
+    }
+}
+
 class ProviderController
 {
     static public function ctrGetProviders()
