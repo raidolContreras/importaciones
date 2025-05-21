@@ -153,15 +153,15 @@ class LogsController
     {
         $table = "logs";
         // Crear objeto DateTime en zona America/Mexico_City
-        $tz   = new DateTimeZone('America/Mexico_City');
-        $now  = new DateTime('now', $tz);
+        $tz = new DateTimeZone('America/Mexico_City');
+        $now = new DateTime('now', $tz);
 
         $data = [
             "id_usuario" => $userId,
             "id_empresa" => $companyId,
-            "fecha"      => $now->format('Y-m-d'),
-            "hora"       => $now->format('H:i:s'),
-            "accion"     => $action
+            "fecha" => $now->format('Y-m-d'),
+            "hora" => $now->format('H:i:s'),
+            "accion" => $action
         ];
         $response = LogsModel::mdlCreateLog($table, $data);
 
@@ -291,7 +291,8 @@ class BrokerController
     }
 }
 
-class ProductOriginController {
+class ProductOriginController
+{
     static public function ctrCreateProductOrigin()
     {
         $table = "producto_origen";
@@ -374,4 +375,115 @@ class ProviderController
             echo json_encode(array("status" => "error", "message" => "Error creating provider."));
         }
     }
+}
+
+class OrderController
+{
+    static public function ctrInitOrder()
+    {
+        $table = "ordenes_compra";
+
+        // Obtener el siguiente ID de la tabla ordenes_compra
+        $nextId = OrderModel::mdlGetNextOrderId($table);
+
+        // Obtener brokers
+        $brokers = BrokerModel::mdlGetBrokers("brokers");
+
+        // Obtener proveedores
+        $providers = ProviderModel::mdlGetProviders("providers");
+
+        // Obtener productos origen
+        $productOrigins = ProductOriginModel::mdlGetProductOrigins("producto_origen");
+
+        // Obtener usuarios y roles
+        $users = UserModel::mdlFetchUsers("user_catalog");
+        $roles = UserModel::mdlFetchRoles("roles");
+
+        // Mapear roles por ID para acceso rápido
+        $roleMap = [];
+        foreach ($roles as $role) {
+            // Asumo que en $role tienes keys 'id_Rol' y 'Role_Name'
+            $roleMap[$role['id_Rol']] = $role['Role_Name'];
+        }
+
+        // Separar supervisores y ejecutivos
+        $supervisores = [];
+        $ejecutivos = [];
+        foreach ($users as $user) {
+            // Asumo que en $user el campo de rol es 'Role_ID'
+            $rid = $user['Role_ID'];
+            // Eliminar el campo Password si existe
+            if (isset($user['Password'])) {
+                unset($user['Password']);
+            }
+            if (
+                isset($roleMap[$rid]) &&
+                mb_strtolower($roleMap[$rid]) === 'supervisor'
+            ) {
+                $supervisores[] = $user;
+            } elseif (
+                isset($roleMap[$rid]) &&
+                mb_strtolower($roleMap[$rid]) === 'ejecutivo'
+            ) {
+                $ejecutivos[] = $user;
+            }
+        }
+
+        echo json_encode([
+            "status" => "success",
+            "next_order_id" => $nextId,
+            "brokers" => $brokers,
+            "providers" => $providers,
+            "product_origins" => $productOrigins,
+            "supervisores" => $supervisores,
+            "ejecutivos" => $ejecutivos
+        ]);
+    }
+
+    static public function ctrSaveOrder()
+    {
+        $table = "ordenes_compra";
+        $data = array(
+            "order_id" => $_POST["order_id"],
+            "broker_id" => $_POST["broker_id"],
+            "provider_id" => $_POST["provider_id"],
+            "product_origin_id" => $_POST["product_origin_id"],
+            "commercial_name" => $_POST["commercial_name"],
+            "quantity" => $_POST["quantity"],
+            "unit" => $_POST["unit"],
+            "price" => $_POST["price"],
+            "currency" => $_POST["currency"],
+            "supervisor_id" => $_POST["supervisor_id"],
+            "executive_id" => $_POST["executive_id"]
+        );
+
+        $response = OrderModel::mdlSaveOrder($table, $data);
+
+        if ($response == "ok") {
+            echo json_encode(array("status" => "success", "message" => "Order saved successfully!"));
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Order created: " . $_POST["order_id"]);
+        } else {
+            echo json_encode(array("status" => "error", "message" => "Error saving order."));
+        }
+    }
+
+    static public function ctrLoadPendienting()
+    {
+        $table = "ordenes_compra";
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $userId = $_SESSION["id_Users"];
+        $response = OrderModel::mdlLoadPendienting($table, $userId);
+        if ($response) {
+            echo json_encode(array("status" => "success", "data" => $response));
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched pending orders");
+        } else {
+            echo json_encode(array("status" => "error", "message" => "No pending orders found."));
+        }
+    }
+
 }

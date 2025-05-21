@@ -61,4 +61,15 @@ switch ($_POST["action"]) {
     case 'createProvider':
         ProviderController::ctrCreateProvider();
         break;
+
+    //Orders
+    case 'initOrder':
+        OrderController::ctrInitOrder();
+        break;
+    case 'saveOrder':
+        OrderController::ctrSaveOrder();
+        break;
+    case 'loadPendienting':
+        OrderController::ctrLoadPendienting();
+        break;
 }
