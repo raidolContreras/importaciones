@@ -395,6 +395,9 @@ class OrderController
         // Obtener productos origen
         $productOrigins = ProductOriginModel::mdlGetProductOrigins("producto_origen");
 
+        // obtener unidades de medida
+        $units = ProductOriginModel::mdlGetUnits("unidad_inventariable");
+
         // Obtener usuarios y roles
         $users = UserModel::mdlFetchUsers("user_catalog");
         $roles = UserModel::mdlFetchRoles("roles");
@@ -435,6 +438,7 @@ class OrderController
             "brokers" => $brokers,
             "providers" => $providers,
             "product_origins" => $productOrigins,
+            "units" => $units,
             "supervisores" => $supervisores,
             "ejecutivos" => $ejecutivos
         ]);

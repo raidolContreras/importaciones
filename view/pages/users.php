@@ -2,9 +2,6 @@
 <link
   rel="stylesheet"
   href="view/assets/js/datatables/datatables.css" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
 <div class="container-fluid p-4">
   <div class="row gy-3 gx-1">
@@ -40,9 +37,7 @@
                 class="form-select"
                 required>
                 <option value="" disabled selected>Seleccione rol</option>
-                <option value="1">SuperAdmin</option>
-                <option value="2">Ejecutivo</option>
-                <option value="3">Supervisor</option>
+                
               </select>
             </div>
             <div class="col-md-4 d-grid">
@@ -169,8 +164,6 @@
 
 <!-- scripts DataTables, SweetAlert2, Toastr -->
 <script src="view/assets/js/datatables/datatables.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
   // Variables globales de tablas
   let usersTable, rolesTable;
@@ -233,39 +226,50 @@
 
   // 3) Inicializar tabla de Roles
   function initRolesTable() {
-    return $("#roles-table").DataTable({
+    // Inicializa la tabla de roles y llena el select de roles del formulario de usuario
+    const table = $("#roles-table").DataTable({
       ajax: {
-        url: "controller/actions.controller.php",
-        type: "POST",
-        data: { action: "fetchRoles" },
-        dataSrc(json) {
-          if (json.status !== "success") {
-            toastr.error(json.message);
-            return [];
-          }
-          return json.data;
+      url: "controller/actions.controller.php",
+      type: "POST",
+      data: { action: "fetchRoles" },
+      dataSrc(json) {
+        // Llenar el select de roles en el formulario de usuario
+        const $roleSelect = $("#role");
+        $roleSelect.empty().append('<option value="" disabled selected>Seleccione rol</option>');
+        if (json.status !== "success") {
+        toastr.error(json.message);
+        return [];
         }
+        // Agregar opciones al select
+        json.data.forEach(role => {
+        $roleSelect.append(
+          $("<option>", { value: role.id_Rol, text: role.Role_Name })
+        );
+        });
+        return json.data;
+      }
       },
       columns: [
-        { data: "id_Rol" },
-        { data: "Role_Name" },
-        {
-          data: null,
-          orderable: false,
-          render(_, __, row) {
-            return `
-              <button class="btn btn-sm btn-edit-role text-primary" data-id="${row.id_Rol}">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button class="btn btn-sm btn-delete-role text-danger" data-id="${row.id_Rol}">
-                <i class="fas fa-trash-alt"></i>
-              </button>`;
-          }
+      { data: "id_Rol" },
+      { data: "Role_Name" },
+      {
+        data: null,
+        orderable: false,
+        render(_, __, row) {
+        return `
+          <button class="btn btn-sm btn-edit-role text-primary" data-id="${row.id_Rol}">
+          <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-delete-role text-danger" data-id="${row.id_Rol}">
+          <i class="fas fa-trash-alt"></i>
+          </button>`;
         }
+      }
       ],
       responsive: true,
-      ...getLanguageOption()             // ← corregido de `.getLanguageOption()` :contentReference[oaicite:4]{index=4}:contentReference[oaicite:5]{index=5}
+      ...getLanguageOption()
     });
+    return table;
   }
 
   // 4) Bind de formularios de creación

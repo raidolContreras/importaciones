@@ -10,6 +10,9 @@
     <link rel="icon" href="view/assets/image/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="view/assets/css/style.css" />
     <title id="title"></title>
 
@@ -154,6 +157,8 @@
     <script src="node_modules/select2/dist/js/select2.js"></script>
     <script src="view/assets/js/languages.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         // Theme toggle
         $(function() {
@@ -293,13 +298,11 @@
         function getLanguageOption() {
             const idi = localStorage.getItem('idioma') ||
                 (navigator.language.startsWith('es') ? 'es' : 'en');
-            return idi === 'es' ?
-                {
-                    language: {
-                        url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
-                    }
-                } :
-                {};
+            return idi === 'es' ? {
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+                }
+            } : {};
         }
     </script>
 

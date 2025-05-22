@@ -143,10 +143,6 @@
               <div class="input-group">
                 <span class="input-group-text" style="min-width:140px;">Unidad</span>
                 <select id="unidadMedida" class="form-select" disabled>
-                  <option value="">Selecciona una Medida</option>
-                  <option value="kg">Kilogramo</option>
-                  <option value="ton">Tonelada</option>
-                  <option value="lt">Litro</option>
                 </select>
               </div>
             </div>
@@ -196,11 +192,125 @@
   </div>
 </div>
 
+<!-- Modal de Asignación de Carpetas Físicas -->
+<div class="modal fade" id="modalCarpetas" tabindex="-1" aria-labelledby="modalCarpetasLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCarpetasLabel">Asignación de Carpetas Físicas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-carpetas" autocomplete="off">
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">Folio Sistema</span>
+              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" />
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">No. Contrato - Proveedor</span>
+              <input type="text" class="form-control" id="contratoProveedor" placeholder="Captura Contrato/Proveedor" />
+              <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">No. Contrato - Broker</span>
+              <input type="text" class="form-control" id="contratoBroker" placeholder="Captura Contrato/Broker" />
+              <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">No. Carpeta Maestro</span>
+              <input type="text" class="form-control" id="carpetaMaestro" placeholder="Captura Carpeta Maestro" />
+              <button type="button" class="btn btn-outline-secondary">Adicionar Carpeta Derivada</button>
+            </div>
+            </div>
+
+            <div class="section-title my-3">Asignación de Carpetas Físicas</div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. FCL Carpeta Maestra</span>
+              <input type="number" class="form-control" placeholder="Captura No. FCL Carpeta Maestra" id="numContenedoresMaestra" min="1" />
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">Folio Sistema por Derivada</span>
+              <input type="text" class="form-control" id="folioDerivada" placeholder="Captura Folio Sistema por Derivada" />
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. Contrato - Proveedor</span>
+              <input type="text" class="form-control" id="contratoProveedorDerivada" placeholder="Captura No. Contrato - Proveedor" />
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. Contrato - Broker</span>
+              <input type="text" class="form-control" id="contratoBrokerDerivada" placeholder="Captura No. Contrato - Broker" />
+            </div>
+            </div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. Carpeta Derivada</span>
+              <input type="text" class="form-control" id="carpetaDerivada" placeholder="Captura No. Carpeta Derivada" />
+            </div>
+            </div>
+
+            <div class="subsection-title my-3">Contenedores</div>
+            <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">Número de contenedores</span>
+              <input type="number" class="form-control" placeholder="Cantidad de contenedores" min="1" id="numContenedores" />
+            </div>
+            </div>
+            <div id="contenedores-dinamicos" class="contenedores-dinamicos"></div>
+
+            <!-- Autorización Supervisor -->
+            <div class="autorizacion-titulo mt-4">Autorización Supervisor</div>
+            <div class="autorizacion-opciones mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="autorizar" id="autSupervisorOk">
+              <label class="form-check-label" for="autSupervisorOk">Autorizar</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="noaprobado" id="autSupervisorNo">
+              <label class="form-check-label" for="autSupervisorNo">No Aprobado</label>
+            </div>
+            </div>
+            <!-- Autorización Comercial -->
+            <div class="autorizacion-titulo">Autorización Comercial</div>
+            <div class="autorizacion-opciones mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="autorizar" id="autComercialOk">
+              <label class="form-check-label" for="autComercialOk">Autorizar</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="noaprobado" id="autComercialNo">
+              <label class="form-check-label" for="autComercialNo">No Aprobado</label>
+            </div>
+            </div>
+            <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <img src="Guardar.png" alt="Guardar" style="width: 22px; height: 22px; vertical-align: middle; margin-right: 8px;">
+              Guardar Datos
+            </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Inputmask -->
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 <!-- Lógica JS Dinámica -->
 <script>
-  $(function () {
+  $(function() {
     const brokerSelect = $('#numeroBroker');
     const providerSelect = $('#numeroProveedor');
     const productSelect = $('#productoOrigen');
@@ -216,108 +326,124 @@
     let productOrigins = [];
 
     // Inicializar filtros de tabla (sin cambios respecto al original)
-    $('#searchSelect, #pendingSearchSelect').on('change', function () {
+    $('#searchSelect, #pendingSearchSelect').on('change', function() {
       const sel = $(this).val().toLowerCase();
       const listClass = this.id === 'searchSelect' ? '.list-tasks' : '.list-pending';
-      $(`${listClass} button[search]`).each(function () {
+      $(`${listClass} button[search]`).each(function() {
         const txt = $(this).attr('search').toLowerCase();
         $(this).toggle(sel === '' || txt.includes(sel));
       });
     });
-    $('#textFilter, #pendingTextFilter').on('input', function () {
+
+    $('#textFilter, #pendingTextFilter').on('input', function() {
       const txt = $(this).val().toLowerCase();
       const listClass = this.id === 'textFilter' ? '.list-tasks' : '.list-pending';
-      $(`${listClass} button[search]`).each(function () {
+      $(`${listClass} button[search]`).each(function() {
         $(this).toggle($(this).text().toLowerCase().includes(txt));
       });
     });
 
     // Máscara de precio
     priceInput.inputmask({
-      alias: 'currency', prefix: '', groupSeparator: ',', autoGroup: true,
-      digits: 2, digitsOptional: false, placeholder: '0', rightAlign: false,
+      alias: 'currency',
+      prefix: '',
+      groupSeparator: ',',
+      autoGroup: true,
+      digits: 2,
+      digitsOptional: false,
+      placeholder: '0',
+      rightAlign: false,
       removeMaskOnSubmit: true
     });
 
     // Abrir modal y cargar datos
-    $('#addNewButton').on('click', function () {
-      $.post('controller/actions.controller.php', { action: 'initOrder' }, function (data) {
-        if (data.status === 'success') {
-          // Folio
-          folioLabel.text(String(data.next_order_id).padStart(4, '0'));
+    $('#addNewButton').on('click', function() {
+      $.post('controller/actions.controller.php', {
+          action: 'initOrder'
+        }, function(data) {
+          if (data.status === 'success') {
+            // Folio
+            folioLabel.text(String(data.next_order_id).padStart(4, '0'));
 
-          // Brokers
-          brokerSelect.prop('disabled', false).empty().append('<option value="">Selecciona un Broker</option>');
-          data.brokers.forEach(b => {
-            if (b.broker_isActive) {
-              brokerSelect.append(
-                `<option value="${b.broker_id}"
+            // Brokers
+            brokerSelect.prop('disabled', false).empty().append('<option value="">Selecciona un Broker</option>');
+            data.brokers.forEach(b => {
+              if (b.broker_isActive) {
+                brokerSelect.append(
+                  `<option value="${b.broker_id}"
                          data-phone="${b.broker_phone}"
                          data-email="${b.broker_email}">
                   ${b.broker_id} - ${b.broker_name}
                 </option>`
-              );
-            }
-          });
+                );
+              }
+            });
 
-          // Proveedores
-          providerSelect.prop('disabled', false).empty().append('<option value="">Selecciona un Proveedor</option>');
-          data.providers.forEach(p => {
-            if (p.provider_isActive) {
-              providerSelect.append(
-                `<option value="${p.provider_id}"
+            // Proveedores
+            providerSelect.prop('disabled', false).empty().append('<option value="">Selecciona un Proveedor</option>');
+            data.providers.forEach(p => {
+              if (p.provider_isActive) {
+                providerSelect.append(
+                  `<option value="${p.provider_id}"
                          data-phone="${p.provider_phone}"
                          data-email="${p.provider_email}">
                   ${p.provider_id} - ${p.provider_name}
                 </option>`
+                );
+              }
+            });
+
+            // Productos-Origen
+            productOrigins = data.product_origins;
+            productSelect.prop('disabled', true).empty().append('<option value="">Selecciona Producto + Origen</option>');
+
+            // Reset campos dependientes
+            commercialInput.val('').prop('disabled', true);
+            qtyInput.val('').prop('disabled', true);
+            priceInput.val('').prop('disabled', true);
+            currencySelect.val('MXN').prop('disabled', true);
+            $('.currencyTypeSelected').text('Mex$');
+
+            // Unidades de medida
+            unitSelect.prop('disabled', true).empty().append('<option value="">Selecciona Unidad</option>');
+            data.units.forEach(u => {
+              unitSelect.append(
+                `<option value="${u.unidad_medida_id}">${u.nameUM}</option>`
               );
-            }
-          });
+            });
 
-          // Productos-Origen
-          productOrigins = data.product_origins;
-          productSelect.prop('disabled', true).empty().append('<option value="">Selecciona Producto + Origen</option>');
-
-          // Reset campos dependientes
-          commercialInput.val('').prop('disabled', true);
-          qtyInput.val('').prop('disabled', true);
-          unitSelect.val('').prop('disabled', true);
-          priceInput.val('').prop('disabled', true);
-          currencySelect.val('MXN').prop('disabled', true);
-          $('.currencyTypeSelected').text('Mex$');
-
-          // Supervisores
-          supervisorSelect
-            .prop('disabled', false)
-            .empty()
-            .append('<option value="">Selecciona un Supervisor</option>');
-          data.supervisores.forEach(s => {
-            supervisorSelect.append(
-              `<option value="${s.id_Users}">
+            // Supervisores
+            supervisorSelect
+              .prop('disabled', false)
+              .empty()
+              .append('<option value="">Selecciona un Supervisor</option>');
+            data.supervisores.forEach(s => {
+              supervisorSelect.append(
+                `<option value="${s.id_Users}">
                 ${s.id_Users} – ${s.Username}
               </option>`
-            );
-          });
+              );
+            });
 
-          // Ejecutivos
-          ejecutivoSelect
-            .prop('disabled', false)
-            .empty()
-            .append('<option value="">Selecciona un Ejecutivo</option>');
-          data.ejecutivos.forEach(e => {
-            ejecutivoSelect.append(
-              `<option value="${e.id_Users}">
+            // Ejecutivos
+            ejecutivoSelect
+              .prop('disabled', false)
+              .empty()
+              .append('<option value="">Selecciona un Ejecutivo</option>');
+            data.ejecutivos.forEach(e => {
+              ejecutivoSelect.append(
+                `<option value="${e.id_Users}">
                 ${e.id_Users} – ${e.Username}
               </option>`
-            );
-          });
-        }
-      }, 'json')
+              );
+            });
+          }
+        }, 'json')
         .fail(console.error);
     });
 
     // Al cambiar broker, filtrar productos
-    brokerSelect.on('change', function () {
+    brokerSelect.on('change', function() {
       const brokerId = +this.value;
       productSelect.prop('disabled', false).empty().append('<option value="">Selecciona Producto + Origen</option>');
       productOrigins
@@ -334,41 +460,94 @@
     });
 
     // Al seleccionar producto, autocompletar y habilitar campos
-    productSelect.on('change', function () {
+    productSelect.on('change', function() {
       const opt = $(this).find('option:selected');
       const nombre = opt.data('comercial') || '';
       const unidad = opt.data('unidad') || '';
       commercialInput.val(nombre).prop('disabled', !nombre);
       qtyInput.prop('disabled', !nombre);
-      unitSelect.val(unidad).prop('disabled', !unidad);
+      unitSelect.prop('disabled', !unidad);
       priceInput.prop('disabled', !nombre);
       currencySelect.prop('disabled', !nombre);
     });
-
+    
     // Cambiar símbolo de moneda
-    currencySelect.on('change', function () {
-      const symMap = { MXN: 'Mex$', USD: '$', EUR: '€', JPY: '¥' };
+    currencySelect.on('change', function() {
+      const symMap = {
+        MXN: 'Mex$',
+        USD: '$',
+        EUR: '€',
+        JPY: '¥'
+      };
       $('.currencyTypeSelected').text(symMap[this.value] || '');
     });
 
     // Enviar formulario de nueva orden por AJAX
-    $('#catalogForm').on('submit', function (e) {
+    $('#catalogForm').on('submit', function(e) {
       e.preventDefault();
 
       // Preparamos los datos a enviar
+      // Validar campos obligatorios
+      const requiredFields = [{
+          el: brokerSelect,
+          name: 'Broker'
+        },
+        {
+          el: providerSelect,
+          name: 'Proveedor'
+        },
+        {
+          el: productSelect,
+          name: 'Producto + Origen'
+        },
+        {
+          el: commercialInput,
+          name: 'Nombre Comercial'
+        },
+        {
+          el: qtyInput,
+          name: 'Cantidad'
+        },
+        {
+          el: unitSelect,
+          name: 'Unidad'
+        },
+        {
+          el: priceInput,
+          name: 'Precio'
+        },
+        {
+          el: currencySelect,
+          name: 'Moneda'
+        },
+        {
+          el: supervisorSelect,
+          name: 'Supervisor'
+        },
+        {
+          el: ejecutivoSelect,
+          name: 'Ejecutivo'
+        }
+      ];
+      let emptyField = requiredFields.find(f => !f.el.val() || f.el.val() === '');
+      if (emptyField) {
+        toastr.error('El campo "' + emptyField.name + '" es obligatorio.');
+        return;
+      }
+
       const payload = {
         action: 'saveOrder',
-        order_id: parseInt(folioLabel.text(), 10),           // Folio que ves en pantalla (sin ceros a la izquierda)
-        broker_id: brokerSelect.val(),                       // ID de broker
-        provider_id: providerSelect.val(),                   // ID de proveedor
-        product_origin_id: productSelect.val(),              // ID de producto+origen
-        commercial_name: commercialInput.val(),              // Nombre comercial
-        quantity: qtyInput.val(),                            // Cantidad
-        unit: unitSelect.val(),                              // Unidad
-        price: priceInput.inputmask('unmaskedvalue'),        // Precio sin máscara
-        currency: currencySelect.val(),                      // Moneda
-        supervisor_id: supervisorSelect.val(),               // ID de supervisor
-        executive_id: ejecutivoSelect.val()                  // ID de ejecutivo
+        order_id: parseInt(folioLabel.text(), 10), // Folio que ves en pantalla (sin ceros a la izquierda)
+        broker_id: brokerSelect.val(), // ID de broker
+        provider_id: providerSelect.val(), // ID de proveedor
+        product_origin_id: productSelect.val(), // ID de producto+origen
+        commercial_name: commercialInput.val(), // Nombre comercial
+        quantity: qtyInput.val(), // Cantidad
+        unit: unitSelect.val(), // Unidad
+        price: priceInput.inputmask('unmaskedvalue'), // Precio sin máscara
+        currency: currencySelect.val(), // Moneda
+        supervisor_id: supervisorSelect.val(), // ID de supervisor
+        executive_id: ejecutivoSelect.val() // ID de ejecutivo
       };
 
       // Opcional: desactivar botón de guardar para evitar dobles clicks
@@ -380,7 +559,7 @@
         method: 'POST',
         data: payload,
         dataType: 'json',
-        success: function (res) {
+        success: function(res) {
           if (res.status === 'success') {
             // Cerrar modal y notificar
             $('#catalogModal').modal('hide');
@@ -390,10 +569,10 @@
             toastr.error(res.message || 'Error al guardar la orden');
           }
         },
-        error: function (xhr, status, error) {
+        error: function(xhr, status, error) {
           toastr.error('Error en la petición: ' + (xhr.responseText || error));
         },
-        complete: function () {
+        complete: function() {
           // Reactivar botón
           $btn.prop('disabled', false).text('Guardar Orden');
         }
@@ -407,9 +586,11 @@
     $.ajax({
       url: 'controller/actions.controller.php',
       method: 'POST',
-      data: { action: 'loadPendienting' },
+      data: {
+        action: 'loadPendienting'
+      },
       dataType: 'json',
-      success: function (data) {
+      success: function(data) {
         if (data.status === 'success') {
           const list = $('.list-pending');
           list.empty();
@@ -438,7 +619,8 @@
           if (Array.isArray(data.data) && data.data.length > 0) {
             data.data.forEach(p => {
               // Puedes personalizar el texto mostrado según tus necesidades
-              const text = `${p.nombre_comercial} (${p.cantidad} ${p.unidad_medida_id}) - ${p.moneda} ${parseFloat(p.precio_unitario).toLocaleString()}`;
+              const folio = String(p.id).padStart(4, '0');
+              const text = `Folio #${folio} - ${p.nombre_comercial} (${p.cantidad} ${p.unidad_medida_id})`;
               const search = [
                 p.nombre_comercial,
                 p.cantidad,
@@ -448,9 +630,7 @@
                 p.actualizado_en
               ].join(' ').toLowerCase();
               list.append(
-                `<button class="mt-1 mx-2 btn btn-success text-start" search="${search}">
-            ${text}
-          </button>`
+                `<button class="mt-1 mx-2 btn btn-success text-start" id="pending-order" search="${search}" data-id="${p.id}">${text}</button>`
               );
             });
           } else {
@@ -460,13 +640,16 @@
           $('.list-pending').html('<div class="w-100 text-center py-5 text-muted">No pending orders found.</div>');
         }
       },
-      error: function (xhr, status, error) {
+      error: function(xhr, status, error) {
         console.error('Error al cargar pendientes:', error);
       }
     });
   }
 
-  function loadReminders() {
-    // Aquí iría la lógica para cargar los recordatorios
-  }
+  //Abrir modal 
+  $(document).on('click', '#pending-order', function() {
+    const orderId = $(this).data('id');
+    $('#modalCarpetas').modal('show');
+    $('#folioSistema').val(orderId);
+  });
 </script>

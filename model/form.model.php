@@ -298,6 +298,17 @@ class ProductOriginModel {
         $stmt = null;
         return $response;
     }
+
+    static public function mdlGetUnits($table) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table");
+        $stmt->execute();
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
 }
 
 class ProviderModel {
