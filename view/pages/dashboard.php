@@ -205,7 +205,7 @@
             <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:160px;">Folio Sistema</span>
-              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" />
+              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" disabled/>
             </div>
             </div>
             <div class="mb-3">
@@ -620,7 +620,7 @@
             data.data.forEach(p => {
               // Puedes personalizar el texto mostrado según tus necesidades
               const folio = String(p.id).padStart(4, '0');
-              const text = `Folio #${folio} - ${p.nombre_comercial} (${p.cantidad} ${p.unidad_medida_id})`;
+              const text = `Folio #${folio} - ${p.nombre_comercial} (${p.cantidad} ${p.nomenclatura})`;
               const search = [
                 p.nombre_comercial,
                 p.cantidad,

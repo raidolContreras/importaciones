@@ -382,7 +382,7 @@ class OrderModel {
     }
 
     static public function mdlLoadPendienting($table, $userId) {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table WHERE isActive = 1 AND (ejecutivo_id = :user_id OR supervisor_id = :user_id) ORDER BY id DESC");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table LEFT JOIN unidad_inventariable ui ON ui.unidad_medida_id = $table.unidad_medida_id WHERE $table.isActive = 1 AND ( $table.ejecutivo_id = :user_id OR $table.supervisor_id = :user_id) ORDER BY  $table.id DESC");
         $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
         $stmt->execute();
         $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
