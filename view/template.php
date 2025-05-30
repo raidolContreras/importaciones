@@ -39,6 +39,26 @@
                     </a>
                     <!-- Asegúrate de usar dropdown-menu-start si quieres que se abra hacia la izquierda -->
                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="catalogosDropdown">
+
+                        <?php
+                            $dataUser = UserController::ctrGetDataUser();
+                        if (
+                            htmlspecialchars($dataUser['Role_Name']) === 'SuperAdmin'
+                            || htmlspecialchars($dataUser['Role_Name']) === 'supervisor'
+                        ) {
+                            echo '
+                                <li>
+                                    <a href="#" 
+                                    class="dropdown-item addNew" 
+                                    id="addNewButton"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#catalogModal">
+                                    <i class="bi bi-plus-lg"></i> Agregar nuevo
+                                    </a>
+                                </li>
+                                ';
+                        }
+                        ?>
                         <li><a class="dropdown-item" href="catalogo00002">Catálogo ID00002</a></li>
                         <li><a class="dropdown-item" href="catalogo00003">Catálogo ID00003</a></li>
                         <li><a class="dropdown-item" href="catalogo00004">Catálogo ID00004</a></li>
@@ -57,7 +77,6 @@
                         <i class="fas fa-user-circle me-2 fs-5"></i>
                         <span class="text-truncate fw-semibold">
                             <?php
-                            $dataUser = UserController::ctrGetDataUser();
                             echo htmlspecialchars($dataUser["Username"]) . ' - ' . htmlspecialchars($dataUser['Role_Name']);
                             ?>
                         </span>

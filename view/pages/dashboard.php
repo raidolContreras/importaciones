@@ -13,10 +13,6 @@
         <div class="card-body d-flex flex-column p-0 overflow-hidden">
           <div class="flex-grow-1 overflow-auto">
             <div class="list-group list-group-flush list-tasks">
-              <button class="btn btn-primary mx-2 my-3 addNew" id="addNewButton" data-bs-toggle="modal"
-                data-bs-target="#catalogModal">
-                Nueva Orden
-              </button>
               <div class="mx-2 my-3 row align-items-center">
                 <label for="searchSelect" class="form-label col-auto mb-0">Estado:</label>
                 <div class="col">
@@ -88,6 +84,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
+        <!-- Cabecera con folio y datos generales -->
         <div class="d-flex justify-content-between align-items-center mb-4">
           <button type="button" class="btn btn-outline-custom">
             Folio:
@@ -95,8 +92,9 @@
           </button>
           <h5 class="mb-0 dataCapture">Captura de Datos</h5>
         </div>
+
         <form id="catalogForm">
-          <div class="row g-3">
+          <div class="row g-3 mb-4">
             <!-- Broker -->
             <div class="col-12">
               <div class="input-group">
@@ -115,75 +113,109 @@
                 </select>
               </div>
             </div>
-            <!-- Producto + Origen -->
-            <div class="col-12">
-              <div class="input-group">
-                <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
-                <select id="productoOrigen" class="form-select" disabled>
-                  <option value="">Selecciona Producto + Origen</option>
-                </select>
+          </div>
+
+          <!-- Nav tabs con botón "+" integrado -->
+          <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active"
+                      id="product-tab-1"
+                      data-bs-toggle="tab"
+                      data-bs-target="#product-1"
+                      type="button"
+                      role="tab">
+                Producto 1
+              </button>
+            </li>
+            <!-- pestañas nuevas irán aquí -->
+            <li class="nav-item me-auto" role="presentation">
+              <button class="nav-link text-primary"
+                      id="addProductTabBtn"
+                      type="button"
+                      title="Agregar Producto">
+                <strong>＋</strong>
+              </button>
+            </li>
+          </ul>
+
+          <!-- Contenido de pestañas -->
+          <div class="tab-content pt-3" id="productTabsContent">
+            <div class="tab-pane fade show active"
+                 id="product-1"
+                 role="tabpanel"
+                 aria-labelledby="product-tab-1">
+              <div class="row g-3 product-group">
+                <!-- Producto + Origen -->
+                <div class="col-12">
+                  <div class="input-group">
+                    <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
+                    <select id="productoOrigen" name="productoOrigen[]" class="form-select" disabled>
+                      <option value="">Selecciona Producto + Origen</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Nombre Comercial -->
+                <div class="col-12">
+                  <div class="input-group">
+                    <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
+                    <input type="text" id="productoNombreComercial" name="productoNombreComercial[]" class="form-control" disabled>
+                  </div>
+                </div>
+                <!-- Cantidad -->
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text" style="min-width:120px;">Cantidad</span>
+                    <input type="number" id="cantidad" name="cantidad[]" class="form-control" min="0" placeholder="Ej. 1000" disabled>
+                  </div>
+                </div>
+                <!-- Unidad de Medida -->
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text" style="min-width:140px;">Unidad</span>
+                    <select id="unidadMedida" name="unidadMedida[]" class="form-select" disabled></select>
+                  </div>
+                </div>
+                <!-- Precio -->
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
+                    <input type="text" id="precio" name="precio[]" class="form-control" placeholder="Ej. 25.50" disabled>
+                  </div>
+                </div>
+                <!-- Moneda -->
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text" style="min-width:140px;">Moneda</span>
+                    <select id="tipoMoneda" name="tipoMoneda[]" class="form-select" disabled>
+                      <option value="MXN" selected>MXN</option>
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                      <option value="JPY">JPY</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- Nombre Comercial -->
-            <div class="col-12">
-              <div class="input-group">
-                <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
-                <input type="text" id="productoNombreComercial" class="form-control" disabled>
-              </div>
-            </div>
-            <!-- Cantidad -->
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-text" style="min-width:120px;">Cantidad</span>
-                <input type="number" id="cantidad" class="form-control" min="0" placeholder="Ej. 1000" disabled>
-              </div>
-            </div>
-            <!-- Unidad de Medida -->
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-text" style="min-width:140px;">Unidad</span>
-                <select id="unidadMedida" class="form-select" disabled>
-                </select>
-              </div>
-            </div>
-            <!-- Precio -->
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
-                <input type="text" id="precio" class="form-control" placeholder="Ej. 25.50" disabled>
-              </div>
-            </div>
-            <!-- Moneda -->
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-text" style="min-width:140px;">Moneda</span>
-                <select id="tipoMoneda" class="form-select" disabled>
-                  <option value="MXN" selected>MXN</option>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="JPY">JPY</option>
-                </select>
-              </div>
-            </div>
-            <!-- Supervisor -->
+          </div>
+
+          <!-- Supervisor, Ejecutivo y Guardar -->
+          <div class="row g-3 mt-4">
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:120px;">Supervisor</span>
-                <select id="supervisor" class="form-select">
-                </select>
+                <select id="supervisor" name="supervisor" class="form-select"></select>
               </div>
             </div>
-            <!-- Ejecutivo -->
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:140px;">Ejecutivo</span>
-                <select id="ejecutivo" class="form-select">
-                </select>
+                <select id="ejecutivo" name="ejecutivo" class="form-select"></select>
               </div>
             </div>
-            <!-- Guardar -->
-            <div class="col-12 mt-4">
-              <button type="submit" class="btn btn-primary btn-lg w-100 asignate-ejecutive">Guardar Orden</button>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-lg w-100 asignate-ejecutive">
+                Guardar Orden
+              </button>
             </div>
           </div>
         </form>
@@ -191,6 +223,165 @@
     </div>
   </div>
 </div>
+
+<!-- Plantilla oculta para nuevos productos -->
+<div id="product-template" class="d-none">
+  <div class="tab-pane fade" role="tabpanel">
+    <!-- Dentro de cada .product-group, ajusta así: -->
+<div class="row g-3 product-group">
+  <!-- Producto + Origen -->
+  <div class="col-12">
+    <div class="input-group">
+      <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
+      <select name="productoOrigen[]"
+              class="form-select product-origin-select"
+              disabled>
+        <option value="">Selecciona Producto + Origen</option>
+      </select>
+    </div>
+  </div>
+  <!-- Nombre Comercial -->
+  <div class="col-12">
+    <div class="input-group">
+      <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
+      <input type="text"
+             name="productoNombreComercial[]"
+             class="form-control product-commercial-input"
+             disabled>
+    </div>
+  </div>
+  <!-- Cantidad -->
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-text" style="min-width:120px;">Cantidad</span>
+      <input type="number"
+             name="cantidad[]"
+             class="form-control quantity-input"
+             min="0"
+             placeholder="Ej. 1000"
+             disabled>
+    </div>
+  </div>
+  <!-- Unidad de Medida -->
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-text" style="min-width:140px;">Unidad</span>
+      <select name="unidadMedida[]" 
+              class="form-select unit-select"
+              disabled>
+        <option value="">Selecciona Unidad</option>
+      </select>
+    </div>
+  </div>
+  <!-- Precio -->
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
+      <input type="text"
+             name="precio[]"
+             class="form-control price-input"
+             placeholder="Ej. 25.50"
+             disabled>
+    </div>
+  </div>
+  <!-- Moneda -->
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-text" style="min-width:140px;">Moneda</span>
+      <select name="tipoMoneda[]"
+              class="form-select currency-select"
+              disabled>
+        <option value="MXN" selected>MXN</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  const tabsList    = document.getElementById('productTabs');
+  const tabsContent = document.getElementById('productTabsContent');
+  const templatePane = document.querySelector('#product-template .tab-pane');
+
+  function reindex() {
+    const tabItems = [...tabsList.querySelectorAll('li.nav-item')]
+                      .filter(li => !li.querySelector('#addProductTabBtn'));
+    const panes    = [...tabsContent.querySelectorAll('.tab-pane')];
+
+    tabItems.forEach((li, idx) => {
+      const i   = idx + 1;
+      const btn = li.querySelector('.nav-link');
+      btn.id = `product-tab-${i}`;
+      btn.setAttribute('data-bs-target', `#product-${i}`);
+      btn.setAttribute('aria-controls', `product-${i}`);
+      btn.innerHTML = `Producto ${i}` + (i > 1
+        ? `<span class="ms-2 remove-tab" style="cursor:pointer;">&times;</span>`
+        : '');
+    });
+
+    panes.forEach((pane, idx) => {
+      const i = idx + 1;
+      pane.id = `product-${i}`;
+      pane.setAttribute('aria-labelledby', `product-tab-${i}`);
+    });
+  }
+
+  // Eliminar pestaña
+  tabsList.addEventListener('click', e => {
+    if (!e.target.classList.contains('remove-tab')) return;
+    const li     = e.target.closest('li.nav-item');
+    const target = li.querySelector('.nav-link').getAttribute('data-bs-target');
+    tabsContent.querySelector(target)?.remove();
+    li.remove();
+    // activar primera restante
+    const first = tabsList.querySelector('li.nav-item .nav-link:not(#addProductTabBtn)');
+    first && new bootstrap.Tab(first).show();
+    reindex();
+  });
+
+  // Agregar nueva pestaña desde el tab "+"
+  document.getElementById('addProductTabBtn').addEventListener('click', () => {
+    const count    = tabsList.querySelectorAll('li.nav-item').length;  // incluye "+"
+    const newIndex = count;  // Producto N
+    const tabId    = `product-${newIndex}`;
+
+    // crear pestaña
+    const li  = document.createElement('li');
+    li.className = 'nav-item';
+    li.role      = 'presentation';
+    const btn     = document.createElement('button');
+    btn.className = 'nav-link';
+    btn.id                    = `product-tab-${newIndex}`;
+    btn.setAttribute('data-bs-toggle', 'tab');
+    btn.setAttribute('data-bs-target', `#${tabId}`);
+    btn.setAttribute('aria-controls', tabId);
+    btn.type                  = 'button';
+    btn.role                  = 'tab';
+    btn.innerHTML             = `Producto ${newIndex} <span class="ms-2 remove-tab" style="cursor:pointer;">&times;</span>`;
+
+    // insertar antes del "+"
+    const plusLi = document.getElementById('addProductTabBtn').closest('li');
+    tabsList.insertBefore(li, plusLi);
+    li.appendChild(btn);
+
+    // clonar panel
+    const newPane = templatePane.cloneNode(true);
+    newPane.id = tabId;
+    newPane.setAttribute('aria-labelledby', `product-tab-${newIndex}`);
+    tabsContent.appendChild(newPane);
+
+    // activar
+    new bootstrap.Tab(btn).show();
+  });
+})();
+</script>
+
 
 <!-- Modal de Asignación de Carpetas Físicas -->
 <div class="modal fade" id="modalCarpetas" tabindex="-1" aria-labelledby="modalCarpetasLabel" aria-hidden="true">
@@ -202,78 +393,78 @@
       </div>
       <div class="modal-body">
         <form id="form-carpetas" autocomplete="off">
-            <div class="mb-3">
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:160px;">Folio Sistema</span>
-              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" disabled/>
+              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" disabled />
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:160px;">No. Contrato - Proveedor</span>
               <input type="text" class="form-control" id="contratoProveedor" placeholder="Captura Contrato/Proveedor" />
               <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:160px;">No. Contrato - Broker</span>
               <input type="text" class="form-control" id="contratoBroker" placeholder="Captura Contrato/Broker" />
               <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:160px;">No. Carpeta Maestro</span>
               <input type="text" class="form-control" id="carpetaMaestro" placeholder="Captura Carpeta Maestro" />
               <button type="button" class="btn btn-outline-secondary">Adicionar Carpeta Derivada</button>
             </div>
-            </div>
+          </div>
 
-            <div class="section-title my-3">Asignación de Carpetas Físicas</div>
-            <div class="mb-3">
+          <div class="section-title my-3">Asignación de Carpetas Físicas</div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:200px;">No. FCL Carpeta Maestra</span>
               <input type="number" class="form-control" placeholder="Captura No. FCL Carpeta Maestra" id="numContenedoresMaestra" min="1" />
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:200px;">Folio Sistema por Derivada</span>
               <input type="text" class="form-control" id="folioDerivada" placeholder="Captura Folio Sistema por Derivada" />
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:200px;">No. Contrato - Proveedor</span>
               <input type="text" class="form-control" id="contratoProveedorDerivada" placeholder="Captura No. Contrato - Proveedor" />
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:200px;">No. Contrato - Broker</span>
               <input type="text" class="form-control" id="contratoBrokerDerivada" placeholder="Captura No. Contrato - Broker" />
             </div>
-            </div>
-            <div class="mb-3">
+          </div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:200px;">No. Carpeta Derivada</span>
               <input type="text" class="form-control" id="carpetaDerivada" placeholder="Captura No. Carpeta Derivada" />
             </div>
-            </div>
+          </div>
 
-            <div class="subsection-title my-3">Contenedores</div>
-            <div class="mb-3">
+          <div class="subsection-title my-3">Contenedores</div>
+          <div class="mb-3">
             <div class="input-group">
               <span class="input-group-text" style="min-width:200px;">Número de contenedores</span>
               <input type="number" class="form-control" placeholder="Cantidad de contenedores" min="1" id="numContenedores" />
             </div>
-            </div>
-            <div id="contenedores-dinamicos" class="contenedores-dinamicos"></div>
+          </div>
+          <div id="contenedores-dinamicos" class="contenedores-dinamicos"></div>
 
-            <!-- Autorización Supervisor -->
-            <div class="autorizacion-titulo mt-4">Autorización Supervisor</div>
-            <div class="autorizacion-opciones mb-3">
+          <!-- Autorización Supervisor -->
+          <div class="autorizacion-titulo mt-4">Autorización Supervisor</div>
+          <div class="autorizacion-opciones mb-3">
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="autorizar" id="autSupervisorOk">
               <label class="form-check-label" for="autSupervisorOk">Autorizar</label>
@@ -282,10 +473,10 @@
               <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="noaprobado" id="autSupervisorNo">
               <label class="form-check-label" for="autSupervisorNo">No Aprobado</label>
             </div>
-            </div>
-            <!-- Autorización Comercial -->
-            <div class="autorizacion-titulo">Autorización Comercial</div>
-            <div class="autorizacion-opciones mb-3">
+          </div>
+          <!-- Autorización Comercial -->
+          <div class="autorizacion-titulo">Autorización Comercial</div>
+          <div class="autorizacion-opciones mb-3">
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="autorizar" id="autComercialOk">
               <label class="form-check-label" for="autComercialOk">Autorizar</label>
@@ -294,10 +485,10 @@
               <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="noaprobado" id="autComercialNo">
               <label class="form-check-label" for="autComercialNo">No Aprobado</label>
             </div>
-            </div>
-            <div class="text-center mt-4">
+          </div>
+          <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary btn-lg">
-              <img src="Guardar.png" alt="Guardar" style="width: 22px; height: 22px; vertical-align: middle; margin-right: 8px;">
+                <i class="fas fa-save me-2"></i>
               Guardar Datos
             </button>
         </form>
@@ -470,7 +661,7 @@
       priceInput.prop('disabled', !nombre);
       currencySelect.prop('disabled', !nombre);
     });
-    
+
     // Cambiar símbolo de moneda
     currencySelect.on('change', function() {
       const symMap = {

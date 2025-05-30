@@ -188,11 +188,11 @@
                                     <th>Nombre Científico</th>
                                     <th>Fracción Arancelaria</th>
                                     <th>Unidad</th>
+                                    <th>Acciones</th>
                                     <th>Kg/Pieza</th>
                                     <th>Num Producto</th>
                                     <th>Inspección</th>
                                     <th>Fumigación</th>
-                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -586,6 +586,18 @@
                     data: "unidad_inventariable"
                 },
                 {
+                    data: null,
+                    orderable: false,
+                    searchable: false,
+                    render: function(_, __, row) {
+                        return `
+                                    <button class="btn btn-sm btn-danger btn-delete-product" data-id="${row.id}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                `;
+                    }
+                },
+                {
                     data: "kg_por_pieza"
                 },
                 {
@@ -598,18 +610,6 @@
                 {
                     data: "requiere_fumigacion",
                     render: v => v == 1 ? "Sí" : "No"
-                },
-                {
-                    data: null,
-                    orderable: false,
-                    searchable: false,
-                    render: function(_, __, row) {
-                        return `
-                                    <button class="btn btn-sm btn-danger btn-delete-product" data-id="${row.id}">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                `;
-                    }
                 }
             ],
             responsive: true,
