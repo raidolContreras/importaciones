@@ -270,7 +270,7 @@ class ProductOriginModel {
         $stmt->bindParam(":nombre_cientifico", $data["nombre_cientifico"], PDO::PARAM_STR);
         $stmt->bindParam(":fraccion_arancelaria", $data["fraccion_arancelaria"], PDO::PARAM_STR);
         // Asumiendo que requiere_inspeccion no está en $data, puedes ponerlo en 0 o 1 según tu lógica
-        $stmt->bindValue(":requiere_inspeccion", 0, PDO::PARAM_INT);
+        $stmt->bindValue(":requiere_inspeccion", $data["requiere_inspeccion"], PDO::PARAM_INT);
         $stmt->bindParam(":requiere_fumigacion", $data["requiere_fumigacion"], PDO::PARAM_INT);
         $stmt->bindParam(":unidad_inventariable", $data["unidad_inventariable"], PDO::PARAM_STR);
         $stmt->bindParam(":kg_por_pieza", $data["kg_por_pieza"], PDO::PARAM_STR);
@@ -354,23 +354,17 @@ class OrderModel {
         return $response['max_id'] + 1; // Increment the max order ID by 1 for the next order ID
     }
 
-    static public function mdlSaveOrder($table, $data) {
+    static public function mdlCreateOrdenCompra($table, $data) {
         $pdo = Conexion::conectar();
-        $stmt = $pdo->prepare("INSERT INTO $table (broker_id, proveedor_id, producto_origen_id, nombre_comercial, cantidad, unidad_medida_id, precio_unitario, moneda, supervisor_id, ejecutivo_id, creado_en, actualizado_en, isActive) VALUES (:broker_id, :provider_id, :product_origin_id, :commercial_name, :quantity, :unit, :price, :currency, :supervisor_id, :executive_id, NOW(), NOW(), 1)");
+        $stmt = $pdo->prepare("INSERT INTO $table (broker_id, proveedor_id, supervisor_id, ejecutivo_id, creado_en, actualizado_en, isActive) VALUES (:broker_id, :provider_id, :supervisor_id, :ejecutivo_id, NOW(), NOW(), 1)");
 
         $stmt->bindParam(":broker_id", $data["broker_id"], PDO::PARAM_INT);
         $stmt->bindParam(":provider_id", $data["provider_id"], PDO::PARAM_INT);
-        $stmt->bindParam(":product_origin_id", $data["product_origin_id"], PDO::PARAM_INT);
-        $stmt->bindParam(":commercial_name", $data["commercial_name"], PDO::PARAM_STR);
-        $stmt->bindParam(":quantity", $data["quantity"], PDO::PARAM_STR);
-        $stmt->bindParam(":unit", $data["unit"], PDO::PARAM_INT);
-        $stmt->bindParam(":price", $data["price"], PDO::PARAM_STR);
-        $stmt->bindParam(":currency", $data["currency"], PDO::PARAM_STR);
         $stmt->bindParam(":supervisor_id", $data["supervisor_id"], PDO::PARAM_INT);
-        $stmt->bindParam(":executive_id", $data["executive_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":ejecutivo_id", $data["ejecutivo_id"], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            $response = "ok";
+            $response = $pdo->lastInsertId();
         } else {
             $response = "error";
         }

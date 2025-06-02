@@ -1,5 +1,10 @@
 <?php
 
+// Asegurarnos de arrancar la sesión en cada petición que pase por este controller
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . "/form.controller.php";
 require_once "../model/form.model.php";
 
@@ -66,8 +71,8 @@ switch ($_POST["action"]) {
     case 'initOrder':
         OrderController::ctrInitOrder();
         break;
-    case 'saveOrder':
-        OrderController::ctrSaveOrder();
+    case 'createOrdenCompra':
+        OrderController::ctrCreateOrdenCompra();
         break;
     case 'loadPendienting':
         OrderController::ctrLoadPendienting();

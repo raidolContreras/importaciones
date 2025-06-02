@@ -56,7 +56,7 @@
                             <div class="row g-3">
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="input-group">
                                         <span class="input-group-text">Broker</span>
                                         <select class="form-select" name="broker" required>
@@ -64,41 +64,39 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text">Producto</span>
                                         <input type="text" class="form-control" name="producto" required placeholder="Ej: Producto X">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text">País Origen</span>
                                         <input type="text" class="form-control" name="pais_origen" required placeholder="Ej: México">
                                     </div>
                                 </div>
 
-                                <!-- Fila 2: Nombres -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text">Nombre Comercial</span>
                                         <input type="text" class="form-control" name="nombre_comercial" placeholder="Ej: Comercial S.A.">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text">Nombre Científico</span>
                                         <input type="text" class="form-control" name="nombre_cientifico" placeholder="Ej: Plantae científico">
                                     </div>
                                 </div>
 
-                                <!-- Fila 3: Datos arancelarios y unidad -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text">Fracción Arancelaria</span>
                                         <input type="text" class="form-control" name="fraccion_arancelaria" placeholder="Ej: 0101.10.01">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text">Unidad Inventariable</span>
                                         <input type="text" class="form-control" name="unidad_inventariable" placeholder="Ej: Caja">
@@ -111,29 +109,22 @@
                                     </div>
                                 </div>
 
-                                <!-- Fila 4: Número de producto -->
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span class="input-group-text">Num Producto</span>
                                         <input type="number" class="form-control" name="num_producto" placeholder="Ej: 1001">
                                     </div>
                                 </div>
-
-                                <!-- Fila 5: Requerimientos especiales -->
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-text">
-                                            <input class="form-check-input mt-0" type="checkbox" id="req_inspeccion" name="requiere_inspeccion">
+                                <div class="col-md-4">
+                                    <div class="input-group flex-column">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="req_inspeccion" name="requiere_inspeccion">
+                                            <label class="form-check-label" for="req_inspeccion">Requiere Inspección</label>
                                         </div>
-                                        <label class="form-control mb-0" for="req_inspeccion">Requiere Inspección</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-text">
-                                            <input class="form-check-input mt-0" type="checkbox" id="req_fumigacion" name="requiere_fumigacion">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="req_fumigacion" name="requiere_fumigacion">
+                                            <label class="form-check-label" for="req_fumigacion">Requiere Fumigación</label>
                                         </div>
-                                        <label class="form-control mb-0" for="req_fumigacion">Requiere Fumigación</label>
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +288,7 @@
                     } else {
                         let options = "<option value=''>Seleccione un broker</option>";
                         json.data.forEach(broker => {
-                            options += `<option value="${broker.broker_id}">${broker.broker_name}</option>`;
+                            options += `<option value="${broker.broker_id}"> (CVA - ${String(broker.broker_id).padStart(5, '0')}) ${broker.broker_name}</option>`;
                         });
                         $("select[name='broker']").html(options);
                     }

@@ -1,0 +1,114 @@
+
+<!-- Modal de Asignación de Carpetas Físicas -->
+<div class="modal fade" id="modalCarpetas" tabindex="-1" aria-labelledby="modalCarpetasLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCarpetasLabel">Asignación de Carpetas Físicas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-carpetas" autocomplete="off">
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">Folio Sistema</span>
+              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" disabled />
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">No. Contrato - Proveedor</span>
+              <input type="text" class="form-control" id="contratoProveedor" placeholder="Captura Contrato/Proveedor" />
+              <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">No. Contrato - Broker</span>
+              <input type="text" class="form-control" id="contratoBroker" placeholder="Captura Contrato/Broker" />
+              <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:160px;">No. Carpeta Maestro</span>
+              <input type="text" class="form-control" id="carpetaMaestro" placeholder="Captura Carpeta Maestro" />
+              <button type="button" class="btn btn-outline-secondary">Adicionar Carpeta Derivada</button>
+            </div>
+          </div>
+
+          <div class="section-title my-3">Asignación de Carpetas Físicas</div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. FCL Carpeta Maestra</span>
+              <input type="number" class="form-control" placeholder="Captura No. FCL Carpeta Maestra" id="numContenedoresMaestra" min="1" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">Folio Sistema por Derivada</span>
+              <input type="text" class="form-control" id="folioDerivada" placeholder="Captura Folio Sistema por Derivada" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. Contrato - Proveedor</span>
+              <input type="text" class="form-control" id="contratoProveedorDerivada" placeholder="Captura No. Contrato - Proveedor" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. Contrato - Broker</span>
+              <input type="text" class="form-control" id="contratoBrokerDerivada" placeholder="Captura No. Contrato - Broker" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">No. Carpeta Derivada</span>
+              <input type="text" class="form-control" id="carpetaDerivada" placeholder="Captura No. Carpeta Derivada" />
+            </div>
+          </div>
+
+          <div class="subsection-title my-3">Contenedores</div>
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" style="min-width:200px;">Número de contenedores</span>
+              <input type="number" class="form-control" placeholder="Cantidad de contenedores" min="1" id="numContenedores" />
+            </div>
+          </div>
+          <div id="contenedores-dinamicos" class="contenedores-dinamicos"></div>
+
+          <!-- Autorización Supervisor -->
+          <div class="autorizacion-titulo mt-4">Autorización Supervisor</div>
+          <div class="autorizacion-opciones mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="autorizar" id="autSupervisorOk">
+              <label class="form-check-label" for="autSupervisorOk">Autorizar</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="noaprobado" id="autSupervisorNo">
+              <label class="form-check-label" for="autSupervisorNo">No Aprobado</label>
+            </div>
+          </div>
+          <!-- Autorización Comercial -->
+          <div class="autorizacion-titulo">Autorización Comercial</div>
+          <div class="autorizacion-opciones mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="autorizar" id="autComercialOk">
+              <label class="form-check-label" for="autComercialOk">Autorizar</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="noaprobado" id="autComercialNo">
+              <label class="form-check-label" for="autComercialNo">No Aprobado</label>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fas fa-save me-2"></i>
+              Guardar Datos
+            </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

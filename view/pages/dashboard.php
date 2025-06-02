@@ -1,4 +1,4 @@
-<!-- Dashboard Cards -->
+<!-- DASHBOARD CARDS (sin cambios) -->
 <div class="container-fluid py-4 d-flex flex-column">
   <div class="row g-4 flex-grow-1">
 
@@ -6,7 +6,7 @@
     <div class="col-12 col-md-6 col-lg-4 d-flex">
       <div class="card shadow border-0 rounded-4 flex-fill d-flex flex-column">
         <div class="card-header d-flex flex-column justify-content-center align-items-center bg-success text-white p-4"
-          style="height: 130px;">
+             style="height: 130px;">
           <i class="fas fa-tasks fa-2x mb-1"></i>
           <h4 class="card-title mb-0 tasks">Tareas</h4>
         </div>
@@ -42,14 +42,13 @@
     <div class="col-12 col-md-6 col-lg-4 d-flex">
       <div class="card full-height shadow border-0 rounded-4 flex-fill d-flex flex-column">
         <div class="card-header d-flex flex-column justify-content-center align-items-center bg-warning text-dark p-4"
-          style="height: 130px;">
+             style="height: 130px;">
           <i class="fas fa-clock fa-2x mb-1"></i>
           <h4 class="card-title mb-0 pending">Pendientes</h4>
         </div>
         <div class="card-body d-flex flex-column p-0 overflow-hidden">
           <div class="flex-grow-1 overflow-auto">
             <div class="list-group list-group-flush list-pending">
-
             </div>
           </div>
         </div>
@@ -60,7 +59,7 @@
     <div class="col-12 col-md-6 col-lg-4 d-flex">
       <div class="card full-height shadow border-0 rounded-4 flex-fill d-flex flex-column">
         <div class="card-header d-flex flex-column justify-content-center align-items-center bg-primary text-white p-4"
-          style="height: 130px;">
+             style="height: 130px;">
           <i class="fas fa-bell fa-2x mb-1"></i>
           <h4 class="card-title mb-0 reminders">Recordatorios</h4>
         </div>
@@ -75,7 +74,7 @@
   </div>
 </div>
 
-<!-- Modal de Catálogo / Orden -->
+<!-- MODAL CATÁLOGO / ORDEN -->
 <div class="modal fade" id="catalogModal" tabindex="-1" aria-labelledby="catalogModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
@@ -99,7 +98,7 @@
             <div class="col-12">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:180px;">Broker</span>
-                <select id="numeroBroker" class="form-select" disabled>
+                <select id="numeroBroker" class="form-select" required disabled>
                   <option value="">Selecciona un Broker</option>
                 </select>
               </div>
@@ -108,7 +107,7 @@
             <div class="col-12">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:180px;">Proveedor</span>
-                <select id="numeroProveedor" class="form-select" disabled>
+                <select id="numeroProveedor" class="form-select" required disabled>
                   <option value="">Selecciona un Proveedor</option>
                 </select>
               </div>
@@ -132,7 +131,8 @@
               <button class="nav-link text-primary"
                       id="addProductTabBtn"
                       type="button"
-                      title="Agregar Producto">
+                      title="Agregar Producto"
+                      disabled>
                 <strong>＋</strong>
               </button>
             </li>
@@ -149,7 +149,7 @@
                 <div class="col-12">
                   <div class="input-group">
                     <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
-                    <select id="productoOrigen" name="productoOrigen[]" class="form-select" disabled>
+                    <select id="productoOrigen1" class="form-select" required disabled>
                       <option value="">Selecciona Producto + Origen</option>
                     </select>
                   </div>
@@ -158,35 +158,37 @@
                 <div class="col-12">
                   <div class="input-group">
                     <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
-                    <input type="text" id="productoNombreComercial" name="productoNombreComercial[]" class="form-control" disabled>
+                    <input type="text" id="productoNombreComercial1" class="form-control" required disabled>
                   </div>
                 </div>
                 <!-- Cantidad -->
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text" style="min-width:120px;">Cantidad</span>
-                    <input type="number" id="cantidad" name="cantidad[]" class="form-control" min="0" placeholder="Ej. 1000" disabled>
+                    <input type="number" id="cantidad1" class="form-control" min="0" placeholder="Ej. 1000" required disabled>
                   </div>
                 </div>
                 <!-- Unidad de Medida -->
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text" style="min-width:140px;">Unidad</span>
-                    <select id="unidadMedida" name="unidadMedida[]" class="form-select" disabled></select>
+                    <select id="unidadMedida1" class="form-select" required disabled>
+                      <option value="">Selecciona Unidad</option>
+                    </select>
                   </div>
                 </div>
                 <!-- Precio -->
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
-                    <input type="text" id="precio" name="precio[]" class="form-control" placeholder="Ej. 25.50" disabled>
+                    <input type="text" id="precio1" class="form-control" placeholder="Ej. 25.50" required disabled>
                   </div>
                 </div>
                 <!-- Moneda -->
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text" style="min-width:140px;">Moneda</span>
-                    <select id="tipoMoneda" name="tipoMoneda[]" class="form-select" disabled>
+                    <select id="tipoMoneda1" class="form-select" required disabled>
                       <option value="MXN" selected>MXN</option>
                       <option value="USD">USD</option>
                       <option value="EUR">EUR</option>
@@ -203,17 +205,17 @@
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:120px;">Supervisor</span>
-                <select id="supervisor" name="supervisor" class="form-select"></select>
+                <select id="supervisor" name="supervisor" class="form-select" required></select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:140px;">Ejecutivo</span>
-                <select id="ejecutivo" name="ejecutivo" class="form-select"></select>
+                <select id="ejecutivo" name="ejecutivo" class="form-select" required></select>
               </div>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-lg w-100 asignate-ejecutive">
+              <button type="submit" id="submitOrder" class="btn btn-primary btn-lg w-100 asignate-ejecutive">
                 Guardar Orden
               </button>
             </div>
@@ -224,623 +226,523 @@
   </div>
 </div>
 
-<!-- Plantilla oculta para nuevos productos -->
-<div id="product-template" class="d-none">
-  <div class="tab-pane fade" role="tabpanel">
-    <!-- Dentro de cada .product-group, ajusta así: -->
-<div class="row g-3 product-group">
-  <!-- Producto + Origen -->
-  <div class="col-12">
-    <div class="input-group">
-      <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
-      <select name="productoOrigen[]"
-              class="form-select product-origin-select"
-              disabled>
-        <option value="">Selecciona Producto + Origen</option>
-      </select>
-    </div>
-  </div>
-  <!-- Nombre Comercial -->
-  <div class="col-12">
-    <div class="input-group">
-      <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
-      <input type="text"
-             name="productoNombreComercial[]"
-             class="form-control product-commercial-input"
-             disabled>
-    </div>
-  </div>
-  <!-- Cantidad -->
-  <div class="col-md-6">
-    <div class="input-group">
-      <span class="input-group-text" style="min-width:120px;">Cantidad</span>
-      <input type="number"
-             name="cantidad[]"
-             class="form-control quantity-input"
-             min="0"
-             placeholder="Ej. 1000"
-             disabled>
-    </div>
-  </div>
-  <!-- Unidad de Medida -->
-  <div class="col-md-6">
-    <div class="input-group">
-      <span class="input-group-text" style="min-width:140px;">Unidad</span>
-      <select name="unidadMedida[]" 
-              class="form-select unit-select"
-              disabled>
-        <option value="">Selecciona Unidad</option>
-      </select>
-    </div>
-  </div>
-  <!-- Precio -->
-  <div class="col-md-6">
-    <div class="input-group">
-      <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
-      <input type="text"
-             name="precio[]"
-             class="form-control price-input"
-             placeholder="Ej. 25.50"
-             disabled>
-    </div>
-  </div>
-  <!-- Moneda -->
-  <div class="col-md-6">
-    <div class="input-group">
-      <span class="input-group-text" style="min-width:140px;">Moneda</span>
-      <select name="tipoMoneda[]"
-              class="form-select currency-select"
-              disabled>
-        <option value="MXN" selected>MXN</option>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="JPY">JPY</option>
-      </select>
-    </div>
-  </div>
-</div>
-
-  </div>
-</div>
-
-<script>
-(() => {
-  const tabsList    = document.getElementById('productTabs');
-  const tabsContent = document.getElementById('productTabsContent');
-  const templatePane = document.querySelector('#product-template .tab-pane');
-
-  function reindex() {
-    const tabItems = [...tabsList.querySelectorAll('li.nav-item')]
-                      .filter(li => !li.querySelector('#addProductTabBtn'));
-    const panes    = [...tabsContent.querySelectorAll('.tab-pane')];
-
-    tabItems.forEach((li, idx) => {
-      const i   = idx + 1;
-      const btn = li.querySelector('.nav-link');
-      btn.id = `product-tab-${i}`;
-      btn.setAttribute('data-bs-target', `#product-${i}`);
-      btn.setAttribute('aria-controls', `product-${i}`);
-      btn.innerHTML = `Producto ${i}` + (i > 1
-        ? `<span class="ms-2 remove-tab" style="cursor:pointer;">&times;</span>`
-        : '');
-    });
-
-    panes.forEach((pane, idx) => {
-      const i = idx + 1;
-      pane.id = `product-${i}`;
-      pane.setAttribute('aria-labelledby', `product-tab-${i}`);
-    });
-  }
-
-  // Eliminar pestaña
-  tabsList.addEventListener('click', e => {
-    if (!e.target.classList.contains('remove-tab')) return;
-    const li     = e.target.closest('li.nav-item');
-    const target = li.querySelector('.nav-link').getAttribute('data-bs-target');
-    tabsContent.querySelector(target)?.remove();
-    li.remove();
-    // activar primera restante
-    const first = tabsList.querySelector('li.nav-item .nav-link:not(#addProductTabBtn)');
-    first && new bootstrap.Tab(first).show();
-    reindex();
-  });
-
-  // Agregar nueva pestaña desde el tab "+"
-  document.getElementById('addProductTabBtn').addEventListener('click', () => {
-    const count    = tabsList.querySelectorAll('li.nav-item').length;  // incluye "+"
-    const newIndex = count;  // Producto N
-    const tabId    = `product-${newIndex}`;
-
-    // crear pestaña
-    const li  = document.createElement('li');
-    li.className = 'nav-item';
-    li.role      = 'presentation';
-    const btn     = document.createElement('button');
-    btn.className = 'nav-link';
-    btn.id                    = `product-tab-${newIndex}`;
-    btn.setAttribute('data-bs-toggle', 'tab');
-    btn.setAttribute('data-bs-target', `#${tabId}`);
-    btn.setAttribute('aria-controls', tabId);
-    btn.type                  = 'button';
-    btn.role                  = 'tab';
-    btn.innerHTML             = `Producto ${newIndex} <span class="ms-2 remove-tab" style="cursor:pointer;">&times;</span>`;
-
-    // insertar antes del "+"
-    const plusLi = document.getElementById('addProductTabBtn').closest('li');
-    tabsList.insertBefore(li, plusLi);
-    li.appendChild(btn);
-
-    // clonar panel
-    const newPane = templatePane.cloneNode(true);
-    newPane.id = tabId;
-    newPane.setAttribute('aria-labelledby', `product-tab-${newIndex}`);
-    tabsContent.appendChild(newPane);
-
-    // activar
-    new bootstrap.Tab(btn).show();
-  });
-})();
-</script>
-
-
-<!-- Modal de Asignación de Carpetas Físicas -->
-<div class="modal fade" id="modalCarpetas" tabindex="-1" aria-labelledby="modalCarpetasLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalCarpetasLabel">Asignación de Carpetas Físicas</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <form id="form-carpetas" autocomplete="off">
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:160px;">Folio Sistema</span>
-              <input type="text" class="form-control" id="folioSistema" placeholder="Captura Folio" disabled />
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:160px;">No. Contrato - Proveedor</span>
-              <input type="text" class="form-control" id="contratoProveedor" placeholder="Captura Contrato/Proveedor" />
-              <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:160px;">No. Contrato - Broker</span>
-              <input type="text" class="form-control" id="contratoBroker" placeholder="Captura Contrato/Broker" />
-              <span class="input-group-text"><i class="fa fa-paperclip"></i></span>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:160px;">No. Carpeta Maestro</span>
-              <input type="text" class="form-control" id="carpetaMaestro" placeholder="Captura Carpeta Maestro" />
-              <button type="button" class="btn btn-outline-secondary">Adicionar Carpeta Derivada</button>
-            </div>
-          </div>
-
-          <div class="section-title my-3">Asignación de Carpetas Físicas</div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:200px;">No. FCL Carpeta Maestra</span>
-              <input type="number" class="form-control" placeholder="Captura No. FCL Carpeta Maestra" id="numContenedoresMaestra" min="1" />
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:200px;">Folio Sistema por Derivada</span>
-              <input type="text" class="form-control" id="folioDerivada" placeholder="Captura Folio Sistema por Derivada" />
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:200px;">No. Contrato - Proveedor</span>
-              <input type="text" class="form-control" id="contratoProveedorDerivada" placeholder="Captura No. Contrato - Proveedor" />
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:200px;">No. Contrato - Broker</span>
-              <input type="text" class="form-control" id="contratoBrokerDerivada" placeholder="Captura No. Contrato - Broker" />
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:200px;">No. Carpeta Derivada</span>
-              <input type="text" class="form-control" id="carpetaDerivada" placeholder="Captura No. Carpeta Derivada" />
-            </div>
-          </div>
-
-          <div class="subsection-title my-3">Contenedores</div>
-          <div class="mb-3">
-            <div class="input-group">
-              <span class="input-group-text" style="min-width:200px;">Número de contenedores</span>
-              <input type="number" class="form-control" placeholder="Cantidad de contenedores" min="1" id="numContenedores" />
-            </div>
-          </div>
-          <div id="contenedores-dinamicos" class="contenedores-dinamicos"></div>
-
-          <!-- Autorización Supervisor -->
-          <div class="autorizacion-titulo mt-4">Autorización Supervisor</div>
-          <div class="autorizacion-opciones mb-3">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="autorizar" id="autSupervisorOk">
-              <label class="form-check-label" for="autSupervisorOk">Autorizar</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="autorizacionSupervisor" value="noaprobado" id="autSupervisorNo">
-              <label class="form-check-label" for="autSupervisorNo">No Aprobado</label>
-            </div>
-          </div>
-          <!-- Autorización Comercial -->
-          <div class="autorizacion-titulo">Autorización Comercial</div>
-          <div class="autorizacion-opciones mb-3">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="autorizar" id="autComercialOk">
-              <label class="form-check-label" for="autComercialOk">Autorizar</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="autorizacionComercial" value="noaprobado" id="autComercialNo">
-              <label class="form-check-label" for="autComercialNo">No Aprobado</label>
-            </div>
-          </div>
-          <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary btn-lg">
-                <i class="fas fa-save me-2"></i>
-              Guardar Datos
-            </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Inputmask -->
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-<!-- Lógica JS Dinámica -->
+<script src="view/assets/js/product-tabs-pending.js"></script>
+
 <script>
-  $(function() {
-    const brokerSelect = $('#numeroBroker');
-    const providerSelect = $('#numeroProveedor');
-    const productSelect = $('#productoOrigen');
-    const commercialInput = $('#productoNombreComercial');
-    const qtyInput = $('#cantidad');
-    const unitSelect = $('#unidadMedida');
-    const priceInput = $('#precio');
-    const currencySelect = $('#tipoMoneda');
-    const folioLabel = $('.folioId');
-    const supervisorSelect = $('#supervisor');
-    const ejecutivoSelect = $('#ejecutivo');
+  $(document).ready(function() {
+    // Variables globales
+    let orderData = null;
+    let productCount = 1;
+    let selectedBrokerId = null; // Broker seleccionado
 
-    let productOrigins = [];
+    // Función para inicializar el formulario con los datos del servidor
+    function initOrderForm(data) {
+      orderData = data;
+      productCount = 1;
 
-    // Inicializar filtros de tabla (sin cambios respecto al original)
-    $('#searchSelect, #pendingSearchSelect').on('change', function() {
-      const sel = $(this).val().toLowerCase();
-      const listClass = this.id === 'searchSelect' ? '.list-tasks' : '.list-pending';
-      $(`${listClass} button[search]`).each(function() {
-        const txt = $(this).attr('search').toLowerCase();
-        $(this).toggle(sel === '' || txt.includes(sel));
-      });
-    });
+      const folioId = $('.folioId');
+      const brokerSelect = $('#numeroBroker');
+      const providerSelect = $('#numeroProveedor');
+      const productOriginSelect = $('#productoOrigen1');
+      const unidadSelect = $('#unidadMedida1');
+      const comercialInput = $('#productoNombreComercial1');
+      const cantidadInput = $('#cantidad1');
+      const precioInput = $('#precio1');
+      const monedaSelect = $('#tipoMoneda1');
+      const supervisorSelect = $('#supervisor');
+      const ejecutivoSelect = $('#ejecutivo');
 
-    $('#textFilter, #pendingTextFilter').on('input', function() {
-      const txt = $(this).val().toLowerCase();
-      const listClass = this.id === 'textFilter' ? '.list-tasks' : '.list-pending';
-      $(`${listClass} button[search]`).each(function() {
-        $(this).toggle($(this).text().toLowerCase().includes(txt));
-      });
-    });
+      // Formatear folio a 4 dígitos
+      folioId.text(String(data.next_order_id).padStart(4, '0'));
 
-    // Máscara de precio
-    priceInput.inputmask({
-      alias: 'currency',
-      prefix: '',
-      groupSeparator: ',',
-      autoGroup: true,
-      digits: 2,
-      digitsOptional: false,
-      placeholder: '0',
-      rightAlign: false,
-      removeMaskOnSubmit: true
-    });
+      // 1) Poblar select de Brokers
+      brokerSelect.empty().append('<option value="">Selecciona un Broker</option>');
+      if (Array.isArray(data.brokers)) {
+        data.brokers.forEach(broker => {
+          brokerSelect.append(
+            `<option value="${broker.broker_id}">${broker.broker_name}</option>`
+          );
+        });
+      }
+      brokerSelect.prop('disabled', false);
 
-    // Abrir modal y cargar datos
-    $('#addNewButton').on('click', function() {
-      $.post('controller/actions.controller.php', {
-          action: 'initOrder'
-        }, function(data) {
-          if (data.status === 'success') {
-            // Folio
-            folioLabel.text(String(data.next_order_id).padStart(4, '0'));
+      // Reset campos primer producto
+      resetAllProductFields(1);
+      providerSelect
+        .empty()
+        .append('<option value="">Selecciona un Proveedor</option>')
+        .prop('disabled', true);
 
-            // Brokers
-            brokerSelect.prop('disabled', false).empty().append('<option value="">Selecciona un Broker</option>');
-            data.brokers.forEach(b => {
-              if (b.broker_isActive) {
-                brokerSelect.append(
-                  `<option value="${b.broker_id}"
-                         data-phone="${b.broker_phone}"
-                         data-email="${b.broker_email}">
-                  ${b.broker_id} - ${b.broker_name}
-                </option>`
+      // Reset supervisores y ejecutivos
+      supervisorSelect.prop('disabled', true).empty().append('<option value="">Selecciona un Supervisor</option>');
+      ejecutivoSelect.prop('disabled', true).empty().append('<option value="">Selecciona un Ejecutivo</option>');
+
+      // 2) Al cambiar Broker, guardamos ID y filtramos proveedores/productos
+      brokerSelect.off('change').on('change', function() {
+        selectedBrokerId = $(this).val();
+
+        // Reset primer producto
+        resetAllProductFields(1);
+
+        providerSelect
+          .empty()
+          .append('<option value="">Selecciona un Proveedor</option>')
+          .prop('disabled', true);
+
+        if (!selectedBrokerId) {
+          return;
+        }
+
+        // 2.1) Poblar Proveedores
+        if (Array.isArray(orderData.providers)) {
+          orderData.providers.forEach(provider => {
+            providerSelect.append(
+              `<option value="${provider.provider_id}">${provider.provider_name}</option>`
+            );
+          });
+        }
+        providerSelect.prop('disabled', false);
+
+        // 2.2) Al cambiar Proveedor, poblar Productos y Unidades (Producto 1)
+        providerSelect.off('change').on('change', function() {
+          const selectedProviderId = $(this).val();
+
+          // Reset primer producto
+          resetAllProductFields(1);
+
+          if (!selectedProviderId) {
+            return;
+          }
+
+          // 2.2.1) Poblar Productos filtrando por selectedBrokerId
+          if (Array.isArray(orderData.product_origins)) {
+            productOriginSelect.empty().append('<option value="">Selecciona Producto + Origen</option>');
+            orderData.product_origins.forEach(prod => {
+              if (prod.broker_id == selectedBrokerId) {
+                productOriginSelect.append(
+                  `<option value="${prod.id}"
+                    data-nombre_comercial="${prod.nombre_comercial}"
+                    data-unidad="${prod.unidad_inventariable}">
+                    ${prod.nombre_comercial} (${prod.pais_origen})
+                  </option>`
                 );
               }
             });
+          }
+          productOriginSelect.prop('disabled', false);
 
-            // Proveedores
-            providerSelect.prop('disabled', false).empty().append('<option value="">Selecciona un Proveedor</option>');
-            data.providers.forEach(p => {
-              if (p.provider_isActive) {
-                providerSelect.append(
-                  `<option value="${p.provider_id}"
-                         data-phone="${p.provider_phone}"
-                         data-email="${p.provider_email}">
-                  ${p.provider_id} - ${p.provider_name}
+          // 2.2.2) Cargar Unidades para product 1
+          unidadSelect.empty().append('<option value="">Selecciona Unidad</option>');
+          if (Array.isArray(orderData.units)) {
+            orderData.units.forEach(unit => {
+              unidadSelect.append(
+                `<option value="${unit.unidad_medida_id}"
+                  data-nomenclatura="${unit.nomenclatura}">
+                  ${unit.nameUM}
                 </option>`
-                );
-              }
-            });
-
-            // Productos-Origen
-            productOrigins = data.product_origins;
-            productSelect.prop('disabled', true).empty().append('<option value="">Selecciona Producto + Origen</option>');
-
-            // Reset campos dependientes
-            commercialInput.val('').prop('disabled', true);
-            qtyInput.val('').prop('disabled', true);
-            priceInput.val('').prop('disabled', true);
-            currencySelect.val('MXN').prop('disabled', true);
-            $('.currencyTypeSelected').text('Mex$');
-
-            // Unidades de medida
-            unitSelect.prop('disabled', true).empty().append('<option value="">Selecciona Unidad</option>');
-            data.units.forEach(u => {
-              unitSelect.append(
-                `<option value="${u.unidad_medida_id}">${u.nameUM}</option>`
-              );
-            });
-
-            // Supervisores
-            supervisorSelect
-              .prop('disabled', false)
-              .empty()
-              .append('<option value="">Selecciona un Supervisor</option>');
-            data.supervisores.forEach(s => {
-              supervisorSelect.append(
-                `<option value="${s.id_Users}">
-                ${s.id_Users} – ${s.Username}
-              </option>`
-              );
-            });
-
-            // Ejecutivos
-            ejecutivoSelect
-              .prop('disabled', false)
-              .empty()
-              .append('<option value="">Selecciona un Ejecutivo</option>');
-            data.ejecutivos.forEach(e => {
-              ejecutivoSelect.append(
-                `<option value="${e.id_Users}">
-                ${e.id_Users} – ${e.Username}
-              </option>`
               );
             });
           }
-        }, 'json')
-        .fail(console.error);
-    });
+          unidadSelect.prop('disabled', false);
 
-    // Al cambiar broker, filtrar productos
-    brokerSelect.on('change', function() {
-      const brokerId = +this.value;
-      productSelect.prop('disabled', false).empty().append('<option value="">Selecciona Producto + Origen</option>');
-      productOrigins
-        .filter(po => po.broker_id === brokerId)
-        .forEach(po => {
-          productSelect.append(
-            `<option value="${po.id}"
-                     data-comercial="${po.nombre_comercial}"
-                     data-unidad="${po.unidad_inventariable}">
-               ${po.producto} – ${po.pais_origen}
+          // 2.2.3) Habilitar inputs para product 1
+          comercialInput.prop('disabled', false);
+          cantidadInput.prop('disabled', false);
+          precioInput.prop('disabled', false);
+          monedaSelect.prop('disabled', false).val('MXN');
+
+          // 2.2.4) Autocompletar nombre comercial/unidad al cambiar producto (Producto 1)
+          productOriginSelect.off('change').on('change', function() {
+            const selectedOption = $(this).find('option:selected');
+            // Usar .attr() en lugar de .data()
+            const nombreComercial = selectedOption.attr('data-nombre_comercial') || '';
+            const unidadProd = selectedOption.attr('data-unidad') || '';
+
+            comercialInput.val(nombreComercial);
+
+            if (unidadProd) {
+              unidadSelect.find('option').each(function() {
+                if ($(this).text().toLowerCase().includes(unidadProd.toLowerCase())) {
+                  $(this).prop('selected', true);
+                  return false;
+                }
+              });
+            }
+          });
+        });
+      });
+
+      // 3) Cargar Supervisores y Ejecutivos
+      if (Array.isArray(orderData.supervisores)) {
+        orderData.supervisores.forEach(supervisor => {
+          $('#supervisor').append(
+            `<option value="${supervisor.id_Users}">${supervisor.Username}</option>`
+          );
+        });
+      }
+      $('#supervisor').prop('disabled', false);
+
+      if (Array.isArray(orderData.ejecutivos)) {
+        orderData.ejecutivos.forEach(ejecutivo => {
+          $('#ejecutivo').append(
+            `<option value="${ejecutivo.id_Users}">${ejecutivo.Username}</option>`
+          );
+        });
+      }
+      $('#ejecutivo').prop('disabled', false);
+
+      // 4) Configurar habilitación del botón "+" para el primer producto
+      configureAddButtonForProduct(1);
+    }
+
+    // Función para resetear todos los campos de un producto dado
+    function resetAllProductFields(index) {
+      $(`#productoOrigen${index}`)
+        .empty()
+        .append('<option value="">Selecciona Producto + Origen</option>')
+        .prop('disabled', true);
+
+      $(`#unidadMedida${index}`)
+        .empty()
+        .append('<option value="">Selecciona Unidad</option>')
+        .prop('disabled', true);
+
+      $(`#productoNombreComercial${index}`)
+        .prop('disabled', true)
+        .val('');
+
+      $(`#cantidad${index}`)
+        .prop('disabled', true)
+        .val('');
+
+      $(`#precio${index}`)
+        .prop('disabled', true)
+        .val('');
+
+      $(`#tipoMoneda${index}`)
+        .prop('disabled', true)
+        .val('MXN');
+    }
+
+    // Verificar si todos los campos de un producto están completos
+    function checkProductComplete(index) {
+      let allFilled = true;
+      const selectors = [
+        `#productoOrigen${index}`,
+        `#productoNombreComercial${index}`,
+        `#cantidad${index}`,
+        `#unidadMedida${index}`,
+        `#precio${index}`,
+        `#tipoMoneda${index}`
+      ];
+      selectors.forEach(sel => {
+        const $el = $(sel);
+        if (!$el.val()) {
+          allFilled = false;
+        }
+      });
+      // Habilitar o deshabilitar el botón "+"
+      $('#addProductTabBtn').prop('disabled', !allFilled);
+    }
+
+    // Enlazar eventos de comprobación de completitud para un producto dado
+    function bindCheckForProduct(index) {
+      const selectors = [
+        `#productoOrigen${index}`,
+        `#productoNombreComercial${index}`,
+        `#cantidad${index}`,
+        `#unidadMedida${index}`,
+        `#precio${index}`,
+        `#tipoMoneda${index}`
+      ];
+      selectors.forEach(sel => {
+        const $el = $(sel);
+        if ($el.is('select')) {
+          $el.off('change').on('change', () => checkProductComplete(index));
+        } else {
+          $el.off('input').on('input', () => checkProductComplete(index));
+        }
+      });
+      // Comprobar inmediatamente
+      checkProductComplete(index);
+    }
+
+    // Configurar habilitación del botón "+" para un producto “index”
+    function configureAddButtonForProduct(index) {
+      $('#addProductTabBtn').prop('disabled', true);
+      bindCheckForProduct(index);
+    }
+
+    // Agregar nuevo pestaña/producto dinámicamente
+    function addNewProductTab() {
+      productCount++;
+      const newIndex = productCount;
+      const tabId = `product-${newIndex}`;
+      const tabButtonId = `product-tab-${newIndex}`;
+
+      // 1) Crear nueva pestaña
+      const $newTabLi = $(`
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="${tabButtonId}"
+            data-bs-toggle="tab"
+            data-bs-target="#${tabId}"
+            type="button"
+            role="tab">
+            Producto ${newIndex}
+          </button>
+        </li>
+      `);
+      $('#addProductTabBtn').closest('li').before($newTabLi);
+
+      // 2) Crear nuevo contenido para la pestaña
+      const $newTabPane = $(`
+        <div
+          class="tab-pane fade"
+          id="${tabId}"
+          role="tabpanel"
+          aria-labelledby="${tabButtonId}">
+          <div class="row g-3 product-group">
+            <!-- Producto + Origen -->
+            <div class="col-12">
+              <div class="input-group">
+                <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
+                <select id="productoOrigen${newIndex}" class="form-select" required disabled>
+                  <option value="">Selecciona Producto + Origen</option>
+                </select>
+              </div>
+            </div>
+            <!-- Nombre Comercial -->
+            <div class="col-12">
+              <div class="input-group">
+                <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
+                <input
+                  type="text"
+                  id="productoNombreComercial${newIndex}"
+                  class="form-control"
+                  required
+                  disabled>
+              </div>
+            </div>
+            <!-- Cantidad -->
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text" style="min-width:120px;">Cantidad</span>
+                <input
+                  type="number"
+                  id="cantidad${newIndex}"
+                  class="form-control"
+                  min="0"
+                  placeholder="Ej. 1000"
+                  required
+                  disabled>
+              </div>
+            </div>
+            <!-- Unidad de Medida -->
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text" style="min-width:140px;">Unidad</span>
+                <select id="unidadMedida${newIndex}" class="form-select" required disabled>
+                  <option value="">Selecciona Unidad</option>
+                </select>
+              </div>
+            </div>
+            <!-- Precio -->
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
+                <input
+                  type="text"
+                  id="precio${newIndex}"
+                  class="form-control"
+                  placeholder="Ej. 25.50"
+                  required
+                  disabled>
+              </div>
+            </div>
+            <!-- Moneda -->
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text" style="min-width:140px;">Moneda</span>
+                <select id="tipoMoneda${newIndex}" class="form-select" required disabled>
+                  <option value="MXN" selected>MXN</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="JPY">JPY</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      `);
+      $('#productTabsContent').append($newTabPane);
+
+      // 3) Cambiar a la nueva pestaña
+      const newTab = new bootstrap.Tab(document.getElementById(tabButtonId));
+      newTab.show();
+
+      // 4) Inicializar los campos del nuevo producto
+      initializeProductFields(newIndex);
+
+      // 5) Deshabilitar botón "+" hasta que este producto esté completo
+      $('#addProductTabBtn').prop('disabled', true);
+
+      // 6) Preparar chequeo de completitud para este producto
+      configureAddButtonForProduct(newIndex);
+    }
+
+    // Poblar los campos de un producto “index”
+    function initializeProductFields(index) {
+      // 1) Poblamos select de productoOrigen{index}
+      const $prodOriginSelect = $(`#productoOrigen${index}`);
+      $prodOriginSelect.empty().append('<option value="">Selecciona Producto + Origen</option>');
+      if (Array.isArray(orderData.product_origins)) {
+        orderData.product_origins.forEach(prod => {
+          if (prod.broker_id == selectedBrokerId) {
+            $prodOriginSelect.append(
+              `<option value="${prod.id}"
+                data-nombre_comercial="${prod.nombre_comercial}"
+                data-unidad="${prod.unidad_inventariable}">  
+                ${prod.nombre_comercial} (${prod.pais_origen})
+              </option>`
+            );
+          }
+        });
+      }
+      $prodOriginSelect.prop('disabled', false);
+
+      // 2) Poblamos select de unidadMedida{index}
+      const $unidadSelect = $(`#unidadMedida${index}`);
+      $unidadSelect.empty().append('<option value="">Selecciona Unidad</option>');
+      if (Array.isArray(orderData.units)) {
+        orderData.units.forEach(unit => {
+          $unidadSelect.append(
+            `<option value="${unit.unidad_medida_id}"
+              data-nomenclatura="${unit.nomenclatura}">
+              ${unit.nameUM}
             </option>`
           );
         });
-    });
-
-    // Al seleccionar producto, autocompletar y habilitar campos
-    productSelect.on('change', function() {
-      const opt = $(this).find('option:selected');
-      const nombre = opt.data('comercial') || '';
-      const unidad = opt.data('unidad') || '';
-      commercialInput.val(nombre).prop('disabled', !nombre);
-      qtyInput.prop('disabled', !nombre);
-      unitSelect.prop('disabled', !unidad);
-      priceInput.prop('disabled', !nombre);
-      currencySelect.prop('disabled', !nombre);
-    });
-
-    // Cambiar símbolo de moneda
-    currencySelect.on('change', function() {
-      const symMap = {
-        MXN: 'Mex$',
-        USD: '$',
-        EUR: '€',
-        JPY: '¥'
-      };
-      $('.currencyTypeSelected').text(symMap[this.value] || '');
-    });
-
-    // Enviar formulario de nueva orden por AJAX
-    $('#catalogForm').on('submit', function(e) {
-      e.preventDefault();
-
-      // Preparamos los datos a enviar
-      // Validar campos obligatorios
-      const requiredFields = [{
-          el: brokerSelect,
-          name: 'Broker'
-        },
-        {
-          el: providerSelect,
-          name: 'Proveedor'
-        },
-        {
-          el: productSelect,
-          name: 'Producto + Origen'
-        },
-        {
-          el: commercialInput,
-          name: 'Nombre Comercial'
-        },
-        {
-          el: qtyInput,
-          name: 'Cantidad'
-        },
-        {
-          el: unitSelect,
-          name: 'Unidad'
-        },
-        {
-          el: priceInput,
-          name: 'Precio'
-        },
-        {
-          el: currencySelect,
-          name: 'Moneda'
-        },
-        {
-          el: supervisorSelect,
-          name: 'Supervisor'
-        },
-        {
-          el: ejecutivoSelect,
-          name: 'Ejecutivo'
-        }
-      ];
-      let emptyField = requiredFields.find(f => !f.el.val() || f.el.val() === '');
-      if (emptyField) {
-        toastr.error('El campo "' + emptyField.name + '" es obligatorio.');
-        return;
       }
+      $unidadSelect.prop('disabled', false);
 
-      const payload = {
-        action: 'saveOrder',
-        order_id: parseInt(folioLabel.text(), 10), // Folio que ves en pantalla (sin ceros a la izquierda)
-        broker_id: brokerSelect.val(), // ID de broker
-        provider_id: providerSelect.val(), // ID de proveedor
-        product_origin_id: productSelect.val(), // ID de producto+origen
-        commercial_name: commercialInput.val(), // Nombre comercial
-        quantity: qtyInput.val(), // Cantidad
-        unit: unitSelect.val(), // Unidad
-        price: priceInput.inputmask('unmaskedvalue'), // Precio sin máscara
-        currency: currencySelect.val(), // Moneda
-        supervisor_id: supervisorSelect.val(), // ID de supervisor
-        executive_id: ejecutivoSelect.val() // ID de ejecutivo
-      };
+      // 3) Habilitar campos restantes
+      $(`#productoNombreComercial${index}`).prop('disabled', false).val('');
+      $(`#cantidad${index}`).prop('disabled', false).val('');
+      $(`#precio${index}`).prop('disabled', false).val('');
+      $(`#tipoMoneda${index}`).prop('disabled', false).val('MXN');
 
-      // Opcional: desactivar botón de guardar para evitar dobles clicks
-      const $btn = $(this).find('button[type="submit"]');
-      $btn.prop('disabled', true).text('Guardando...');
+      // 4) Autocompletar nombre comercial/unidad al cambiar producto
+      $prodOriginSelect.off('change').on('change', function() {
+        const selectedOption = $(this).find('option:selected');
+        // Leer con .attr() en lugar de .data()
+        const nombreComercial = selectedOption.attr('data-nombre_comercial') || '';
+        const unidadProd = selectedOption.attr('data-unidad') || '';
+        $(`#productoNombreComercial${index}`).val(nombreComercial);
 
+        if (unidadProd) {
+          $(`#unidadMedida${index}`)
+            .find('option')
+            .each(function() {
+              if ($(this).text().toLowerCase().includes(unidadProd.toLowerCase())) {
+                $(this).prop('selected', true);
+                return false;
+              }
+            });
+        }
+      });
+    }
+
+    // Evento para abrir el formulario (inicializa el orden)
+    $('#addNewButton').on('click', function() {
       $.ajax({
         url: 'controller/actions.controller.php',
         method: 'POST',
-        data: payload,
+        data: { action: 'initOrder' },
         dataType: 'json',
-        success: function(res) {
-          if (res.status === 'success') {
-            // Cerrar modal y notificar
-            $('#catalogModal').modal('hide');
-            toastr.success('Orden guardada correctamente');
-            // Aquí podrías recargar tu lista de tareas o actualizar la vista
+        success: function(data) {
+          if (data.status === 'success') {
+            // Limpiar pestañas anteriores (si reabres)
+            $('#productTabs').find('li.nav-item').not(':first').not(':last').remove();
+            $('#productTabsContent').find('.tab-pane').not('#product-1').remove();
+            $('#productTabs .nav-link').removeClass('active');
+            $('#product-1').removeClass('show active');
+            $('#product-tab-1').addClass('active');
+            $('#product-1').addClass('show active');
+
+            initOrderForm(data);
           } else {
-            toastr.error(res.message || 'Error al guardar la orden');
+            console.error('Error al inicializar orden:', data);
           }
         },
         error: function(xhr, status, error) {
-          toastr.error('Error en la petición: ' + (xhr.responseText || error));
-        },
-        complete: function() {
-          // Reactivar botón
-          $btn.prop('disabled', false).text('Guardar Orden');
+          console.error('Error en la llamada AJAX:', error);
         }
       });
     });
 
-    loadPendienting();
-  });
-
-  function loadPendienting() {
-    $.ajax({
-      url: 'controller/actions.controller.php',
-      method: 'POST',
-      data: {
-        action: 'loadPendienting'
-      },
-      dataType: 'json',
-      success: function(data) {
-        if (data.status === 'success') {
-          const list = $('.list-pending');
-          list.empty();
-          list.append(
-            `<div class="mx-2 my-3 row align-items-center">
-                <label for="pendingSearchSelect" class="form-label col-auto mb-0">Estado:</label>
-                <div class="col">
-                  <select id="pendingSearchSelect" class="form-select">
-                    <option value="">Todos</option>
-                    <option value="Por Embarcar">Por Embarcar</option>
-                    <option value="En Tránsito">En Tránsito</option>
-                    <option value="Aduana">Aduana</option>
-                    <option value="Punto de Inspección">Punto de Inspección</option>
-                    <option value="Entregado">Entregado</option>
-                    <option value="Cierre de Cuentas">Cierre de Cuentas</option>
-                    <option value="Terminado">Terminado</option>
-                  </select>
-                </div>
-                <label for="pendingTextFilter" class="form-label col-auto mb-0">Buscar:</label>
-                <div class="col">
-                  <input type="text" id="pendingTextFilter" class="form-control searchInput"
-                    placeholder="Filtrar texto">
-                </div>
-              </div>`
-          )
-          if (Array.isArray(data.data) && data.data.length > 0) {
-            data.data.forEach(p => {
-              // Puedes personalizar el texto mostrado según tus necesidades
-              const folio = String(p.id).padStart(4, '0');
-              const text = `Folio #${folio} - ${p.nombre_comercial} (${p.cantidad} ${p.nomenclatura})`;
-              const search = [
-                p.nombre_comercial,
-                p.cantidad,
-                p.moneda,
-                p.precio_unitario,
-                p.creado_en,
-                p.actualizado_en
-              ].join(' ').toLowerCase();
-              list.append(
-                `<button class="mt-1 mx-2 btn btn-success text-start" id="pending-order" search="${search}" data-id="${p.id}">${text}</button>`
-              );
-            });
-          } else {
-            list.html('<div class="w-100 text-center py-5 text-muted">No pending orders found.</div>');
-          }
-        } else {
-          $('.list-pending').html('<div class="w-100 text-center py-5 text-muted">No pending orders found.</div>');
-        }
-      },
-      error: function(xhr, status, error) {
-        console.error('Error al cargar pendientes:', error);
-      }
+    // Evento para el botón "+" (agregar nueva pestaña/producto)
+    $('#addProductTabBtn').on('click', function() {
+      addNewProductTab();
     });
-  }
 
-  //Abrir modal 
-  $(document).on('click', '#pending-order', function() {
-    const orderId = $(this).data('id');
-    $('#modalCarpetas').modal('show');
-    $('#folioSistema').val(orderId);
+    // Evento de envío del formulario: recolectar todos los productos
+    $('#catalogForm').on('submit', function(event) {
+      event.preventDefault();
+
+      // Datos generales
+      const formData = {
+        numeroBroker: $('#numeroBroker').val(),
+        numeroProveedor: $('#numeroProveedor').val(),
+        supervisor: $('#supervisor').val(),
+        ejecutivo: $('#ejecutivo').val(),
+        action: 'createOrdenCompra'
+      };
+
+      // Recolectar productos
+      const products = [];
+      for (let i = 1; i <= productCount; i++) {
+        const origin = $(`#productoOrigen${i}`).val();
+        if (origin) {
+          const comercial = $(`#productoNombreComercial${i}`).val();
+          const cantidad = $(`#cantidad${i}`).val();
+          const unidad = $(`#unidadMedida${i}`).val();
+          const precio = $(`#precio${i}`).val();
+          const moneda = $(`#tipoMoneda${i}`).val();
+          products.push({
+            producto_origen_id: origin,
+            nombre_comercial: comercial,
+            cantidad: cantidad,
+            unidad_medida_id: unidad,
+            precio: precio,
+            moneda: moneda
+          });
+        }
+      }
+      formData.products = JSON.stringify(products);
+
+      // Enviar por AJAX
+      $.ajax({
+        url: 'controller/actions.controller.php',
+        method: 'POST',
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'success') {
+            console.log('Orden guardada, ID:', response.order_id);
+            // Opcional: cerrar modal, refrescar tabla, etc.
+          } else {
+            console.error('Error al guardar la orden:', response.message);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error al guardar la orden:', error);
+        }
+      });
+    });
+
   });
 </script>

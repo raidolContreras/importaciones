@@ -10,7 +10,9 @@ class UserController
         $response = UserModel::mdlShowUsers($table, $item, $value);
         //Validacion del password
         if (password_verify($_POST["Password"], $response["Password"])) {
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
             // Password is correct, proceed with login
             $_SESSION["loggedIn"] = true;
             $_SESSION["id_Users"] = $response["id_Users"];
@@ -40,7 +42,6 @@ class UserController
         if ($response == "ok") {
             echo json_encode(array("status" => "success", "message" => "User created successfully!"));
             // Log the user creation action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "User created: " . $_POST["username"] . " with role: " . $Role_ID);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error creating user."));
@@ -54,7 +55,6 @@ class UserController
         if ($response) {
             echo json_encode(array("status" => "success", "data" => $response));
             // Log the user fetch action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched users");
         } else {
             echo json_encode(array("status" => "error", "message" => "No users found."));
@@ -70,7 +70,6 @@ class UserController
         if ($response == "ok") {
             echo json_encode(array("status" => "success", "message" => "User deleted successfully!"));
             // Log the user deletion action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "User deleted: " . $id_Users);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error deleting user."));
@@ -88,7 +87,6 @@ class UserController
         if ($response == "ok") {
             echo json_encode(array("status" => "success", "message" => "Role created successfully!"));
             // Log the role creation action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Role created: " . $_POST["role_name"]);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error creating role."));
@@ -102,7 +100,6 @@ class UserController
         if ($response) {
             echo json_encode(array("status" => "success", "data" => $response));
             // Log the role fetch action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched roles");
         } else {
             echo json_encode(array("status" => "error", "message" => "No roles found."));
@@ -118,7 +115,6 @@ class UserController
         if ($response == "ok") {
             echo json_encode(array("status" => "success", "message" => "Role deleted successfully!"));
             // Log the role deletion action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Role deleted: " . $id_Rol);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error deleting role."));
@@ -138,7 +134,6 @@ class UserController
 
     static public function ctrChangeCompany()
     {
-        session_start();
         $company_id = $_POST["company_id"];
         $_SESSION["company_id"] = $company_id;
         echo json_encode(array("status" => "success", "message" => "Company changed successfully!"));
@@ -201,7 +196,6 @@ class BrokerController
         if ($response == "ok") {
             echo json_encode(array("status" => "success", "message" => "Broker created successfully!"));
             // Log the broker creation action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Broker created: " . $_POST["broker_name"]);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error creating broker."));
@@ -215,7 +209,6 @@ class BrokerController
         if ($response) {
             echo json_encode(array("status" => "success", "data" => $response));
             // Log the broker fetch action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched brokers");
         } else {
             echo json_encode(array("status" => "error", "message" => "No brokers found."));
@@ -230,7 +223,6 @@ class BrokerController
         if ($response) {
             echo json_encode(array("status" => "success", "data" => $response));
             // Log the broker fetch by ID action
-            session_start();
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched broker by ID: " . $id_Broker);
         } else {
             echo json_encode(array("status" => "error", "message" => "No broker found with this ID."));
@@ -306,6 +298,7 @@ class ProductOriginController
             "unidad_inventariable" => $_POST["unidad_inventariable"],
             "kg_por_pieza" => $_POST["kg_por_pieza"],
             "num_producto" => $_POST["num_producto"],
+            "requiere_inspeccion" => isset($_POST["requiere_inspeccion"]) ? 1 : 0,
             "requiere_fumigacion" => isset($_POST["requiere_fumigacion"]) ? 1 : 0
         );
 
@@ -313,9 +306,6 @@ class ProductOriginController
 
         if ($response == "ok") {
             echo json_encode(array("status" => "success", "message" => "Product origin created successfully!"));
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Product origin created: " . $_POST["producto"]);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error creating product origin."));
@@ -328,9 +318,6 @@ class ProductOriginController
         $response = ProductOriginModel::mdlGetProductOrigins($table);
         if ($response) {
             echo json_encode(array("status" => "success", "data" => $response));
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Fetched product origins");
         } else {
             echo json_encode(array("status" => "error", "message" => "No product origins found."));
@@ -444,31 +431,21 @@ class OrderController
         ]);
     }
 
-    static public function ctrSaveOrder()
+    static public function ctrCreateOrdenCompra()
     {
         $table = "ordenes_compra";
         $data = array(
-            "order_id" => $_POST["order_id"],
-            "broker_id" => $_POST["broker_id"],
-            "provider_id" => $_POST["provider_id"],
-            "product_origin_id" => $_POST["product_origin_id"],
-            "commercial_name" => $_POST["commercial_name"],
-            "quantity" => $_POST["quantity"],
-            "unit" => $_POST["unit"],
-            "price" => $_POST["price"],
-            "currency" => $_POST["currency"],
-            "supervisor_id" => $_POST["supervisor_id"],
-            "executive_id" => $_POST["executive_id"]
+            "broker_id" => $_POST["numeroBroker"],
+            "provider_id" => $_POST["numeroProveedor"],
+            "supervisor_id" => $_POST["supervisor"],
+            "ejecutivo_id" => $_POST["ejecutivo"]
         );
 
-        $response = OrderModel::mdlSaveOrder($table, $data);
+        $response = OrderModel::mdlCreateOrdenCompra($table, $data);
 
-        if ($response == "ok") {
-            echo json_encode(array("status" => "success", "message" => "Order saved successfully!"));
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Order created: " . $_POST["order_id"]);
+        if ($response != "error") {
+            echo json_encode(array("status" => "success", "message" => "Order saved successfully!", "order_id" => $response));
+            LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Order created: " . $response);
         } else {
             echo json_encode(array("status" => "error", "message" => "Error saving order."));
         }
