@@ -114,94 +114,8 @@
             </div>
           </div>
 
-          <!-- Nav tabs con botón "+" integrado -->
-          <ul class="nav nav-tabs" id="productTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active"
-                      id="product-tab-1"
-                      data-bs-toggle="tab"
-                      data-bs-target="#product-1"
-                      type="button"
-                      role="tab">
-                Producto 1
-              </button>
-            </li>
-            <!-- pestañas nuevas irán aquí -->
-            <li class="nav-item me-auto" role="presentation">
-              <button class="nav-link text-primary"
-                      id="addProductTabBtn"
-                      type="button"
-                      title="Agregar Producto"
-                      disabled>
-                <strong>＋</strong>
-              </button>
-            </li>
-          </ul>
-
-          <!-- Contenido de pestañas -->
-          <div class="tab-content pt-3" id="productTabsContent">
-            <div class="tab-pane fade show active"
-                 id="product-1"
-                 role="tabpanel"
-                 aria-labelledby="product-tab-1">
-              <div class="row g-3 product-group">
-                <!-- Producto + Origen -->
-                <div class="col-12">
-                  <div class="input-group">
-                    <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
-                    <select id="productoOrigen1" class="form-select" required disabled>
-                      <option value="">Selecciona Producto + Origen</option>
-                    </select>
-                  </div>
-                </div>
-                <!-- Nombre Comercial -->
-                <div class="col-12">
-                  <div class="input-group">
-                    <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
-                    <input type="text" id="productoNombreComercial1" class="form-control" required disabled>
-                  </div>
-                </div>
-                <!-- Cantidad -->
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-text" style="min-width:120px;">Cantidad</span>
-                    <input type="number" id="cantidad1" class="form-control" min="0" placeholder="Ej. 1000" required disabled>
-                  </div>
-                </div>
-                <!-- Unidad de Medida -->
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-text" style="min-width:140px;">Unidad</span>
-                    <select id="unidadMedida1" class="form-select" required disabled>
-                      <option value="">Selecciona Unidad</option>
-                    </select>
-                  </div>
-                </div>
-                <!-- Precio -->
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
-                    <input type="text" id="precio1" class="form-control" placeholder="Ej. 25.50" required disabled>
-                  </div>
-                </div>
-                <!-- Moneda -->
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-text" style="min-width:140px;">Moneda</span>
-                    <select id="tipoMoneda1" class="form-select" required disabled>
-                      <option value="MXN" selected>MXN</option>
-                      <option value="USD">USD</option>
-                      <option value="EUR">EUR</option>
-                      <option value="JPY">JPY</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Supervisor, Ejecutivo y Guardar -->
-          <div class="row g-3 mt-4">
+          <!-- Supervisor, Ejecutivo -->
+          <div class="row g-3 mb-3">
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:120px;">Supervisor</span>
@@ -214,13 +128,91 @@
                 <select id="ejecutivo" name="ejecutivo" class="form-select" required></select>
               </div>
             </div>
-            <div class="col-12">
-              <button type="submit" id="submitOrder" class="btn btn-primary btn-lg w-100 asignate-ejecutive">
-                Guardar Orden
-              </button>
+          </div>
+
+          <!-- === Bloque de Productos en tarjetas === -->
+          <div id="productListContainer">
+            <!-- Tarjeta para Producto 1 (índice “1”) -->
+            <div class="card mb-3 product-card" data-index="1">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="card-title mb-0">Producto 1</h6>
+                  <button type="button" class="btn-close remove-product-btn" aria-label="Eliminar producto"></button>
+                </div>
+                <div class="row g-3 product-group" id="product-group-1">
+                  <!-- Producto + Origen -->
+                  <div class="col-6">
+                    <div class="input-group">
+                      <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
+                      <select id="productoOrigen1" class="form-select" required disabled>
+                        <option value="">Selecciona Producto + Origen</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Nombre Comercial -->
+                  <div class="col-6">
+                    <div class="input-group">
+                      <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
+                      <select id="productoNombreComercial1" class="form-select" required disabled>
+                        <option value="">Selecciona Nombre Comercial</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Cantidad -->
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <span class="input-group-text" style="min-width:120px;">Cantidad</span>
+                      <input type="number" id="cantidad1" class="form-control" min="0" placeholder="Ej. 1000" required disabled>
+                    </div>
+                  </div>
+                  <!-- Unidad de Medida -->
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <span class="input-group-text" style="min-width:140px;">Unidad</span>
+                      <select id="unidadMedida1" class="form-select" required disabled>
+                        <option value="">Selecciona Unidad</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Precio -->
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
+                      <input type="text" id="precio1" class="form-control" placeholder="Ej. 25.50" required disabled>
+                    </div>
+                  </div>
+                  <!-- Moneda -->
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <span class="input-group-text" style="min-width:140px;">Moneda</span>
+                      <select id="tipoMoneda1" class="form-select" required disabled>
+                        <option value="MXN" selected>MXN</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Botón para agregar nueva tarjeta de producto -->
+          <div class="d-grid gap-2 mb-3">
+            <button type="button" id="addProductBtn" class="btn btn-outline-primary" disabled>
+              ＋ Agregar Producto
+            </button>
+          </div>
+
+          <!-- Botón de envío de toda la Orden -->
+          <div class="col-12">
+            <button type="submit" id="submitOrder" class="btn btn-primary btn-lg w-100 asignate-ejecutive">
+              Guardar Orden
+            </button>
+          </div>
         </form>
+        <!-- === Fin del bloque modificado === -->
       </div>
     </div>
   </div>
@@ -228,36 +220,29 @@
 
 <!-- Inputmask -->
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-<script src="view/assets/js/product-tabs-pending.js"></script>
 
+<!-- Script modificado para tarjetas de producto con nombre comercial como select y sin duplicados -->
 <script>
   $(document).ready(function() {
-    // Variables globales
+    // === Variables globales ===
     let orderData = null;
     let productCount = 1;
-    let selectedBrokerId = null; // Broker seleccionado
 
-    // Función para inicializar el formulario con los datos del servidor
+    // === 1. Función para inicializar el formulario con datos del servidor ===
     function initOrderForm(data) {
       orderData = data;
       productCount = 1;
 
-      const folioId = $('.folioId');
-      const brokerSelect = $('#numeroBroker');
-      const providerSelect = $('#numeroProveedor');
-      const productOriginSelect = $('#productoOrigen1');
-      const unidadSelect = $('#unidadMedida1');
-      const comercialInput = $('#productoNombreComercial1');
-      const cantidadInput = $('#cantidad1');
-      const precioInput = $('#precio1');
-      const monedaSelect = $('#tipoMoneda1');
+      // 1.1. Folio
+      $('.folioId').text(String(data.next_order_id).padStart(4, '0'));
+
+      // Selects principales
+      const brokerSelect     = $('#numeroBroker');
+      const providerSelect   = $('#numeroProveedor');
       const supervisorSelect = $('#supervisor');
-      const ejecutivoSelect = $('#ejecutivo');
+      const ejecutivoSelect  = $('#ejecutivo');
 
-      // Formatear folio a 4 dígitos
-      folioId.text(String(data.next_order_id).padStart(4, '0'));
-
-      // 1) Poblar select de Brokers
+      // 1.2. Poblar Brokers
       brokerSelect.empty().append('<option value="">Selecciona un Broker</option>');
       if (Array.isArray(data.brokers)) {
         data.brokers.forEach(broker => {
@@ -268,140 +253,102 @@
       }
       brokerSelect.prop('disabled', false);
 
-      // Reset campos primer producto
-      resetAllProductFields(1);
+      // 1.3. Resetear campos del Producto 1
+      resetProductFields(1);
       providerSelect
         .empty()
         .append('<option value="">Selecciona un Proveedor</option>')
         .prop('disabled', true);
 
-      // Reset supervisores y ejecutivos
-      supervisorSelect.prop('disabled', true).empty().append('<option value="">Selecciona un Supervisor</option>');
-      ejecutivoSelect.prop('disabled', true).empty().append('<option value="">Selecciona un Ejecutivo</option>');
-
-      // 2) Al cambiar Broker, guardamos ID y filtramos proveedores/productos
-      brokerSelect.off('change').on('change', function() {
-        selectedBrokerId = $(this).val();
-
-        // Reset primer producto
-        resetAllProductFields(1);
-
-        providerSelect
-          .empty()
-          .append('<option value="">Selecciona un Proveedor</option>')
-          .prop('disabled', true);
-
-        if (!selectedBrokerId) {
-          return;
-        }
-
-        // 2.1) Poblar Proveedores
-        if (Array.isArray(orderData.providers)) {
-          orderData.providers.forEach(provider => {
-            providerSelect.append(
-              `<option value="${provider.provider_id}">${provider.provider_name}</option>`
-            );
-          });
-        }
-        providerSelect.prop('disabled', false);
-
-        // 2.2) Al cambiar Proveedor, poblar Productos y Unidades (Producto 1)
-        providerSelect.off('change').on('change', function() {
-          const selectedProviderId = $(this).val();
-
-          // Reset primer producto
-          resetAllProductFields(1);
-
-          if (!selectedProviderId) {
-            return;
-          }
-
-          // 2.2.1) Poblar Productos filtrando por selectedBrokerId
-          if (Array.isArray(orderData.product_origins)) {
-            productOriginSelect.empty().append('<option value="">Selecciona Producto + Origen</option>');
-            orderData.product_origins.forEach(prod => {
-              if (prod.broker_id == selectedBrokerId) {
-                productOriginSelect.append(
-                  `<option value="${prod.id}"
-                    data-nombre_comercial="${prod.nombre_comercial}"
-                    data-unidad="${prod.unidad_inventariable}">
-                    ${prod.nombre_comercial} (${prod.pais_origen})
-                  </option>`
-                );
-              }
-            });
-          }
-          productOriginSelect.prop('disabled', false);
-
-          // 2.2.2) Cargar Unidades para product 1
-          unidadSelect.empty().append('<option value="">Selecciona Unidad</option>');
-          if (Array.isArray(orderData.units)) {
-            orderData.units.forEach(unit => {
-              unidadSelect.append(
-                `<option value="${unit.unidad_medida_id}"
-                  data-nomenclatura="${unit.nomenclatura}">
-                  ${unit.nameUM}
-                </option>`
-              );
-            });
-          }
-          unidadSelect.prop('disabled', false);
-
-          // 2.2.3) Habilitar inputs para product 1
-          comercialInput.prop('disabled', false);
-          cantidadInput.prop('disabled', false);
-          precioInput.prop('disabled', false);
-          monedaSelect.prop('disabled', false).val('MXN');
-
-          // 2.2.4) Autocompletar nombre comercial/unidad al cambiar producto (Producto 1)
-          productOriginSelect.off('change').on('change', function() {
-            const selectedOption = $(this).find('option:selected');
-            // Usar .attr() en lugar de .data()
-            const nombreComercial = selectedOption.attr('data-nombre_comercial') || '';
-            const unidadProd = selectedOption.attr('data-unidad') || '';
-
-            comercialInput.val(nombreComercial);
-
-            if (unidadProd) {
-              unidadSelect.find('option').each(function() {
-                if ($(this).text().toLowerCase().includes(unidadProd.toLowerCase())) {
-                  $(this).prop('selected', true);
-                  return false;
-                }
-              });
-            }
-          });
-        });
-      });
-
-      // 3) Cargar Supervisores y Ejecutivos
-      if (Array.isArray(orderData.supervisores)) {
-        orderData.supervisores.forEach(supervisor => {
-          $('#supervisor').append(
-            `<option value="${supervisor.id_Users}">${supervisor.Username}</option>`
-          );
+      // 1.4. Poblar Supervisores y Ejecutivos
+      supervisorSelect
+        .prop('disabled', true)
+        .empty()
+        .append('<option value="">Selecciona un Supervisor</option>');
+      if (Array.isArray(data.supervisores)) {
+        data.supervisores.forEach(sup => {
+          supervisorSelect.append(`<option value="${sup.id_Users}">${sup.Username}</option>`);
         });
       }
-      $('#supervisor').prop('disabled', false);
+      supervisorSelect.prop('disabled', false);
 
-      if (Array.isArray(orderData.ejecutivos)) {
-        orderData.ejecutivos.forEach(ejecutivo => {
-          $('#ejecutivo').append(
-            `<option value="${ejecutivo.id_Users}">${ejecutivo.Username}</option>`
-          );
+      ejecutivoSelect
+        .prop('disabled', true)
+        .empty()
+        .append('<option value="">Selecciona un Ejecutivo</option>');
+      if (Array.isArray(data.ejecutivos)) {
+        data.ejecutivos.forEach(ejec => {
+          ejecutivoSelect.append(`<option value="${ejec.id_Users}">${ejec.Username}</option>`);
         });
       }
-      $('#ejecutivo').prop('disabled', false);
+      ejecutivoSelect.prop('disabled', false);
 
-      // 4) Configurar habilitación del botón "+" para el primer producto
+      // 1.5. Poner la lista de productos + origen en la tarjeta 1 (sin duplicados)
+      populateProductOrigins(1);
+
+      // 1.6. Ocultar botón eliminar en el Producto 1 (no se puede eliminar el primero)
+      $('.product-card[data-index="1"] .remove-product-btn').hide();
+
+      // 1.7. Configurar habilitación del botón “＋ Agregar Producto” para el Producto 1
       configureAddButtonForProduct(1);
     }
 
-    // Función para resetear todos los campos de un producto dado
-    function resetAllProductFields(index) {
+    // === 2. Función para poblar el select “Producto + Origen” sin duplicados ni filtro por broker ===
+    function populateProductOrigins(index) {
+      const $prodOriginSelect = $(`#productoOrigen${index}`);
+      $prodOriginSelect.empty().append('<option value="">Selecciona Producto + Origen</option>');
+      const seen = new Set();
+      if (Array.isArray(orderData.product_origins)) {
+        orderData.product_origins.forEach(prod => {
+          const comboKey = `${prod.producto}|${prod.pais_origen}`;
+          if (!seen.has(comboKey)) {
+            seen.add(comboKey);
+            $prodOriginSelect.append(
+              `<option value="${comboKey}" data-producto="${prod.producto}">
+                ${prod.producto} (${prod.pais_origen})
+              </option>`
+            );
+          }
+        });
+      }
+      $prodOriginSelect.prop('disabled', false);
+
+      // Vincular evento de cambio para autocompletar “Nombre Comercial”
+      $prodOriginSelect.off('change').on('change', function() {
+        const productoName = $(this).find('option:selected').attr('data-producto') || '';
+        populateNombreComercial(index, productoName);
+      });
+    }
+
+    // === 3. Función para poblar “Nombre Comercial” basado en productoName ===
+    function populateNombreComercial(index, productoName) {
+      const $nombreSelect = $(`#productoNombreComercial${index}`);
+      $nombreSelect.empty().append('<option value="">Selecciona Nombre Comercial</option>');
+      const seenNames = new Set();
+      if (Array.isArray(orderData.product_origins)) {
+        orderData.product_origins.forEach(prod => {
+          if (prod.producto === productoName) {
+            const nombre = prod.nombre_comercial;
+            if (!seenNames.has(nombre)) {
+              seenNames.add(nombre);
+              $nombreSelect.append(`<option value="${nombre}">${nombre}</option>`);
+            }
+          }
+        });
+      }
+      $nombreSelect.prop('disabled', false);
+    }
+
+    // === 4. Resetear todos los campos de un producto dado ===
+    function resetProductFields(index) {
       $(`#productoOrigen${index}`)
         .empty()
         .append('<option value="">Selecciona Producto + Origen</option>')
+        .prop('disabled', true);
+
+      $(`#productoNombreComercial${index}`)
+        .empty()
+        .append('<option value="">Selecciona Nombre Comercial</option>')
         .prop('disabled', true);
 
       $(`#unidadMedida${index}`)
@@ -409,23 +356,12 @@
         .append('<option value="">Selecciona Unidad</option>')
         .prop('disabled', true);
 
-      $(`#productoNombreComercial${index}`)
-        .prop('disabled', true)
-        .val('');
-
-      $(`#cantidad${index}`)
-        .prop('disabled', true)
-        .val('');
-
-      $(`#precio${index}`)
-        .prop('disabled', true)
-        .val('');
-
-      $(`#tipoMoneda${index}`)
-        .prop('disabled', true).val('MXN');
+      $(`#cantidad${index}`).prop('disabled', true).val('');
+      $(`#precio${index}`).prop('disabled', true).val('');
+      $(`#tipoMoneda${index}`).prop('disabled', true).val('MXN');
     }
 
-    // Verificar si todos los campos de un producto están completos
+    // === 5. Verificar si todos los campos de un producto están completos ===
     function checkProductComplete(index) {
       let allFilled = true;
       const selectors = [
@@ -437,16 +373,17 @@
         `#tipoMoneda${index}`
       ];
       selectors.forEach(sel => {
-        const $el = $(sel);
-        if (!$el.val()) {
+        if (!$(sel).val()) {
           allFilled = false;
         }
       });
-      // Habilitar o deshabilitar el botón "+"
-      $('#addProductTabBtn').prop('disabled', !allFilled);
+      // Si es el último producto, habilita/deshabilita el botón “＋ Agregar Producto”
+      if (index === productCount) {
+        $('#addProductBtn').prop('disabled', !allFilled);
+      }
     }
 
-    // Enlazar eventos de comprobación de completitud para un producto dado
+    // === 6. Enlazar eventos de comprobación de completitud para un producto dado ===
     function bindCheckForProduct(index) {
       const selectors = [
         `#productoOrigen${index}`,
@@ -464,49 +401,32 @@
           $el.off('input').on('input', () => checkProductComplete(index));
         }
       });
-      // Comprobar inmediatamente
+      // Revisar inmediatamente
       checkProductComplete(index);
     }
 
-    // Configurar habilitación del botón "+" para un producto “index”
+    // === 7. Deshabilitar el botón “＋ Agregar Producto” y enlazar comprobación para el producto dado ===
     function configureAddButtonForProduct(index) {
-      $('#addProductTabBtn').prop('disabled', true);
+      $('#addProductBtn').prop('disabled', true);
       bindCheckForProduct(index);
     }
 
-    // Agregar nuevo pestaña/producto dinámicamente
-    function addNewProductTab() {
+    // === 8. Agregar una nueva tarjeta de producto dinámicamente ===
+    function addNewProductCard() {
       productCount++;
       const newIndex = productCount;
-      const tabId = `product-${newIndex}`;
-      const tabButtonId = `product-tab-${newIndex}`;
 
-      // 1) Crear nueva pestaña
-      const $newTabLi = $(`
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="${tabButtonId}"
-            data-bs-toggle="tab"
-            data-bs-target="#${tabId}"
-            type="button"
-            role="tab">
-            Producto ${newIndex}
-          </button>
-        </li>
-      `);
-      $('#addProductTabBtn').closest('li').before($newTabLi);
-
-      // 2) Crear nuevo contenido para la pestaña
-      const $newTabPane = $(`
-        <div
-          class="tab-pane fade"
-          id="${tabId}"
-          role="tabpanel"
-          aria-labelledby="${tabButtonId}">
-          <div class="row g-3 product-group">
+      // 8.1. Generar HTML de la nueva tarjeta
+      const cardHtml = `
+      <div class="card mb-3 product-card" data-index="${newIndex}">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="card-title mb-0">Producto ${newIndex}</h6>
+            <button type="button" class="btn-close remove-product-btn" aria-label="Eliminar producto"></button>
+          </div>
+          <div class="row g-3 product-group" id="product-group-${newIndex}">
             <!-- Producto + Origen -->
-            <div class="col-12">
+            <div class="col-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:180px;">Producto + Origen</span>
                 <select id="productoOrigen${newIndex}" class="form-select" required disabled>
@@ -515,33 +435,23 @@
               </div>
             </div>
             <!-- Nombre Comercial -->
-            <div class="col-12">
+            <div class="col-6">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:180px;">Nombre Comercial</span>
-                <input
-                  type="text"
-                  id="productoNombreComercial${newIndex}"
-                  class="form-control"
-                  required
-                  disabled>
+                <select id="productoNombreComercial${newIndex}" class="form-select" required disabled>
+                  <option value="">Selecciona Nombre Comercial</option>
+                </select>
               </div>
             </div>
             <!-- Cantidad -->
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:120px;">Cantidad</span>
-                <input
-                  type="number"
-                  id="cantidad${newIndex}"
-                  class="form-control"
-                  min="0"
-                  placeholder="Ej. 1000"
-                  required
-                  disabled>
+                <input type="number" id="cantidad${newIndex}" class="form-control" min="0" placeholder="Ej. 1000" required disabled>
               </div>
             </div>
             <!-- Unidad de Medida -->
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:140px;">Unidad</span>
                 <select id="unidadMedida${newIndex}" class="form-select" required disabled>
@@ -550,20 +460,14 @@
               </div>
             </div>
             <!-- Precio -->
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="input-group">
                 <span class="input-group-text price currencyTypeSelected" style="min-width:120px;">Mex$</span>
-                <input
-                  type="text"
-                  id="precio${newIndex}"
-                  class="form-control"
-                  placeholder="Ej. 25.50"
-                  required
-                  disabled>
+                <input type="text" id="precio${newIndex}" class="form-control" placeholder="Ej. 25.50" required disabled>
               </div>
             </div>
             <!-- Moneda -->
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="input-group">
                 <span class="input-group-text" style="min-width:140px;">Moneda</span>
                 <select id="tipoMoneda${newIndex}" class="form-select" required disabled>
@@ -576,123 +480,109 @@
             </div>
           </div>
         </div>
-      `);
-      $('#productTabsContent').append($newTabPane);
+      </div>
+      `;
+      // 8.2. Insertar la nueva tarjeta antes del botón “＋ Agregar Producto”
+      $('#addProductBtn').before(cardHtml);
 
-      // 3) Cambiar a la nueva pestaña
-      const newTab = new bootstrap.Tab(document.getElementById(tabButtonId));
-      newTab.show();
+      // 8.3. Poblar “Producto + Origen” en esta tarjeta (sin duplicados)
+      populateProductOrigins(newIndex);
 
-      // 4) Inicializar los campos del nuevo producto
-      initializeProductFields(newIndex);
+      // 8.4. Inicializar unidades (sin depender de broker ni proveedor)
+      initializeUnits(newIndex);
 
-      // 5) Deshabilitar botón "+" hasta que este producto esté completo
-      $('#addProductTabBtn').prop('disabled', true);
+      // 8.5. Habilitar campos restantes
+      $(`#productoNombreComercial${newIndex}`).prop('disabled', false);
+      $(`#cantidad${newIndex}`).prop('disabled', false).val('');
+      $(`#precio${newIndex}`).prop('disabled', false).val('');
+      $(`#tipoMoneda${newIndex}`).prop('disabled', false).val('MXN');
 
-      // 6) Preparar chequeo de completitud para este producto
+      // 8.6. Configurar botón “＋ Agregar Producto” deshabilitado hasta completar el producto actual
       configureAddButtonForProduct(newIndex);
+
+      // 8.7. Adjuntar manejador para botón eliminar en esta tarjeta
+      attachRemoveHandlers();
+
+      // 8.8. Scroll para ver la nueva tarjeta (opcional)
+      $('html, body').animate({
+        scrollTop: $(`.product-card[data-index="${newIndex}"]`).offset().top - 100
+      }, 300);
     }
 
-    // Poblar los campos de un producto “index”
-    function initializeProductFields(index) {
-      // 1) Poblamos select de productoOrigen{index}
-      const $prodOriginSelect = $(`#productoOrigen${index}`);
-      $prodOriginSelect.empty().append('<option value="">Selecciona Producto + Origen</option>');
-      if (Array.isArray(orderData.product_origins)) {
-        orderData.product_origins.forEach(prod => {
-          if (prod.broker_id == selectedBrokerId) {
-            $prodOriginSelect.append(
-              `<option value="${prod.id}"
-                data-nombre_comercial="${prod.nombre_comercial}"
-                data-unidad="${prod.unidad_inventariable}">  
-                ${prod.nombre_comercial} (${prod.pais_origen})
-              </option>`
-            );
-          }
-        });
-      }
-      $prodOriginSelect.prop('disabled', false);
-
-      // 2) Poblamos select de unidadMedida{index}
+    // === 9. Poblar unidades (sin depender de broker ni proveedor) ===
+    function initializeUnits(index) {
       const $unidadSelect = $(`#unidadMedida${index}`);
       $unidadSelect.empty().append('<option value="">Selecciona Unidad</option>');
       if (Array.isArray(orderData.units)) {
         orderData.units.forEach(unit => {
           $unidadSelect.append(
-            `<option value="${unit.unidad_medida_id}"
-              data-nomenclatura="${unit.nomenclatura}">
-              ${unit.nameUM}
+            `<option value="${unit.unidad_medida_id}">
+                ${unit.nameUM}
             </option>`
           );
         });
       }
       $unidadSelect.prop('disabled', false);
-
-      // 3) Habilitar campos restantes
-      $(`#productoNombreComercial${index}`).prop('disabled', false).val('');
-      $(`#cantidad${index}`).prop('disabled', false).val('');
-      $(`#precio${index}`).prop('disabled', false).val('');
-      $(`#tipoMoneda${index}`).prop('disabled', false).val('MXN');
-
-      // 4) Autocompletar nombre comercial/unidad al cambiar producto
-      $prodOriginSelect.off('change').on('change', function() {
-        const selectedOption = $(this).find('option:selected');
-        // Leer con .attr() en lugar de .data()
-        const nombreComercial = selectedOption.attr('data-nombre_comercial') || '';
-        const unidadProd = selectedOption.attr('data-unidad') || '';
-        $(`#productoNombreComercial${index}`).val(nombreComercial);
-
-        if (unidadProd) {
-          $(`#unidadMedida${index}`)
-            .find('option')
-            .each(function() {
-              if ($(this).text().toLowerCase().includes(unidadProd.toLowerCase())) {
-                $(this).prop('selected', true);
-                return false;
-              }
-            });
-        }
-      });
     }
 
-    // Evento para abrir el formulario (inicializa el orden)
-    $('#addNewButton').on('click', function() {
-      $.ajax({
-        url: 'controller/actions.controller.php',
-        method: 'POST',
-        data: { action: 'initOrder' },
-        dataType: 'json',
-        success: function(data) {
-          if (data.status === 'success') {
-            // Limpiar pestañas anteriores (si reabres)
-            $('#productTabs').find('li.nav-item').not(':first').not(':last').remove();
-            $('#productTabsContent').find('.tab-pane').not('#product-1').remove();
-            $('#productTabs .nav-link').removeClass('active');
-            $('#product-1').removeClass('show active');
-            $('#product-tab-1').addClass('active');
-            $('#product-1').addClass('show active');
+    // === 10. Al cambiar el Broker: solo habilitar select, no impacta productoOrigen ===
+    $('#numeroBroker').off('change').on('change', function() {
+      const selectedBrokerId = $(this).val();
 
-            initOrderForm(data);
-          } else {
-            console.error('Error al inicializar orden:', data);
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error('Error en la llamada AJAX:', error);
-        }
-      });
+      // Reset Proveedor
+      $('#numeroProveedor')
+        .empty()
+        .append('<option value="">Selecciona un Proveedor</option>')
+        .prop('disabled', true);
+
+      if (!selectedBrokerId) return;
+
+      // Cargar proveedores
+      const providerSelect = $('#numeroProveedor');
+      if (Array.isArray(orderData.providers)) {
+        orderData.providers.forEach(provider => {
+          providerSelect.append(
+            `<option value="${provider.provider_id}">${provider.provider_name}</option>`
+          );
+        });
+      }
+      providerSelect.prop('disabled', false);
     });
 
-    // Evento para el botón "+" (agregar nueva pestaña/producto)
-    $('#addProductTabBtn').on('click', function() {
-      addNewProductTab();
+    // === 11. Al cambiar Proveedor: habilitar “Producto + Origen” y “Unidad” en la tarjeta 1 ===
+    $('#numeroProveedor').off('change').on('change', function() {
+      const selectedProviderId = $(this).val();
+
+      // Reset Producto 1
+      resetProductFields(1);
+
+      if (!selectedProviderId) return;
+
+      // Poblar “Producto + Origen” en índice 1 (sin filtrado)
+      populateProductOrigins(1);
+      // Poblar unidades en índice 1
+      initializeUnits(1);
+
+      // Habilitar el resto de inputs para Producto 1
+      $('#productoNombreComercial1').prop('disabled', false);
+      $('#cantidad1').prop('disabled', false).val('');
+      $('#precio1').prop('disabled', false).val('');
+      $('#tipoMoneda1').prop('disabled', false).val('MXN');
     });
 
-    // Evento de envío del formulario: recolectar todos los productos
+    // === 12. Evento para habilitar “＋ Agregar Producto” al completar campos del Producto 1 ===
+    bindCheckForProduct(1);
+
+    // === 13. Click en “＋ Agregar Producto” ===
+    $('#addProductBtn').on('click', function() {
+      addNewProductCard();
+    });
+
+    // === 14. Envío del formulario: recopilar todos los productos y mandarlos por AJAX ===
     $('#catalogForm').on('submit', function(event) {
       event.preventDefault();
 
-      // Datos generales
+      // 14.1. Datos generales
       const formData = {
         numeroBroker: $('#numeroBroker').val(),
         numeroProveedor: $('#numeroProveedor').val(),
@@ -701,18 +591,18 @@
         action: 'createOrdenCompra'
       };
 
-      // Recolectar productos
+      // 14.2. Recolectar productos
       const products = [];
       for (let i = 1; i <= productCount; i++) {
-        const origin = $(`#productoOrigen${i}`).val();
-        if (origin) {
+        const originCombo = $(`#productoOrigen${i}`).val();
+        if (originCombo) {
           const comercial = $(`#productoNombreComercial${i}`).val();
-          const cantidad = $(`#cantidad${i}`).val();
-          const unidad = $(`#unidadMedida${i}`).val();
-          const precio = $(`#precio${i}`).val();
-          const moneda = $(`#tipoMoneda${i}`).val();
+          const cantidad  = $(`#cantidad${i}`).val();
+          const unidad    = $(`#unidadMedida${i}`).val();
+          const precio    = $(`#precio${i}`).val();
+          const moneda    = $(`#tipoMoneda${i}`).val();
           products.push({
-            producto_origen_id: origin,
+            producto_origen_key: originCombo,
             nombre_comercial: comercial,
             cantidad: cantidad,
             unidad_medida_id: unidad,
@@ -723,7 +613,7 @@
       }
       formData.products = JSON.stringify(products);
 
-      // Enviar por AJAX
+      // 14.3. AJAX para guardar orden
       $.ajax({
         url: 'controller/actions.controller.php',
         method: 'POST',
@@ -731,14 +621,23 @@
         dataType: 'json',
         success: function(response) {
           if (response.status === 'success') {
+            // Reset general, dejar solo Producto 1 en blanco
             $('#catalogForm')[0].reset();
-            $('#productTabs').find('li.nav-item').not(':first').not(':last').remove();
-            $('#productTabsContent').find('.tab-pane').not('#product-1').remove();
-            $('#productTabs .nav-link').removeClass('active');
-            $('#product-1').removeClass('show active');
-            $('#product-tab-1').addClass('active');
-            $('#product-1').addClass('show active');
+            // Elimina todas las tarjetas excepto la 1
+            $('#productListContainer .product-card').not('[data-index="1"]').remove();
             productCount = 1;
+
+            // Reset Producto 1
+            resetProductFields(1);
+            $('#productoOrigen1').empty().append('<option value="">Selecciona Producto + Origen</option>');
+            $('#productoNombreComercial1').empty().append('<option value="">Selecciona Nombre Comercial</option>');
+            $('#unidadMedida1').empty().append('<option value="">Selecciona Unidad</option>');
+            // Reset selects Brokers/Proveedores/Supervisor/Ejecutivo
+            $('#numeroBroker').prop('disabled', true).empty().append('<option value="">Selecciona un Broker</option>');
+            $('#numeroProveedor').prop('disabled', true).empty().append('<option value="">Selecciona un Proveedor</option>');
+            $('#supervisor').prop('disabled', true).empty().append('<option value="">Selecciona un Supervisor</option>');
+            $('#ejecutivo').prop('disabled', true).empty().append('<option value="">Selecciona un Ejecutivo</option>');
+
             $('#catalogModal').modal('hide');
             alert('¡Orden guardada correctamente!');
           } else {
@@ -751,5 +650,100 @@
       });
     });
 
+    // === 15. Al abrir el modal (click en “Nueva Orden”), inicializar ===
+    $('#addNewButton').on('click', function() {
+      $.ajax({
+        url: 'controller/actions.controller.php',
+        method: 'POST',
+        data: { action: 'initOrder' },
+        dataType: 'json',
+        success: function(data) {
+          if (data.status === 'success') {
+            // Eliminar tarjetas adicionales (por si se reabrió el modal)
+            $('#productListContainer .product-card').not('[data-index="1"]').remove();
+            productCount = 1;
+
+            // Asegurar que la tarjeta 1 tenga sus títulos/ids correctos
+            $('.product-card[data-index="1"] .card-title').text('Producto 1');
+            resetProductFields(1);
+            $('#productoOrigen1').empty().append('<option value="">Selecciona Producto + Origen</option>');
+            $('#productoNombreComercial1').empty().append('<option value="">Selecciona Nombre Comercial</option>');
+            $('#unidadMedida1').empty().append('<option value="">Selecciona Unidad</option>');
+            // Ocultar botón eliminar en la tarjeta 1
+            $('.product-card[data-index="1"] .remove-product-btn').hide();
+
+            // Llamar a initOrderForm
+            initOrderForm(data);
+          } else {
+            console.error('Error al inicializar orden:', data);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error en la llamada AJAX:', error);
+        }
+      });
+    });
+
+    // === 16. Función para adjuntar manejadores “Eliminar producto” ===
+    function attachRemoveHandlers() {
+      $('.remove-product-btn').off('click').on('click', function() {
+        const card = $(this).closest('.product-card');
+        card.remove();
+        reindexAllProducts();
+      });
+    }
+
+    // === 17. Función para reindexar todas las tarjetas tras una eliminación ===
+    function reindexAllProducts() {
+      const cards = $('#productListContainer .product-card');
+      productCount = cards.length;
+      // Iterar en orden de aparición
+      cards.each(function(idx) {
+        const newIndex = idx + 1;
+        const $card = $(this);
+        $card.attr('data-index', newIndex);
+        // Actualizar título
+        $card.find('.card-title').text(`Producto ${newIndex}`);
+        // Ocultar botón eliminar en el primer card
+        if (newIndex === 1) {
+          $card.find('.remove-product-btn').hide();
+        } else {
+          $card.find('.remove-product-btn').show();
+        }
+        // Para cada elemento con id, reemplazar número final por newIndex
+        $card.find('[id]').each(function() {
+          const oldId = $(this).attr('id');
+          const newId = oldId.replace(/\d+$/, newIndex);
+          $(this).attr('id', newId);
+        });
+        // Actualizar el contenedor de group
+        $card.find('.product-group').attr('id', `product-group-${newIndex}`);
+
+        // Reasignar select “Producto + Origen”
+        populateProductOrigins(newIndex);
+        // Reasignar “Nombre Comercial” (vacío y deshabilitado, se habilita tras elegir origen)
+        $(`#productoNombreComercial${newIndex}`)
+          .empty()
+          .append('<option value="">Selecciona Nombre Comercial</option>')
+          .prop('disabled', true);
+        // Reasignar unidades
+        initializeUnits(newIndex);
+        // Habilitar campos restantes
+        $(`#cantidad${newIndex}`).prop('disabled', true).val('');
+        $(`#precio${newIndex}`).prop('disabled', true).val('');
+        $(`#tipoMoneda${newIndex}`).prop('disabled', true).val('MXN');
+
+        // Rebind de validación de completitud
+        bindCheckForProduct(newIndex);
+      });
+
+      // Tras reindexar, revisar estado del botón “＋ Agregar Producto”
+      checkProductComplete(productCount);
+      // Readjuntar manejadores eliminar en todos
+      attachRemoveHandlers();
+    }
+
+    // === 18. Inicialmente, adjuntar manejadores de eliminar (aunque el 1 ya estará oculto) ===
+    attachRemoveHandlers();
   });
 </script>
