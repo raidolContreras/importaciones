@@ -375,6 +375,30 @@ class OrderModel {
         return $response;
     }
 
+    static public function mdlAddProductToOrder($table, $data) {
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare("INSERT INTO $table (ordenes_compra_id, producto_origen_id, nombre_comercial, cantidad, unidad_medida_id, precio_unitario, moneda, creado_en, actualizado_en, isActive) VALUES (:ordenes_compra_id, :producto_origen_id, :nombre_comercial, :cantidad, :unidad_medida_id, :precio_unitario, :moneda, NOW(), NOW(), 1)");
+
+        $stmt->bindParam(":ordenes_compra_id", $data["order_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":producto_origen_id", $data["producto_origen_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":nombre_comercial", $data["nombre_comercial"], PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad", $data["cantidad"], PDO::PARAM_INT);
+        $stmt->bindParam(":unidad_medida_id", $data["unidad_medida_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":precio_unitario", $data["precio"], PDO::PARAM_STR);
+        $stmt->bindParam(":moneda", $data["moneda"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $response = "ok";
+        } else {
+            $response = "error";
+        }
+
+        // Close the connection
+        $stmt->closeCursor();
+        $stmt = null;
+        return $response;
+    }
+
     static public function mdlLoadPendienting($table, $userId) {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $table LEFT JOIN unidad_inventariable ui ON ui.unidad_medida_id = $table.unidad_medida_id WHERE $table.isActive = 1 AND ( $table.ejecutivo_id = :user_id OR $table.supervisor_id = :user_id) ORDER BY  $table.id DESC");
         $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);

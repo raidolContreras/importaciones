@@ -440,10 +440,25 @@ class OrderController
             "supervisor_id" => $_POST["supervisor"],
             "ejecutivo_id" => $_POST["ejecutivo"]
         );
+        $productos = json_decode($_POST["products"], true);
 
         $response = OrderModel::mdlCreateOrdenCompra($table, $data);
 
         if ($response != "error") {
+            // Si la orden se creó correctamente, guardar los productos
+            $orderId = $response; // ID de la orden recién creada
+            foreach ($productos as $producto) {
+                $productoToInsert = [
+                    "order_id" => $orderId,
+                    "producto_origen_id" => $producto["producto_origen_id"],
+                    "nombre_comercial" => $producto["nombre_comercial"],
+                    "cantidad" => $producto["cantidad"],
+                    "unidad_medida_id" => $producto["unidad_medida_id"],
+                    "precio" => $producto["precio"],
+                    "moneda" => $producto["moneda"]
+                ];
+                OrderModel::mdlAddProductToOrder("productos_orden_compra", $productoToInsert);
+            }
             echo json_encode(array("status" => "success", "message" => "Order saved successfully!", "order_id" => $response));
             LogsController::createLog($_SESSION["id_Users"], $_SESSION['company_id'], "Order created: " . $response);
         } else {

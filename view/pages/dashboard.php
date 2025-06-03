@@ -422,8 +422,7 @@
         .val('');
 
       $(`#tipoMoneda${index}`)
-        .prop('disabled', true)
-        .val('MXN');
+        .prop('disabled', true).val('MXN');
     }
 
     // Verificar si todos los campos de un producto están completos
@@ -732,8 +731,16 @@
         dataType: 'json',
         success: function(response) {
           if (response.status === 'success') {
-            console.log('Orden guardada, ID:', response.order_id);
-            // Opcional: cerrar modal, refrescar tabla, etc.
+            $('#catalogForm')[0].reset();
+            $('#productTabs').find('li.nav-item').not(':first').not(':last').remove();
+            $('#productTabsContent').find('.tab-pane').not('#product-1').remove();
+            $('#productTabs .nav-link').removeClass('active');
+            $('#product-1').removeClass('show active');
+            $('#product-tab-1').addClass('active');
+            $('#product-1').addClass('show active');
+            productCount = 1;
+            $('#catalogModal').modal('hide');
+            alert('¡Orden guardada correctamente!');
           } else {
             console.error('Error al guardar la orden:', response.message);
           }
